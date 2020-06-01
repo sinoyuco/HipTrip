@@ -14,6 +14,7 @@ const sessionReducer = (state = _nullUser, action) => {
         default:
             return state;
     }
+    // test
 }
 
 export default sessionReducer;
