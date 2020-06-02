@@ -7,5 +7,5 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-# user1 = {username: 'Johnnytravel', email: 'johnnyjones@gmail.com', password: 'password123', fname: 'Johnny', lname: 'Jones', zip_code: 64112 }
-# user2 = {username: 'Jennymags', email: 'jennymags@gmail.com', password: 'jmags123', fname: 'Jennifer', lname: 'Magnussen', zip_code: 11205 }
+
+User.create!(email: 'demouser@demoemail.com', password: 'demopass123', fname: 'First', lname: 'Last', zip_code: 00000 )

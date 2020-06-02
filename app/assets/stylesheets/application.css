@@ -13,3 +13,157 @@
  *= require_tree .
  *= require_self
  */
+
+ .modal-background {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+.modal-child {
+  background: white;
+  margin: 20px;
+  padding: 10px;
+  width: 250px;
+  height: auto;
+  position: absolute;
+  /* margin: 100px; */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+}
+
+.main-navbar{
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.auth-navbar{
+  min-width: 150px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.auth-navbar li{
+  padding: 10px;
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.auth-navbar li:hover{
+  border-bottom: 2px solid #40d9ac;
+  cursor: pointer;
+}
+
+
+
+li{
+  font-family: "Calibre", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.hosting-button{
+  background-color: #40d9ac;
+  color: white;
+  font-family: "Calibre", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 2px solid #40d9ac;
+  -webkit-font-smoothing: antialiased;
+}
+
+.hosting-button:hover{
+  background-color: inherit;
+  color: #40d9ac;
+  cursor: pointer;
+}
+
+.session-submit{
+  background-color: #40d9ac;
+  color: white;
+  font-size: 16px;
+  font-family: "Calibre", Helvetica, Arial, sans-serif;
+  border-radius: 5px;
+  border: 2px solid #40d9ac;
+  padding: 10px;
+  width: 90%;
+  justify-content: center;
+  display: block;
+  margin: 0 auto;
+}
+
+.session-submit:hover{
+  background-color: inherit;
+  color: #40d9ac;
+  cursor: pointer;
+}
+
+.session-form-div input{
+  width: 80%;
+  padding: 10px;
+  margin: 10px;
+  justify-content: center;
+}
+
+.session-form-div input::placeholder{
+  color: black;
+  font-weight: 700;
+} 
+
+.session-form{
+  padding: 10px;
+  justify-content: center;
+}
+
+.other-form{
+  background: rgba(204, 204, 204, 0.507);
+  display: flex;
+  color: gray;
+  font-size: 12px;
+  box-sizing: border-box;
+}
+
+.other-form-link{
+  list-style-type: none;
+  color: gray;
+  font-weight: 700;
+  align-items: center;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+}
+
+.other-form-link:hover{
+  border-bottom: 2px solid gray;;
+  cursor: pointer;
+}
+
+.sign-up-names{
+  display: flex;
+}
+
+.demo-login-button{
+  background-color: #40d9ac;
+  color: white;
+  font-size: 16px;
+  font-family: "Calibre", Helvetica, Arial, sans-serif;
+  border-radius: 5px;
+  border: 2px solid #40d9ac;
+  width: 90%;
+  padding: 10px;
+  display: block;
+  margin: 0 auto;
+}
+
+.demo-login-button:hover{
+  background-color: inherit;
+  color: #40d9ac;
+  cursor: pointer;
+}
