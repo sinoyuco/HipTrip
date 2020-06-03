@@ -11,10 +11,6 @@ class Modal extends React.Component{
         // this.setState={error: this.props.error}
     }
 
-    // componentWillUnmount(){
-    //     debugger;
-    //     this.props.clearErrors();
-    // }
 
     render(){
     if(!this.props.modal){ 

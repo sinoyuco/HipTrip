@@ -362,11 +362,7 @@ var Modal = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, Modal);
 
     return _super.call(this, props); // this.setState={error: this.props.error}
-  } // componentWillUnmount(){
-  //     debugger;
-  //     this.props.clearErrors();
-  // }
-
+  }
 
   _createClass(Modal, [{
     key: "render",

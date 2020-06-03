@@ -8,4 +8,4 @@
 
 
 
-User.create!(email: 'demouser@demoemail.com', password: 'demopass123', fname: 'First', lname: 'Last', zip_code: 00000 )
+User.create!(email: 'demouser@demoemail.com', password: 'demopass123', fname: 'First', lname: 'Last', zip_code: 00000, trip_count: 2 )
