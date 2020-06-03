@@ -1,0 +1,32 @@
+.spot-index{
+  background-color: gold;
+  width: 50%;
+  display: flex;
+  padding: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.spot-item{
+  background-color: #fff;
+  width: 40%;
+  flex-direction: row;
+  border: 1px solid white;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+.spot-item-image{
+  width: 100%;
+  max-height: 60%;
+}
+
+.index-spot-image{
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.spot-item-content{
+  padding: 10px;
+}
