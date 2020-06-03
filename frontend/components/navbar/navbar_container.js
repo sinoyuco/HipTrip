@@ -5,6 +5,7 @@ import Navbar from './navbar';
 
 const mSTP = state => ({
     session: state.session.id
+    // error: state.errors.session
 });
 
 const mDTP = (dispatch) => ({
