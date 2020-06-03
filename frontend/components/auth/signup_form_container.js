@@ -7,7 +7,7 @@ import SessionForm from './session_form'
 const mSTP = (state) => ({
     errors: state.errors.session,
     formType: 'signup',
-    formText: 'Join HipTrip'
+    formText: 'Sign up with your email address'
 });
 
 const mDTP = (dispatch) => ({

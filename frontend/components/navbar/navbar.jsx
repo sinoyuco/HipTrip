@@ -26,8 +26,19 @@ class Navbar extends React.Component{
                 <li>Trips</li>
                 <li>Saves</li>
                 <li>Messages</li>
-                <li className="User Profile"> Profile </li>
-                <li onClick={this.handleLogout}>Log Out</li>
+                <div className="user-profile"> Profile 
+                    <div className="user-profile-content">
+                        <li>Manage Account</li>
+                        <li>Earn Hipcash</li>
+                        <li>Become a Host</li>
+                        <li>Refer Hosts</li>
+                        <li>Help & FAQ</li>
+                        <li>Become a Host</li>
+                        <li>About HipTrip</li>
+                        <li onClick={this.handleLogout}>Log Out</li>
+                    </div>
+                </div>
+                
                 </>
 
         }else{

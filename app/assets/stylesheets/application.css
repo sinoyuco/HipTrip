@@ -27,8 +27,8 @@
 .modal-child {
   background: white;
   margin: 20px;
-  padding: 10px;
-  width: 250px;
+  /* padding: 10px; */
+  width: 300px;
   height: auto;
   position: absolute;
   /* margin: 100px; */
@@ -39,7 +39,7 @@
 }
 
 .main-navbar{
-  padding: 10px;
+  /* padding: 10px; */
   display: flex;
   justify-content: space-between;
 }
@@ -101,16 +101,17 @@ li{
 }
 
 .session-submit:hover{
-  background-color: inherit;
-  color: #40d9ac;
+  /* background-color: inherit;
+  color: #40d9ac; */
   cursor: pointer;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
 }
+
 
 .session-form-div input{
   width: 80%;
   padding: 10px;
-  margin: 10px;
-  justify-content: center;
+  margin: 10px 15px;
 }
 
 .session-form-div input::placeholder{
@@ -128,20 +129,20 @@ li{
   display: flex;
   color: gray;
   font-size: 12px;
-  box-sizing: border-box;
+  justify-content: space-around;
 }
 
 .other-form-link{
   list-style-type: none;
   color: gray;
-  font-weight: 700;
+  font-weight: bold;
   align-items: center;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
+  margin-block-start: 0.5em;
+  margin-block-end: 0.5em;
 }
 
 .other-form-link:hover{
-  border-bottom: 2px solid gray;;
+  border-bottom: 1px solid gray;;
   cursor: pointer;
 }
 
@@ -163,7 +164,71 @@ li{
 }
 
 .demo-login-button:hover{
-  background-color: inherit;
-  color: #40d9ac;
+  /* background-color: inherit;
+  color: #40d9ac; */
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
   cursor: pointer;
+}
+
+.user-profile{
+  position: relative;
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+  padding: 10px;
+  font-size: 16px;
+  font-family: "Calibre", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+}
+
+.user-profile-content{
+  display: none;
+  position: absolute;
+  min-width: 200px;
+  z-index: 1;
+  right: 0;
+  top: 35px;
+  border: 1px solid gray;
+}
+
+.user-profile:hover .user-profile-content {
+  display: block;
+}
+
+.user-profile-content li{
+  padding: 20px 5px;
+  border-bottom: 1px solid gray;
+}
+
+.user-profile-content li:hover{
+  padding: 20px 5px 20px 20px;
+  /* display: flex;
+  justify-content: center; */
+}
+
+.session-form-separator{
+  color: #757575;
+  width: 90%;
+  padding: 10px;
+}
+
+.session-form-separator p{
+  display: flex;
+  justify-content: center;
+}
+
+.greeting{
+  font-family: "Calibre", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.greeting h2{
+  display: flex;
+  justify-content: center;
+}
+
+.greeting h3{
+  color: gray;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
 }

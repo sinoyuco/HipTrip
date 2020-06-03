@@ -7,7 +7,7 @@ import SessionForm from './session_form'
 const mSTP = (state) => ({
     errors: state.errors.session,
     formType: 'login',
-    formText: 'Log in'
+    formText: 'Sign in with your email address'
 });
 
 const mDTP = (dispatch) => ({

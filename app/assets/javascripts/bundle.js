@@ -274,7 +274,7 @@ var mSTP = function mSTP(state) {
   return {
     errors: state.errors.session,
     formType: 'login',
-    formText: 'Log in'
+    formText: 'Sign in with your email address'
   };
 };
 
@@ -435,9 +435,11 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
       password: '',
       fname: '',
       lname: '',
-      zip_code: ''
+      zip_code: '',
+      collapsed: true
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.handleCollapse = _this.handleCollapse.bind(_assertThisInitialized(_this));
     _this.demoLogin = _this.demoLogin.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -446,8 +448,9 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      this.props.processForm(this.state).then(this.props.closeModal);
-      this.forceUpdate();
+      var user = Object.assign({}, this.state);
+      delete user.collapsed;
+      this.props.processForm(user).then(this.props.closeModal);
     }
   }, {
     key: "update",
@@ -466,68 +469,98 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
       this.props.demoLogin().then(this.props.closeModal);
     }
   }, {
+    key: "handleCollapse",
+    value: function handleCollapse(e) {
+      e.preventDefault();
+      this.setState({
+        collapsed: false
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var form;
 
-      if (this.props.formType === 'signup') {
-        form = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "session-form-div"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "sign-up-names"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          type: "text",
-          value: this.state.fname,
-          onChange: this.update('fname'),
-          placeholder: "First name"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          type: "text",
-          value: this.state.lname,
-          onChange: this.update('lname'),
-          placeholder: "Last name"
-        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          type: "text",
-          value: this.state.email,
-          onChange: this.update('email'),
-          placeholder: "Email address"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          type: "password",
-          value: this.state.password,
-          onChange: this.update('password'),
-          placeholder: "Create a password"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          type: "text",
-          value: this.state.zip_code,
-          onChange: this.update('zip_code'),
-          placeholder: "Zip code"
-        }));
+      if (!this.state.collapsed) {
+        if (this.props.formType === 'signup') {
+          form = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "session-form-div"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "sign-up-names"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+            type: "text",
+            value: this.state.fname,
+            onChange: this.update('fname'),
+            placeholder: "First name"
+          }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+            type: "text",
+            value: this.state.lname,
+            onChange: this.update('lname'),
+            placeholder: "Last name"
+          })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+            type: "text",
+            value: this.state.email,
+            onChange: this.update('email'),
+            placeholder: "Email address"
+          }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+            type: "password",
+            value: this.state.password,
+            onChange: this.update('password'),
+            placeholder: "Create a password"
+          }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+            type: "text",
+            value: this.state.zip_code,
+            onChange: this.update('zip_code'),
+            placeholder: "Zip code"
+          }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+            onClick: this.handleSubmit,
+            className: "session-submit"
+          }, "Join HipTrip!"));
+        } else {
+          form = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "session-form-div"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+            type: "text",
+            value: this.state.email,
+            onChange: this.update('email'),
+            placeholder: "Email address"
+          }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+            type: "password",
+            value: this.state.password,
+            onChange: this.update('password'),
+            placeholder: "Password"
+          }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+            onClick: this.handleSubmit,
+            className: "session-submit"
+          }, "Sign in"));
+        }
       } else {
-        form = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "session-form-div"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          type: "text",
-          value: this.state.email,
-          onChange: this.update('email'),
-          placeholder: "Email address"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          type: "password",
-          value: this.state.password,
-          onChange: this.update('password'),
-          placeholder: "Password"
-        }));
+        form = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "session-submit",
+          onClick: this.handleCollapse
+        }, this.props.formText);
       }
 
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        className: "session-form",
-        onSubmit: this.handleSubmit
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      var greeting;
+
+      if (this.props.formType === 'signup') {
+        greeting = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "greeting"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Join HipTrip!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Discover the best camping near me"));
+      } else {
+        greeting = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "greeting"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Welcome back!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "It's about time for another camping trip"));
+      }
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "session-form"
+      }, greeting, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "demo-login-button",
         onClick: this.demoLogin
-      }, "Demo Login"), form, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        className: "session-submit",
-        type: "submit",
-        value: this.props.formText
-      }), this.props.otherForm);
+      }, "Demo Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "session-form-separator"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "or")), form), this.props.otherForm);
     }
   }]);
 
@@ -563,7 +596,7 @@ var mSTP = function mSTP(state) {
   return {
     errors: state.errors.session,
     formType: 'signup',
-    formText: 'Join HipTrip'
+    formText: 'Sign up with your email address'
   };
 };
 
@@ -670,11 +703,13 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
       var links;
 
       if (this.props.session) {
-        links = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Trips"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Saves"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Messages"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          className: "User Profile"
-        }, " Profile "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        links = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Trips"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Saves"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Messages"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "user-profile"
+        }, " Profile", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "user-profile-content"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Manage Account"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Earn Hipcash"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Become a Host"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Refer Hosts"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Help & FAQ"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Become a Host"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "About HipTrip"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           onClick: this.handleLogout
-        }, "Log Out"));
+        }, "Log Out"))));
       } else {
         links = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Near me"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "About"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Earn Hipcash"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           onClick: this.handleSubmit('login')
