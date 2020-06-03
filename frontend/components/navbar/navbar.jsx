@@ -56,7 +56,7 @@ class Navbar extends React.Component{
 
         return(
             <div className="main-navbar">
-                <h1>HipTrip</h1>
+                <a href="/"><img src="https://fontmeme.com/permalink/200603/ef81bf1f1f2d6819aaf0a2e41a177943.png" alt="the-mandalorian-font" border="0"/></a>
                 <ul className="auth-navbar">
                     {links}
                 </ul>

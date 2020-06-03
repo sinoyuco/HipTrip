@@ -44,6 +44,10 @@
   justify-content: space-between;
 }
 
+.main-navbar a{
+  padding: 10px;
+}
+
 .auth-navbar{
   min-width: 150px;
   padding: 10px;
