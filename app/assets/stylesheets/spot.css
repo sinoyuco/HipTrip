@@ -110,8 +110,22 @@
 }
 
 .spot-show{
+  width: 1000px;
+  display: flex;
+  justify-content: space-around;
+  margin: 0 auto;
+}
+
+.spot-show-side{
+  width: 30%;
+  background: lightslategray;
+}
+
+.spot-show-main{
   background: lavender;
-  min-height: 1000px;
+  min-height: 700px;
+  width: 70%;
+  display: flexbox;
 }
 
 .spot-show-header-2-2-share-icon{
@@ -119,26 +133,53 @@
 }
 
 .spot-show-images{
+  display: flex;
+  justify-content: space-between;
   min-height: 500px;
   background: lawngreen;
 }
 
+.spot-show-images-sub{
+  width: 33%;
+}
+
+
 .spot-show-header{
-  width: 60%;
   margin: 0 auto;
   background: lightsalmon;
 }
 
+.spot-show-header-2{
+  display: flex;
+  justify-content: space-between;
+}
+.spot-show-header-2-1{
+  width: 30%;
+}
+.spot-show-header-2-2{
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+}
 
 .spot-show-bot{
-  width: 60%;
   background: mediumspringgreen;
   margin: 0 auto;
   min-height: 300px;
+  display: flex;
 }
 
+.spot-show-user-profile{
+  width: 20%;
+}
+
+.spot-show-description{
+  width: 80%;
+}
+
+
+
 .spot-show-tables{
-  width: 60%;
   background: lemonchiffon;
   margin: 0 auto;
   min-height: 300px;

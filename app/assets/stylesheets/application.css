@@ -194,6 +194,7 @@ li{
   right: 0;
   top: 35px;
   border: 1px solid gray;
+  background: #fff;
 }
 
 .user-profile:hover .user-profile-content {
