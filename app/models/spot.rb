@@ -8,6 +8,8 @@ class Spot < ApplicationRecord
 
     # function to check for lat and long validation
 
+    has_many_attached :photos
+
     #function to calc rating
 
 end

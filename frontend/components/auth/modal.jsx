@@ -30,15 +30,27 @@ class Modal extends React.Component{
     }
 
     const errors = this.props.error.map((error,idx) => <li key={idx}>{error}</li>)
+    let errors_div;
+    if(errors.length===0){
+        errors_div = null;
+    }else{
+        errors_div = <div className="auth-error">
+                        <div className="auth-error-span">
+                            <span>&#x2757;</span>
+                        </div>
+                        
+                       <div className="auth-error-list">
+                        {errors}
+                       </div> 
+                    </div>
+    }
 
     return(
         <div className="modal-background" onClick={this.props.closeModal}>
             <div className="modal-child" onClick={e => e.stopPropagation()}>
                 {component}
             </div>
-            <ul className="auth-error">
-                {errors}
-            </ul>
+            {errors_div}
         </div>
     );
     }

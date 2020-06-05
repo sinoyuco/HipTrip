@@ -14,18 +14,13 @@ class SpotShow extends React.Component{
         if(!this.props.spot){
             return null;
         }
+        const spot_photos = this.props.spot.photoUrls.map((photo_url,idx) => <div className="spot-show-images-sub" key={idx}>
+            <img src={photo_url}></img>
+        </div>)
         return(
             <div className="spot-show-master">
             <div className="spot-show-images">
-                <div className="spot-show-images-sub">
-
-                </div>
-                <div className="spot-show-images-sub">
-
-                </div>
-                <div className="spot-show-images-sub">
-
-                </div>
+                {spot_photos}
             </div>
             <div className="spot-show">
                 <div className="spot-show-main">

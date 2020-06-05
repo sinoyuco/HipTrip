@@ -134,13 +134,22 @@
 
 .spot-show-images{
   display: flex;
-  justify-content: space-between;
-  min-height: 500px;
-  background: lawngreen;
+  height: 600px;
 }
 
 .spot-show-images-sub{
-  width: 33%;
+  width: 600px;
+  min-width: 600px;
+  border-left: 5px solid white;
+}
+
+.spot-show-images-sub:last-child{
+  width: calc(100% - 1215px);
+}
+
+.spot-show-images-sub img{
+  width: 100%;
+  height: 600px;
 }
 
 
@@ -157,7 +166,7 @@
   width: 30%;
 }
 .spot-show-header-2-2{
-  width: 30%;
+  width: 40%;
   display: flex;
   justify-content: space-between;
 }

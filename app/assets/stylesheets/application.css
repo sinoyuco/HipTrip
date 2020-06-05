@@ -65,6 +65,7 @@
 
 .auth-navbar li:hover{
   border-bottom: 2px solid #40d9ac;
+  padding: 10px 10px 8px 10px;
   cursor: pointer;
 }
 
@@ -103,27 +104,34 @@ li{
   width: 90%;
   justify-content: center;
   display: block;
-  margin: 0 auto;
+  margin: 20px auto 0 auto;
+  height: 50px;
 }
 
 .session-submit:hover{
   /* background-color: inherit;
   color: #40d9ac; */
   cursor: pointer;
-  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.4);
+  transform: translateY(-3px);
 }
 
 
 .session-form-div input{
-  width: 80%;
-  padding: 10px;
-  margin: 10px 15px;
+  width: 85%;
+  padding: 5px;
+  height: 45px;
+  margin: 5px 15px;
 }
 
 .session-form-div input::placeholder{
   color: black;
   font-weight: 700;
 } 
+
+.session-form-div input:focus{
+  outline:none;
+}
 
 .session-form{
   padding: 10px;
@@ -166,13 +174,15 @@ li{
   width: 90%;
   padding: 10px;
   display: block;
-  margin: 0 auto;
+  margin: 0 auto 20px auto;
+  height: 50px;
 }
 
 .demo-login-button:hover{
   /* background-color: inherit;
   color: #40d9ac; */
-  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.4);
+  transform: translateY(-3px);
   cursor: pointer;
 }
 
@@ -215,7 +225,7 @@ li{
 .session-form-separator{
   color: #757575;
   width: 90%;
-  padding: 10px;
+  padding: 10px 5px 10px 5px;
 }
 
 .session-form-separator p{
@@ -242,25 +252,47 @@ li{
 
 .auth-error{
   position: fixed;
-  top: 60%;
-  left: 10%;
+  bottom: 5%;
+  left: 5%;
   min-width: 70px;
+  padding: 20px;
   /* min-height: 50px; */
   background: gold;
   z-index: 2;
+  display: flex;
 }
 
 .auth-error span{
-  margin-right: 2px;
+  color: rgb(142, 103, 5);
+  margin-right: 5px;
+  align-items: center;
+}
+
+.auth-error span{
+  color: rgb(142, 103, 5);
+  margin-right: 5px;
+  align-items: center;
+}
+
+.auth-error-span{
+  margin: auto 0;
 }
 
 .auth-error li{
   font-family: "Calibre", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   font-weight: bold;
-  font-size: 12px;
+  color: rgb(142, 103, 5);
+  font-size: 14px;
   margin-block-start: 0em;
   margin-block-end: 0em;
+  /* list-style-type: none; */
+  margin-block-start: 0.5em;
+  margin-block-end: 0.5em;
+}
+
+.auth-error-list{
+  list-style-type: none;
 }
 
 .spot-search{
