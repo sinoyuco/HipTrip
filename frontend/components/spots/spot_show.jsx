@@ -1,13 +1,25 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+import EssentialsTable from '../tables/essentials_table';
+import AmenitiesTable from '../tables/amenities_table';
+import CampSiteTable from '../tables/campsite_table';
+import BookingForm from '../booking/booking_form';
 
 class SpotShow extends React.Component{
     constructor(props){
         super(props);
+        this.state={scrollFixed: true}
     }
 
     componentDidMount(){
         let spotId = parseInt(this.props.match.params.spotId);
         this.props.fetchSpot(spotId);
+        document.addEventListener('scroll', () => {
+            const belowPictures = window.scrollY < 590;
+            if (belowPictures !== this.state.scrollFixed) {
+                this.setState({ scrollFixed: belowPictures });
+            }
+        });
     }
 
     render(){
@@ -16,7 +28,10 @@ class SpotShow extends React.Component{
         }
         const spot_photos = this.props.spot.photoUrls.map((photo_url,idx) => <div className="spot-show-images-sub" key={idx}>
             <img src={photo_url}></img>
-        </div>)
+        </div>);
+
+        const scrollClass = this.state.scrollFixed ? 'spot-show-booking-div' : 'spot-show-booking-div-absolute';
+
         return(
             <div className="spot-show-master">
             <div className="spot-show-images">
@@ -26,9 +41,15 @@ class SpotShow extends React.Component{
                 <div className="spot-show-main">
                     <div className="spot-show-header">
                         <div className="spot-show-1">
-                            <h3>{this.props.spot.state}</h3>
+                            <div className="spot-show-1-1">
+                                    <li>United States</li>
+                                    <span className="spot-show-1-1-span">></span>
+                                    <Link className="spot-show-state-link" to="/discover">{this.props.spot.state}</Link>
+                                    <span className="spot-show-1-1-span">></span>
+                                    <Link className="spot-show-state-link" to={`/spots/${this.props.spot.id}`}>{this.props.spot.name}</Link>
+                            </div>
                             <h2>{this.props.spot.name}</h2>
-                            <h3>{this.props.spot.price}</h3>
+                                <h3><strong>Nearby:</strong> The great outdoors of the US of A</h3>
                         </div>
                         <div className="spot-show-header-2">
                             <div className="spot-show-header-2-1">
@@ -38,16 +59,23 @@ class SpotShow extends React.Component{
                             <div className="spot-show-header-2-2">
                                 <button className="spot-show-header-2-2-upload">Upload</button>
                                 <button className="spot-show-header-2-2-save">Save to List</button>
-                                <div className="spot-show-header-2-2-share">
-                                    <span className= "spot-show-header-2-2-share-icon"></span>
-                                </div>
+                                <button className="spot-show-header-2-2-share">
+                                        <div className="spot-show-header-2-2-share-icon-div">
+                                        <span className="spot-show-header-2-2-share-icon">&#9165;</span>
+                                        </div>
+                                </button>
                             </div>
                         </div>
                     </div>
 
                     <div className="spot-show-bot">
                         <div className="spot-show-user-profile">
-
+                                <div className="spot-show-user-profile-element">
+                                    <div className="spot-show-user-profile-element-pic">
+                                        <img src={this.props.spot.host_photo[0]}></img>
+                                    </div>
+                                    <p><strong>Hosted by:</strong> {this.props.spot.host.fname} {this.props.spot.host.lname} </p>
+                                </div>
                         </div>
 
                         <div className="spot-show-description">
@@ -58,23 +86,27 @@ class SpotShow extends React.Component{
                     
                     <div className = "spot-show-tables">
                         <div className="spot-show-tables-campsite">
-
+                            <h2>Campsite</h2>
+                            <CampSiteTable elements={this.props.spot.campsites.map(el => el.campsite_property_type)}/>
                         </div>
 
                         <div className="spot-show-tables-essentials">
-
+                            <h2>Essentials</h2>
+                            <EssentialsTable elements={this.props.spot.essentials.map(el => el.essential_type)} />
                         </div>
 
                         <div className="spot-show-tables-amenities">
-
+                            <h2>Amenities</h2>
+                            <AmenitiesTable elements={this.props.spot.amenities.map(el => el.amenity_type)} />
                         </div>
 
                     </div>
                     
                 </div>
                 <div className="spot-show-side">
-
+                        <BookingForm price={this.props.spot.price} scroll={scrollClass}/>
                 </div>
+                
             </div>
         </div>
         );

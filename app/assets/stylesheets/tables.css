@@ -1,0 +1,224 @@
+.spot-show-tables{
+  margin: 0 auto;
+  min-height: 300px;
+  display: flex;
+  justify-content: space-between;
+   font-family: "Calibre", Helvetica, Arial, sans-serif;
+}
+
+.spot-show-tables h2{
+    padding: 0 10px;
+    margin-bottom: 0;
+    /* font-family: "Calibre", Helvetica, Arial, sans-serif; */
+}
+
+.spot-show-tables-amenities{
+    width: 31%;
+    background: white;
+    margin: 0 10px 15px 10px;
+    border: 1px solid #ebebeb;
+}
+
+.amenities{
+    list-style-type: none;
+    padding: 10px 0 10px 10px;
+    margin: 10px 0 10px 10px;
+}
+
+.amenities li{
+    font-size: 16px;
+    margin: 0 0 10px 5px;
+}
+
+.spot-show-tables-essentials{
+  width: 31%;
+  background: white;
+  margin: 0 10px 15px 10px;
+  border: 1px solid #ebebeb;
+}
+
+.essentials{
+    list-style-type: none;
+    padding: 10px 0 10px 10px;
+    margin: 10px 0 10px 10px;
+}
+
+.essentials li{
+    font-size: 16px;
+    margin: 0 0 10px 5px;
+}
+
+.spot-show-tables-campsite{
+  width: 31%;
+  background: white;
+  margin: 0 10px 15px 10px;
+  border: 1px solid #ebebeb;
+}
+
+.campsite{
+    list-style-type: none;
+    padding: 10px 0 10px 10px;
+    margin: 10px 0 10px 10px;
+}
+
+.campsite li{
+    font-size: 16px;
+    margin: 0 0 10px 5px;
+}
+
+.spot-show-booking-div{
+  right: 50;
+  top: 0;
+  width: 300px;
+  height: 300px;
+  /* position: fixed; */
+  border: 1px solid #ebebeb;
+}
+
+.spot-show-booking-div-absolute{
+  right: 50;
+  top: 0;
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  /* position: fixed; */
+  border: 1px solid #ebebeb;
+  background: white;
+}
+
+.booking-price{
+    padding: 0 10px;
+    height: 23%;
+    border-bottom: 1px solid #ebebeb;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+.booking-checking{
+    height: 23%;
+    display: flex;
+    border-bottom: 1px solid #ebebeb;
+    align-items: center;
+}
+
+.booking-savings{
+    padding: 0 10px;
+    height: 14%;
+    border-bottom: 1px solid #ebebeb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.booking-subtotal{
+    padding: 0 10px;
+    height: 17%;
+    border-bottom: 1px solid #ebebeb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.booking-submit{
+    padding: 0 10px;
+    height: 23%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.booking-check-in{
+    padding: 0 10px;
+    width: 33%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    cursor: pointer;
+    height: 100%;
+}
+
+.booking-check-out{
+    padding: 0 10px;
+    width: 33%;
+    border-right: 1px solid #ebebeb;
+    border-left: 1px solid #ebebeb;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    cursor: pointer;
+    height: 100%;
+}
+
+.booking-guests{
+    padding: 0 10px;
+    width: 33.3%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    height: 100%;
+}
+
+.booking-guests span{
+    cursor: pointer;
+    /* font-size: 18px; */
+    font-family: "Calibre", Helvetica, Arial, sans-serif;
+}
+
+.bookings-guets-calculation{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.spot-show-booking-div h3{
+    margin-block-start: 0;
+    margin-block-end: 0;
+    font-family: "Calibre", Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.spot-show-booking-div-absolute h3{
+    margin-block-start: 0;
+    margin-block-end: 0;
+    font-family: "Calibre", Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.spot-show-booking-div h2{
+    margin-block-start: 0;
+    margin-block-end: 0;
+    font-family: "Calibre", Helvetica, Arial, sans-serif;
+}
+
+.spot-show-booking-div-absolute h2{
+    margin-block-start: 0;
+    margin-block-end: 0;
+    font-family: "Calibre", Helvetica, Arial, sans-serif;
+}
+
+.booking-submit button{
+  background-color: #40d9ac;
+  color: white;
+  font-family: "Calibre", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  border: 2px solid #40d9ac;
+  -webkit-font-smoothing: antialiased;
+  width: 250px;
+  height: 80%;
+}
+
+.booking-submit button:hover{
+  background-color: inherit;
+  color: #40d9ac;
+  cursor: pointer;
+}
+
+.savings-amount{
+    color: red;
+}
+
+.price-per-night{
+    color: #757575;
+}

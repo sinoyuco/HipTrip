@@ -117,16 +117,49 @@
 }
 
 .spot-show-side{
-  width: 30%;
-  background: lightslategray;
+  width: 25%
 }
 
 .spot-show-main{
-  background: lavender;
-  min-height: 700px;
+  min-height: 600px;
   width: 70%;
   display: flexbox;
 }
+
+.spot-show-header-2-2-upload{
+  width: 35%;
+  margin: 5px;
+  border: 1px solid #ebebeb;
+  background: white;
+}
+
+.spot-show-header-2-2-upload:hover{
+  border-color: #cccccc;
+}
+
+
+.spot-show-header-2-2-save{
+  width: 35%;
+  margin: 5px;
+  border: 1px solid #ebebeb;
+  background: white;
+}
+
+.spot-show-header-2-2-save:hover{
+  border-color: #cccccc;
+}
+
+.spot-show-header-2-2-share{
+  width: 20%;
+  margin: 5px 15px 5px 5px;
+  border: 1px solid #ebebeb;
+  background: white;
+}
+
+.spot-show-header-2-2-share:hover{
+  border-color: #cccccc;
+}
+
 
 .spot-show-header-2-2-share-icon{
   content: "\f133";
@@ -134,12 +167,12 @@
 
 .spot-show-images{
   display: flex;
-  height: 600px;
+  height: 500px;
 }
 
 .spot-show-images-sub{
-  width: 600px;
-  min-width: 600px;
+  width: 500px;
+  min-width: 500px;
   border-left: 5px solid white;
 }
 
@@ -149,13 +182,83 @@
 
 .spot-show-images-sub img{
   width: 100%;
-  height: 600px;
+  height: 500px;
 }
+
+/* .spot-show-images-sub img:last-child{
+  width: calc(100% - 1215px);
+} */
+.spot-show-1 h2{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-size: 42px;
+    font-family: "Calibre", Helvetica, Arial, sans-serif;
+}
+
+.spot-show-1 h3{
+    font-size: 16px;
+    font-family: "Calibre", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    color: #333333;
+}
+
+
+.spot-show-1-1 li{
+  font-family: "Calibre", Helvetica, Arial, sans-serif;
+  text-decoration: none;
+  font-size: 16px;
+  color: #333333;
+  font-weight: 400;
+  list-style: none;
+  margin-right: 5px;
+}
+
+.spot-show-1-1-span{
+  font-weight: bold;
+  color: #333333;
+  margin-right: 5px;
+}
+
+.spot-show-1-1 li:last-child{
+    border-bottom: 1px solid #ebebeb;
+}
+
+.spot-show-1-1 li:last-child:hover{
+  border-bottom: 1px solid #333333;
+  cursor: pointer;
+}
+.spot-show-1-1{
+  display: flex;
+}
+
+.spot-show-header-2{
+  height: 80px;
+}
+
+
+.spot-show-state-link{
+  font-family: "Calibre", Helvetica, Arial, sans-serif;
+  text-decoration: none;
+  font-size: 16px;
+  color: #333333;
+  border-bottom: 1px solid #ebebeb;
+  font-weight: 400;
+  margin-right: 5px;
+}
+
+.spot-show-state-link:hover{
+  border-bottom: 1px solid #333333;
+  cursor: pointer;
+}
+
+
 
 
 .spot-show-header{
   margin: 0 auto;
-  background: lightsalmon;
+  background: white;
+  margin-top: 35px;
 }
 
 .spot-show-header-2{
@@ -166,30 +269,76 @@
   width: 30%;
 }
 .spot-show-header-2-2{
-  width: 40%;
+  width: 50%;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 15px;
+  height: 60px;
+}
+
+.spot-show-user-profile-element{
+  background: white;
+  margin: 15% auto;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.spot-show-user-profile-element-pic{
+  width: 70px;
+  height: 70px;
+  background: white;
+  border-radius: 50px;
+  border: 1px solid #cccccc;
+  display: flex;
+  overflow: hidden;
+  margin: auto 0;
+}
+
+
+.spot-show-user-profile-element-pic img{
+  width: 100%;
+  height: auto;
+}
+
+.spot-show-user-profile-element p{
+  font-family: "Calibre", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  color: #333333;
+  line-height: 1.42;
+  font-weight: 400;
+  width: 40%;
 }
 
 .spot-show-bot{
-  background: mediumspringgreen;
+  border-top: 1px solid #ebebeb;
   margin: 0 auto;
-  min-height: 300px;
+  min-height: 250px;
   display: flex;
 }
 
 .spot-show-user-profile{
-  width: 20%;
+  width: 40%;
 }
+
+
 
 .spot-show-description{
-  width: 80%;
+  width: 60%;
+  padding: 10px;
+}
+
+.spot-show-description p{
+  font-family: "Calibre", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  color: #333333;
+  line-height: 1.42;
+  font-weight: 400;
 }
 
 
 
-.spot-show-tables{
-  background: lemonchiffon;
-  margin: 0 auto;
-  min-height: 300px;
-}
+
+
+
+
+

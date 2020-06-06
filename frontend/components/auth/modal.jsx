@@ -28,7 +28,6 @@ class Modal extends React.Component{
         default:
             return null;
     }
-
     const errors = this.props.error.map((error,idx) => <li key={idx}>{error}</li>)
     let errors_div;
     if(errors.length===0){
