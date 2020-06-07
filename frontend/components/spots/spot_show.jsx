@@ -44,7 +44,7 @@ class SpotShow extends React.Component{
                             <div className="spot-show-1-1">
                                     <li>United States</li>
                                     <span className="spot-show-1-1-span">></span>
-                                    <Link className="spot-show-state-link" to="/discover">{this.props.spot.state}</Link>
+                                    <Link className="spot-show-state-link" to={`/discover/${this.props.spot.state.toLowerCase()}`}>{this.props.spot.state}</Link>
                                     <span className="spot-show-1-1-span">></span>
                                     <Link className="spot-show-state-link" to={`/spots/${this.props.spot.id}`}>{this.props.spot.name}</Link>
                             </div>
@@ -64,7 +64,7 @@ class SpotShow extends React.Component{
                         </div>
                         <div className="spot-show-header-2">
                             <div className="spot-show-header-2-1">
-                                <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                                <i className="fa fa-thumbs-up" aria-hidden="true"></i>
                                     <h3 className="spot-show-header-hundred-percent">100%</h3>
                                 <h3>Recommend</h3>
                             </div>
@@ -72,17 +72,17 @@ class SpotShow extends React.Component{
                             <div className="spot-show-header-2-2">
 
                                     <button className="spot-show-header-2-2-upload">
-                                        <i class="fa fa-camera" aria-hidden="true"></i>
+                                        <i className="fa fa-camera" aria-hidden="true"></i>
                                         Upload
                                     </button>
 
                                 <button className="spot-show-header-2-2-save">
                                         Save to List
-                                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                        <i className="fa fa-angle-down" aria-hidden="true"></i>
                                 </button>
 
                                 <button className="spot-show-header-2-2-share">
-                                    <i class="fa fa-share-square" aria-hidden="true"></i>
+                                    <i className="fa fa-share-square" aria-hidden="true"></i>
                                 </button>
                             </div>
                         </div>

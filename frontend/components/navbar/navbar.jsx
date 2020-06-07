@@ -1,4 +1,6 @@
 import React from 'react';
+import {Route, Switch} from 'react-router-dom';
+import NavBarSearchInput from './navbar_search_input';
 
 class Navbar extends React.Component{
     constructor(props){
@@ -56,7 +58,13 @@ class Navbar extends React.Component{
 
         return(
             <div className="main-navbar">
-                <a href="/"><img src="https://fontmeme.com/permalink/200603/ef81bf1f1f2d6819aaf0a2e41a177943.png" alt="the-mandalorian-font" border="0"/></a>
+                <div className="main-navbar-1">
+                    <a href="/"><img src="https://fontmeme.com/permalink/200603/ef81bf1f1f2d6819aaf0a2e41a177943.png" alt="the-mandalorian-font" border="0"/></a>
+                    <Switch>
+                        <Route path="/spots/:spotId" component={NavBarSearchInput} />
+                        <Route path="/discover" component={NavBarSearchInput} />
+                    </Switch>
+                </div>
                 <ul className="auth-navbar">
                     {links}
                 </ul>
