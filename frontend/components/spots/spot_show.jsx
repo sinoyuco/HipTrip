@@ -48,21 +48,41 @@ class SpotShow extends React.Component{
                                     <span className="spot-show-1-1-span">></span>
                                     <Link className="spot-show-state-link" to={`/spots/${this.props.spot.id}`}>{this.props.spot.name}</Link>
                             </div>
-                            <h2>{this.props.spot.name}</h2>
+
+                            <div className="spot-show-1-name">
+                                <h2>{this.props.spot.name}</h2>
+                                <div className="spot-show-tick">
+                                    <span>&#10003;</span>
+                                    <div className="spot-show-tick-arrow"></div>
+                                    <div className="spot-show-tick-message">
+                                            <p>The listing's accuracy has been verified by a <strong>HipTrip Associate.</strong>. You can plan your visit without doubts.</p>
+                                    </div>
+                                </div>
+                            </div>
+
                                 <h3><strong>Nearby:</strong> The great outdoors of the US of A</h3>
                         </div>
                         <div className="spot-show-header-2">
                             <div className="spot-show-header-2-1">
-
+                                <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                                    <h3 className="spot-show-header-hundred-percent">100%</h3>
+                                <h3>Recommend</h3>
                             </div>
 
                             <div className="spot-show-header-2-2">
-                                <button className="spot-show-header-2-2-upload">Upload</button>
-                                <button className="spot-show-header-2-2-save">Save to List</button>
+
+                                    <button className="spot-show-header-2-2-upload">
+                                        <i class="fa fa-camera" aria-hidden="true"></i>
+                                        Upload
+                                    </button>
+
+                                <button className="spot-show-header-2-2-save">
+                                        Save to List
+                                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                </button>
+
                                 <button className="spot-show-header-2-2-share">
-                                        <div className="spot-show-header-2-2-share-icon-div">
-                                        <span className="spot-show-header-2-2-share-icon">&#9165;</span>
-                                        </div>
+                                    <i class="fa fa-share-square" aria-hidden="true"></i>
                                 </button>
                             </div>
                         </div>

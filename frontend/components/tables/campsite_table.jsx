@@ -7,7 +7,7 @@ class CampSiteTable extends React.Component {
     }
 
     render() {
-        const campsites = this.props.elements.map((el,idx) => <li key={idx}>{el}</li>)
+        const campsites = this.props.elements.map((el,idx) => <li key={idx}>{el} available</li>)
         return (
             <div className="campsite">
                 {campsites}
