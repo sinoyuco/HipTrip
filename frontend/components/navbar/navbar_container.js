@@ -4,8 +4,8 @@ import {logout} from '../../actions/session_actions';
 import Navbar from './navbar';
 
 const mSTP = state => ({
-    session: state.session.id
-    // error: state.errors.session
+    session: state.session.id,
+    user: state.entities.users[state.session.id]
 });
 
 const mDTP = (dispatch) => ({

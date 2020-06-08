@@ -1,0 +1,25 @@
+.category-index-hosting-image-div{
+    margin: 0 auto;
+    width: 80%;
+}
+
+.category-index-hosting-image-div img{
+    width: 100%;
+    height: auto;
+}
+
+.category-index-hosting-message{
+    padding: 20px;
+    width: 260px;
+    height: 340px;
+    position: absolute;
+    top: 760px;
+    left: 200px;
+    background: #333333;
+    color: white
+}
+
+.category-index-hosting-message h3{
+    
+    
+}

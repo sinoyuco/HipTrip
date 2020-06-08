@@ -42,7 +42,7 @@
   width: 80%;
   min-width: 700px;
   display: block;
-  margin: 100px auto 250px auto;
+  margin: 190px auto 250px auto;
   padding: 20px;
 }
 
@@ -534,4 +534,8 @@
 
 .spot-item-content-footer-price{
   font-weight: 500;
+}
+
+.spot-show-master{
+  margin-top: 90px;
 }

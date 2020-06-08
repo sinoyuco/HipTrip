@@ -7,15 +7,17 @@ import Search from './search/search';
 import {Switch, Route} from 'react-router-dom';
 import Footer from './footer/footer';
 import SpotShowContainer from './spots/spot_show_container';
+import BookingsIndexContainer from './bookings/bookings_index_container';
 
 class App extends React.Component{
     render(){
         return(
-            <div>
+            <div className="landing">
                 <Modal/>
                 <NavbarContainer/>
                 <Switch>
-                    <SpotSearchContainer path="/discover" component={SpotSearchContainer}/>
+                    <Route exact path="/users/:userId/bookings" component={BookingsIndexContainer}/>
+                    <Route path="/discover" component={SpotSearchContainer}/>
                     <Route path="/spots/:spotId" component={SpotShowContainer} />
                     <Route exact path="/" component={Search} />
                 </Switch>

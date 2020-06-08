@@ -10,7 +10,6 @@ class NavbarSearchInput extends React.Component{
 
     handleSubmit(e){
         // e.preventDefault();
-        // debugger;
         // <Redirect exact to="/"/>
         this.props.history.push(`/discover/${this.state.search}`);
     }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Switch} from 'react-router-dom';
+import {Route, Switch, Link} from 'react-router-dom';
 import NavBarSearchInput from './navbar_search_input';
 
 class Navbar extends React.Component{
@@ -25,18 +25,12 @@ class Navbar extends React.Component{
         if(this.props.session){
             links =
                 <>
-                <li>Trips</li>
+                <li><Link className="user-bookings-link" to={`/users/${this.props.user.id}/bookings`}>Trips</Link></li>
                 <li>Saves</li>
                 <li>Messages</li>
                 <div className="user-profile"> Profile 
                     <div className="user-profile-content">
-                        <li>Manage Account</li>
-                        <li>Earn Hipcash</li>
-                        <li>Become a Host</li>
-                        <li>Refer Hosts</li>
-                        <li>Help & FAQ</li>
-                        <li>Become a Host</li>
-                        <li>About HipTrip</li>
+                        <li>Manage User Profile</li>
                         <li onClick={this.handleLogout}>Log Out</li>
                     </div>
                 </div>
@@ -61,6 +55,7 @@ class Navbar extends React.Component{
                 <div className="main-navbar-1">
                     <a href="/"><img src="https://fontmeme.com/permalink/200603/ef81bf1f1f2d6819aaf0a2e41a177943.png" alt="the-mandalorian-font" border="0"/></a>
                     <Switch>
+                        <Route path="/users/:userId/bookings" component={NavBarSearchInput} />
                         <Route path="/spots/:spotId" component={NavBarSearchInput} />
                         <Route path="/discover" component={NavBarSearchInput} />
                     </Switch>

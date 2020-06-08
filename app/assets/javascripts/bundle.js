@@ -86,6 +86,71 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./frontend/actions/booking_actions.js":
+/*!*********************************************!*\
+  !*** ./frontend/actions/booking_actions.js ***!
+  \*********************************************/
+/*! exports provided: RECEIVE_BOOKING, REMOVE_BOOKING, fetchBooking, createBooking, deleteBooking, updateBooking */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_BOOKING", function() { return RECEIVE_BOOKING; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_BOOKING", function() { return REMOVE_BOOKING; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBooking", function() { return fetchBooking; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createBooking", function() { return createBooking; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteBooking", function() { return deleteBooking; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateBooking", function() { return updateBooking; });
+/* harmony import */ var _util_booking_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/booking_api_util */ "./frontend/util/booking_api_util.js");
+
+var RECEIVE_BOOKING = "RECEIVE_BOOKING";
+var REMOVE_BOOKING = "REMOVE_BOOKING";
+
+var receiveBooking = function receiveBooking(booking) {
+  return {
+    type: RECEIVE_BOOKING,
+    booking: booking
+  };
+};
+
+var removeBooking = function removeBooking(bookingId) {
+  return {
+    type: REMOVE_BOOKING,
+    bookingId: bookingId
+  };
+};
+
+var fetchBooking = function fetchBooking(bookingId) {
+  return function (dispatch) {
+    return _util_booking_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchBooking"](bookingId).then(function (booking) {
+      return dispatch(receiveBooking(booking));
+    });
+  };
+};
+var createBooking = function createBooking(booking) {
+  return function (dispatch) {
+    return _util_booking_api_util__WEBPACK_IMPORTED_MODULE_0__["createBooking"](booking).then(function (booking) {
+      return dispatch(receiveBooking(booking));
+    });
+  };
+};
+var deleteBooking = function deleteBooking(bookingId) {
+  return function (dispatch) {
+    return _util_booking_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteBooking"](bookingId).then(function () {
+      return dispatch(removeBooking(bookingId));
+    });
+  };
+};
+var updateBooking = function updateBooking(booking) {
+  return function (dispatch) {
+    return _util_booking_api_util__WEBPACK_IMPORTED_MODULE_0__["updateBooking"](booking).then(function (booking) {
+      return dispatch(receiveBooking(booking));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/modal_actions.js":
 /*!*******************************************!*\
   !*** ./frontend/actions/modal_actions.js ***!
@@ -253,6 +318,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _footer_footer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./footer/footer */ "./frontend/components/footer/footer.jsx");
 /* harmony import */ var _spots_spot_show_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./spots/spot_show_container */ "./frontend/components/spots/spot_show_container.js");
+/* harmony import */ var _bookings_bookings_index_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./bookings/bookings_index_container */ "./frontend/components/bookings/bookings_index_container.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -285,6 +351,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var App = /*#__PURE__*/function (_React$Component) {
   _inherits(App, _React$Component);
 
@@ -299,7 +366,13 @@ var App = /*#__PURE__*/function (_React$Component) {
   _createClass(App, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_auth_modal__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navbar_navbar_container__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_spot_search_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "landing"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_auth_modal__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navbar_navbar_container__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Route"], {
+        exact: true,
+        path: "/users/:userId/bookings",
+        component: _bookings_bookings_index_container__WEBPACK_IMPORTED_MODULE_9__["default"]
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Route"], {
         path: "/discover",
         component: _search_spot_search_container__WEBPACK_IMPORTED_MODULE_3__["default"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Route"], {
@@ -763,10 +836,10 @@ var mDTP = function mDTP(dispatch) {
 
 /***/ }),
 
-/***/ "./frontend/components/booking/booking_form.jsx":
-/*!******************************************************!*\
-  !*** ./frontend/components/booking/booking_form.jsx ***!
-  \******************************************************/
+/***/ "./frontend/components/booking_form/booking_form.jsx":
+/*!***********************************************************!*\
+  !*** ./frontend/components/booking_form/booking_form.jsx ***!
+  \***********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -809,43 +882,96 @@ var BookingForm = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, BookingForm);
 
     _this = _super.call(this, props);
+    var today = new Date();
     _this.state = {
+      start_date: new Date(today.getFullYear(), today.getMonth(), today.getDate()),
+      end_date: new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1),
       guests: 1,
-      nights: 1
+      savings: _this.props.spot.price / 4
     };
+    _this.handlePlus = _this.handlePlus.bind(_assertThisInitialized(_this));
+    _this.handleMinus = _this.handleMinus.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(BookingForm, [{
+    key: "handlePlus",
+    value: function handlePlus(e) {
+      e.preventDefault();
+      this.setState({
+        guests: this.state.guests + 1
+      });
+      this.setState({
+        savings: this.props.spot.price / 4 * (this.state.guests + 1)
+      });
+    }
+  }, {
+    key: "handleMinus",
+    value: function handleMinus(e) {
+      e.preventDefault();
+
+      if (this.state.guests > 1) {
+        this.setState({
+          guests: this.state.guests - 1
+        });
+        this.setState({
+          savings: this.props.spot.price / 4 * (this.state.guests - 1)
+        });
+      }
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      var _this2 = this;
+
+      e.preventDefault();
+      this.props.action({
+        spot_id: this.props.spot.id,
+        user_id: window.currentUser.id,
+        start_date: this.state.start_date,
+        end_date: this.state.end_date,
+        num_guests: this.state.guests,
+        total_price: this.state.guests * (this.state.end_date.getDate() - this.state.start_date.getDate()) * this.props.spot.price - this.state.savings
+      }).then(function () {
+        return _this2.props.history.push("/users/".concat(window.currentUser.id, "/bookings"));
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
+      var day_diff = this.state.end_date.getDate() - this.state.start_date.getDate();
+      var subtotal = this.state.guests * day_diff * this.props.spot.price - this.state.savings;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: this.props.scroll
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "booking-price"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "$", this.props.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "$", this.props.spot.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "price-per-night"
       }, "average per night")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "booking-checking"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "booking-check-in"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Check in"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Date")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Check in")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, this.state.start_date.toLocaleDateString())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "booking-check-out"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Check out"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Date")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Check out")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, this.state.end_date.toLocaleDateString())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "booking-guests"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Guests"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Guests")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "bookings-guets-calculation"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "guests-minus"
+        className: "guests-minus",
+        onClick: this.handleMinus
       }, "-"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, this.state.guests), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "guests-plus"
+        className: "guests-plus",
+        onClick: this.handlePlus
       }, "+")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "booking-savings"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Weeknight savings"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "savings-amount"
-      }, "-$30.00")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "-$".concat(this.state.savings.toFixed(2)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "booking-subtotal"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Subtotal"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "$90.00")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Subtotal"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "$".concat(subtotal.toFixed(2)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onClick: this.handleSubmit,
         className: "booking-submit"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Book")));
     }
@@ -855,6 +981,265 @@ var BookingForm = /*#__PURE__*/function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (BookingForm);
+
+/***/ }),
+
+/***/ "./frontend/components/bookings/booking_index.jsx":
+/*!********************************************************!*\
+  !*** ./frontend/components/bookings/booking_index.jsx ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _booking_index_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./booking_index_item */ "./frontend/components/bookings/booking_index_item.jsx");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+var BookingIndex = /*#__PURE__*/function (_React$Component) {
+  _inherits(BookingIndex, _React$Component);
+
+  var _super = _createSuper(BookingIndex);
+
+  function BookingIndex(props) {
+    _classCallCheck(this, BookingIndex);
+
+    return _super.call(this, props);
+  }
+
+  _createClass(BookingIndex, [{
+    key: "render",
+    value: function render() {
+      var _this = this;
+
+      debugger;
+      var trips = this.props.bookings.map(function (trip) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_booking_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          key: trip.id,
+          trip: trip,
+          "delete": _this.props.deleteBooking,
+          update: _this.props.updateBooking
+        });
+      });
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "user-bookings-index"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "user-bookings-index-left"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "user-bookings-index-left-profile"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "user-bookings-index-left-profile-1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "spot-show-user-profile-element-pic"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: this.props.user.profile_photo[0]
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, this.props.user.fname, " ", this.props.user.lname)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "user-bookings-index-left-profile-2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fa fa-heart",
+        "aria-hidden": "true"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Hipcamper since Jan 2020")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "user-bookings-index-left-profile-3"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fa fa-globe",
+        "aria-hidden": "true"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Where are you from?")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "user-bookings-index-left-profile-4"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Bio:"), " Hello, I am the demo user, I don't go to any of these places physically but they still make me pay.")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "user-bookings-index-right"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "user-bookings-index-right-header"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "user-bookings-index-right-header-sub"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, this.props.bookings.length || 0), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Trips")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "user-bookings-index-right-header-sub"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, 0), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Saves")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "user-bookings-index-right-header-sub"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, 0), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Reviews"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "user-bookings-index-items"
+      }, trips)));
+    }
+  }]);
+
+  return BookingIndex;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (BookingIndex);
+
+/***/ }),
+
+/***/ "./frontend/components/bookings/booking_index_item.jsx":
+/*!*************************************************************!*\
+  !*** ./frontend/components/bookings/booking_index_item.jsx ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var BookingIndexItem = /*#__PURE__*/function (_React$Component) {
+  _inherits(BookingIndexItem, _React$Component);
+
+  var _super = _createSuper(BookingIndexItem);
+
+  function BookingIndexItem(props) {
+    var _this;
+
+    _classCallCheck(this, BookingIndexItem);
+
+    _this = _super.call(this, props);
+    _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
+    _this.dateFormat = _this.dateFormat.bind(_assertThisInitialized(_this));
+    return _this;
+  } // componentDidMount(){
+  //     this.props.fetchSpot(this.props.trip.spot_id);
+  // }
+
+
+  _createClass(BookingIndexItem, [{
+    key: "handleDelete",
+    value: function handleDelete(e) {
+      e.preventDefault();
+      this.props["delete"](this.props.trip.id);
+    }
+  }, {
+    key: "dateFormat",
+    value: function dateFormat(date, days, months) {
+      var day_of_week = days[date.getDay()];
+      var date_num = date.getDate();
+      var month = months[date.getMonth()];
+      var year = date.getFullYear();
+      return "".concat(day_of_week, ", ").concat(date_num, " ").concat(month, " ").concat(year);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var spot = this.props.trip.spot;
+      var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "user-bookings-index-item"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "user-bookings-index-item-imagediv"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "user-bookings-index-item-image",
+        src: spot.image_url
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, spot.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        className: "user-bookings-index-item-state"
+      }, spot.city, ", ", spot.state), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, this.props.trip.start_date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "user-bookings-index-item-buttons"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "update-bookings-button",
+        onClick: this.handleEdit
+      }, "Edit Booking"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "delete-bookings-button",
+        onClick: this.handleDelete
+      }, "Delete Booking")));
+    }
+  }]);
+
+  return BookingIndexItem;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (BookingIndexItem);
+
+/***/ }),
+
+/***/ "./frontend/components/bookings/bookings_index_container.js":
+/*!******************************************************************!*\
+  !*** ./frontend/components/bookings/bookings_index_container.js ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_booking_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/booking_actions */ "./frontend/actions/booking_actions.js");
+/* harmony import */ var _actions_spot_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/spot_actions */ "./frontend/actions/spot_actions.js");
+/* harmony import */ var _booking_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./booking_index */ "./frontend/components/bookings/booking_index.jsx");
+
+
+
+
+
+
+var mSTP = function mSTP(state, ownProps) {
+  debugger;
+  return {
+    user: state.entities.users[ownProps.match.params.userId],
+    bookings: Object.values(state.entities.users[ownProps.match.params.userId].bookings)
+  };
+};
+
+var mDTP = function mDTP(dispatch) {
+  return {
+    updateBooking: function updateBooking(booking) {
+      return dispatch(Object(_actions_booking_actions__WEBPACK_IMPORTED_MODULE_2__["updateBooking"])(booking));
+    },
+    deleteBooking: function deleteBooking(bookingId) {
+      return dispatch(Object(_actions_booking_actions__WEBPACK_IMPORTED_MODULE_2__["deleteBooking"])(bookingId));
+    },
+    fetchSpot: function fetchSpot(spotId) {
+      return dispatch(Object(_actions_spot_actions__WEBPACK_IMPORTED_MODULE_3__["fetchSpot"])(spotId));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mSTP, mDTP)(_booking_index__WEBPACK_IMPORTED_MODULE_4__["default"]));
 
 /***/ }),
 
@@ -909,7 +1294,13 @@ var CategoryIndex = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "category-index"
-      });
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "category-index-hosting-image-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "https://westernnews.media.clients.ellingtoncms.com/img/photos/2019/09/26/Ranch_of_Oaks_1_t715.jpg?529764a1de2bdd0f74a9fb4f856b01a9d617b3e9"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "category-index-hosting-message"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Own land? Earn money hosting on HipTrip"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Help more people spend time outside. Share your land with campers, glampers, and RV travelers."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Become a Host"))));
     }
   }]);
 
@@ -1089,11 +1480,14 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
       var links;
 
       if (this.props.session) {
-        links = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Trips"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Saves"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Messages"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        links = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+          className: "user-bookings-link",
+          to: "/users/".concat(this.props.user.id, "/bookings")
+        }, "Trips")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Saves"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Messages"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "user-profile"
         }, " Profile", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "user-profile-content"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Manage Account"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Earn Hipcash"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Become a Host"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Refer Hosts"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Help & FAQ"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Become a Host"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "About HipTrip"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Manage User Profile"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           onClick: this.handleLogout
         }, "Log Out"))));
       } else {
@@ -1118,6 +1512,9 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
         alt: "the-mandalorian-font",
         border: "0"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+        path: "/users/:userId/bookings",
+        component: _navbar_search_input__WEBPACK_IMPORTED_MODULE_2__["default"]
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
         path: "/spots/:spotId",
         component: _navbar_search_input__WEBPACK_IMPORTED_MODULE_2__["default"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
@@ -1156,8 +1553,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var mSTP = function mSTP(state) {
   return {
-    session: state.session.id // error: state.errors.session
-
+    session: state.session.id,
+    user: state.entities.users[state.session.id]
   };
 };
 
@@ -1235,7 +1632,6 @@ var NavbarSearchInput = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       // e.preventDefault();
-      // debugger;
       // <Redirect exact to="/"/>
       this.props.history.push("/discover/".concat(this.state.search));
     }
@@ -1630,7 +2026,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _tables_essentials_table__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../tables/essentials_table */ "./frontend/components/tables/essentials_table.jsx");
 /* harmony import */ var _tables_amenities_table__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../tables/amenities_table */ "./frontend/components/tables/amenities_table.jsx");
 /* harmony import */ var _tables_campsite_table__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../tables/campsite_table */ "./frontend/components/tables/campsite_table.jsx");
-/* harmony import */ var _booking_booking_form__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../booking/booking_form */ "./frontend/components/booking/booking_form.jsx");
+/* harmony import */ var _booking_form_booking_form__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../booking_form/booking_form */ "./frontend/components/booking_form/booking_form.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1685,7 +2081,7 @@ var SpotShow = /*#__PURE__*/function (_React$Component) {
       var spotId = parseInt(this.props.match.params.spotId);
       this.props.fetchSpot(spotId);
       document.addEventListener('scroll', function () {
-        var belowPictures = window.scrollY < 590;
+        var belowPictures = window.scrollY < 550;
 
         if (belowPictures !== _this2.state.scrollFixed) {
           _this2.setState({
@@ -1802,9 +2198,11 @@ var SpotShow = /*#__PURE__*/function (_React$Component) {
         })
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "spot-show-side"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_booking_booking_form__WEBPACK_IMPORTED_MODULE_5__["default"], {
-        price: this.props.spot.price,
-        scroll: scrollClass
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_booking_form_booking_form__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        action: this.props.createBooking,
+        spot: this.props.spot,
+        scroll: scrollClass,
+        history: this.props.history
       }))));
     }
   }]);
@@ -1828,6 +2226,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _spot_show__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./spot_show */ "./frontend/components/spots/spot_show.jsx");
 /* harmony import */ var _actions_spot_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/spot_actions */ "./frontend/actions/spot_actions.js");
+/* harmony import */ var _actions_booking_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/booking_actions */ "./frontend/actions/booking_actions.js");
+
 
 
 
@@ -1842,6 +2242,9 @@ var mDTP = function mDTP(dispatch) {
   return {
     fetchSpot: function fetchSpot(spotId) {
       return dispatch(Object(_actions_spot_actions__WEBPACK_IMPORTED_MODULE_2__["fetchSpot"])(spotId));
+    },
+    createBooking: function createBooking(booking) {
+      return dispatch(Object(_actions_booking_actions__WEBPACK_IMPORTED_MODULE_3__["createBooking"])(booking));
     }
   };
 };
@@ -2102,6 +2505,43 @@ document.addEventListener("DOMContentLoaded", function () {
 
 /***/ }),
 
+/***/ "./frontend/reducers/bookings_reducer.js":
+/*!***********************************************!*\
+  !*** ./frontend/reducers/bookings_reducer.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_booking_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/booking_actions */ "./frontend/actions/booking_actions.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var bookingsReducer = function bookingsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_booking_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_BOOKING"]:
+      return Object.assign({}, state, _defineProperty({}, action.booking.id, action.booking));
+
+    case _actions_booking_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_BOOKING"]:
+      var newState = Object.assign({}, state);
+      delete newState[action.bookingId];
+      return newState;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (bookingsReducer);
+
+/***/ }),
+
 /***/ "./frontend/reducers/entities_reducer.js":
 /*!***********************************************!*\
   !*** ./frontend/reducers/entities_reducer.js ***!
@@ -2113,13 +2553,16 @@ document.addEventListener("DOMContentLoaded", function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
 /* harmony import */ var _spots_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./spots_reducer */ "./frontend/reducers/spots_reducer.js");
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _bookings_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./bookings_reducer */ "./frontend/reducers/bookings_reducer.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 
 
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_2__["combineReducers"])({
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_3__["combineReducers"])({
   users: _users_reducer__WEBPACK_IMPORTED_MODULE_0__["default"],
-  spots: _spots_reducer__WEBPACK_IMPORTED_MODULE_1__["default"]
+  spots: _spots_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
+  bookings: _bookings_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
 }));
 
 /***/ }),
@@ -2393,6 +2836,51 @@ var configureStore = function configureStore() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (configureStore);
+
+/***/ }),
+
+/***/ "./frontend/util/booking_api_util.js":
+/*!*******************************************!*\
+  !*** ./frontend/util/booking_api_util.js ***!
+  \*******************************************/
+/*! exports provided: createBooking, updateBooking, deleteBooking */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createBooking", function() { return createBooking; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateBooking", function() { return updateBooking; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteBooking", function() { return deleteBooking; });
+// export const fetchBooking = (bookingId) => {
+//     return $.ajax({
+//         method: 'GET',
+//         url: `/api/bookings/${bookingId}`
+//     });
+// }
+var createBooking = function createBooking(booking) {
+  return $.ajax({
+    method: 'POST',
+    url: '/api/bookings/',
+    data: {
+      booking: booking
+    }
+  });
+};
+var updateBooking = function updateBooking(booking) {
+  return $.ajax({
+    method: 'PATCH',
+    url: "/api/bookings/".concat(booking.id),
+    data: {
+      booking: booking
+    }
+  });
+};
+var deleteBooking = function deleteBooking(bookingId) {
+  return $.ajax({
+    method: 'DELETE',
+    url: "/api/bookings/".concat(bookingId)
+  });
+};
 
 /***/ }),
 

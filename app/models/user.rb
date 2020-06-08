@@ -13,6 +13,10 @@ class User < ApplicationRecord
         foreign_key: :host_id,
         class_name: :Spot)
 
+    has_many(:bookings,
+        foreign_key: :user_id,
+        class_name: :Booking)
+
     has_many_attached :profile_photo
 
     def password=(password)

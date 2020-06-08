@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import EssentialsTable from '../tables/essentials_table';
 import AmenitiesTable from '../tables/amenities_table';
 import CampSiteTable from '../tables/campsite_table';
-import BookingForm from '../booking/booking_form';
+import BookingForm from '../booking_form/booking_form';
 
 class SpotShow extends React.Component{
     constructor(props){
@@ -15,7 +15,7 @@ class SpotShow extends React.Component{
         let spotId = parseInt(this.props.match.params.spotId);
         this.props.fetchSpot(spotId);
         document.addEventListener('scroll', () => {
-            const belowPictures = window.scrollY < 590;
+            const belowPictures = window.scrollY < 550;
             if (belowPictures !== this.state.scrollFixed) {
                 this.setState({ scrollFixed: belowPictures });
             }
@@ -124,7 +124,7 @@ class SpotShow extends React.Component{
                     
                 </div>
                 <div className="spot-show-side">
-                        <BookingForm price={this.props.spot.price} scroll={scrollClass}/>
+                        <BookingForm action={this.props.createBooking} spot={this.props.spot} scroll={scrollClass} history={this.props.history}/>
                 </div>
                 
             </div>

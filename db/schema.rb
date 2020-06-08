@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_05_203746) do
+ActiveRecord::Schema.define(version: 2020_06_07_182247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,16 @@ ActiveRecord::Schema.define(version: 2020_06_05_203746) do
   create_table "amenities", force: :cascade do |t|
     t.string "amenity_type", null: false
     t.integer "spot_id", null: false
+  end
+
+  create_table "bookings", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "spot_id", null: false
+    t.datetime "start_date", null: false
+    t.datetime "end_date", null: false
+    t.integer "num_guests", null: false
+    t.float "total_price", null: false
+    t.string "status"
   end
 
   create_table "campsites", force: :cascade do |t|

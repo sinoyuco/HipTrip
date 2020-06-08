@@ -6,3 +6,4 @@ json.host_photo spot.host.profile_photo.map{|p| url_for(p)}
 json.amenities spot.amenities
 json.essentials spot.essentials
 json.campsites spot.campsites
+json.bookings spot.bookings
