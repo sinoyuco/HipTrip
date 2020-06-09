@@ -1,9 +1,9 @@
-// export const fetchBooking = (bookingId) => {
-//     return $.ajax({
-//         method: 'GET',
-//         url: `/api/bookings/${bookingId}`
-//     });
-// }
+export const fetchBooking = (bookingId) => {
+    return $.ajax({
+        method: 'GET',
+        url: `/api/bookings/${bookingId}`
+    });
+}
 
 export const createBooking = (booking) => {
     return $.ajax({

@@ -309,8 +309,8 @@ li{
 
 
 .search-map{
-  background-color: pink;
   width: 35%;
+  position: relative;
 }
 
 .category-index{
@@ -346,4 +346,18 @@ li{
 
 .fa-search{
   margin-left: 5px;
+}
+
+.map-container{
+  width: 440px;
+  height: 500px;
+  position: fixed !important;
+}
+
+.map-container-absolute{
+  width: 440px;
+  height: 500px;
+  position: absolute !important;
+  bottom: 0;
+  /* right: 15px; */
 }

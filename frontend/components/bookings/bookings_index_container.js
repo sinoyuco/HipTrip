@@ -5,7 +5,6 @@ import {fetchSpot} from '../../actions/spot_actions';
 import BookingIndex from './booking_index';
 
 const mSTP = (state, ownProps) => {
-    debugger;
     return{
     user: state.entities.users[ownProps.match.params.userId],
     bookings: Object.values(state.entities.users[ownProps.match.params.userId].bookings)

@@ -1,4 +1,102 @@
 .main-footer{
-    background-color: khaki;
-    min-height: 400px;
+    border-top: 1px solid #ebebeb;
+    min-height: 450px;
+    font-family: "Calibre", Helvetica, Arial, sans-serif;
+}
+.main-footer h3{
+    font-size: 16px;
+}
+
+.footer-content p{
+    color: #757575;
+    line-height: 1.5;
+}
+
+.main-footer li{
+    list-style-type: none;
+    font-size: 16px;
+    color: #757575;
+    margin: 10px 0;
+    font-weight: 500;
+}
+
+.main-footer li{
+    cursor: pointer;
+}
+
+.footer-content{
+    height: 400px;
+    padding: 20px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.footer-banner{
+    height: 50px;
+    background: black;
+}
+
+.footer-banner-inner{
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    background: black;
+    color: white;
+}
+
+.footer-content-header{
+    margin-top: 20px;
+}
+
+
+.footer-content-header img{
+    width: 100px;
+    height: auto;
+}
+
+.footer-content-body{
+    display: flex;
+}
+
+.footer-content-body-1{
+    width: 50%;
+    display: flex;
+}
+
+.footer-content-body-2{
+    width: 50%;
+}
+
+.footer-content-body-about{
+    margin-right: 50px;
+}
+
+.help-button{
+    position: fixed;
+    bottom: 10px;
+    right: 15px;
+    height: 50px;
+    width: 100px;
+    border-radius: 25px;
+    background: #40d9ac;
+    display: flex;
+    color: #1D5242;
+}
+
+.help-button:hover{
+    cursor: pointer;
+}
+
+
+.help-button-question-mark{
+    margin-left: 20px;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.help-button h3{
+    margin-block-start: 1.1em;
+    margin-block-end: 0.5em;
 }

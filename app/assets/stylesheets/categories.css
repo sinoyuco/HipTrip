@@ -16,10 +16,107 @@
     top: 760px;
     left: 200px;
     background: #333333;
-    color: white
+}
+
+.category-index h3{
+    font-family: "Calibre", Helvetica, Arial, sans-serif;
 }
 
 .category-index-hosting-message h3{
-    
-    
+    font-size: 28px;
+    color: white;
+}
+
+.category-index-hosting-message h5{
+    font-family: "Calibre", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    color: white
+}
+
+.category-index-hosting-message button{
+    font-family: "Calibre", Helvetica, Arial, sans-serif;
+    background: white;
+    font-weight: 600;
+    height: 60px;
+    width: 150px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+
+}
+
+.category-index-hosting-message button:hover{
+    cursor: pointer;
+}
+
+.category-index-experiences{
+    width: 80%;
+    margin: 0 auto;
+    min-height: 600px;
+}
+
+.category-index-experiences-1{
+    display: flex;
+    justify-content: space-between;
+    height: 500px;
+}
+
+.category-index-experiences-1-sub{
+    background: seashell;
+    width: 32%;
+    position: relative;
+}
+
+.category-index-experiences-1-sub-text{
+    position: absolute;
+    left: 50px;
+    bottom: 0;
+    color: white;
+    text-align: center;
+}
+
+.category-index-experiences-1-sub-text h3{
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+    font-size: 24px;
+    font-family: "Calibre", Helvetica, Arial, sans-serif;
+}
+
+.category-index-experiences-1-sub-text h5{
+    margin-block-start: 0.5em;
+    margin-block-end: 1.5em;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: "Calibre", Helvetica, Arial, sans-serif;
+}
+
+.category-index-experiences-discover{
+    width: 80%;
+    margin: 0 auto;
+    background: greenyellow;
+    min-height: 600px;
+}
+
+.category-index-experiences-discover-1{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.category-index-experiences-discover-1-sub{
+   background: seashell;
+    width: 30%;
+    margin: 10px;
+    height: 300px;
+}
+
+.category-index-experiences-1-sub img{
+    height: 500px;
+    width: 323px;
+    object-fit: cover;
+}
+
+.category-index-experiences-1-sub img:hover{
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.4);
+  transform: translateY(-3px);
 }

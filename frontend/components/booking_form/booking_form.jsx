@@ -1,4 +1,8 @@
 import React from 'react';
+import DayPicker from 'react-day-picker';
+// import 'react-day-picker/lib/style.css';
+
+// import 'react-day-picker/lib/style.css';
 
 class BookingForm extends React.Component{
     constructor(props){
@@ -13,6 +17,7 @@ class BookingForm extends React.Component{
         this.handlePlus = this.handlePlus.bind(this);
         this.handleMinus = this.handleMinus.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleDayClick = this.handleDayClick.bind(this);
     }
 
     handlePlus(e){
@@ -29,8 +34,13 @@ class BookingForm extends React.Component{
         }
     }
 
+    handleDayClick(day){
+        this.setState({start_date: day});
+    }
+
     handleSubmit(e){
         e.preventDefault();
+        debugger;
         this.props.action({
             spot_id: this.props.spot.id,
             user_id: window.currentUser.id,
@@ -86,6 +96,8 @@ class BookingForm extends React.Component{
                 <div onClick={this.handleSubmit} className="booking-submit">
                     <button>Book</button>
                 </div>
+
+                <DayPicker onDayClick={this.handleDayClick} selectedDays={this.state.start_date}/>
 
             </div>
         );
