@@ -93,7 +93,6 @@
 .category-index-experiences-discover{
     width: 80%;
     margin: 0 auto;
-    background: greenyellow;
     min-height: 600px;
 }
 
@@ -104,15 +103,48 @@
 }
 
 .category-index-experiences-discover-1-sub{
-   background: seashell;
+   background: white;
     width: 30%;
     margin: 10px;
     height: 300px;
+    border: 1px solid #ebebeb;
+}
+
+.category-index-experiences-discover-1-sub-pic{
+    height: 80%;
+    width: 100%;
+}
+
+.category-index-experiences-discover-1-sub-text{
+    width: 100%;
+    height: 20%;
+}
+
+.category-index-experiences-discover-1-sub-pic img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.category-index-experiences-discover-1-sub-text h3{
+    font-family: "Calibre", Helvetica, Arial, sans-serif;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+    margin-left: 10px;
+}
+
+.category-index-experiences-discover-1-sub-text h5{
+    font-family: "Calibre", Helvetica, Arial, sans-serif;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+    margin-left: 10px;
+    color: #757575;
+    font-weight: 500;
 }
 
 .category-index-experiences-1-sub img{
-    height: 500px;
-    width: 323px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
 }
 

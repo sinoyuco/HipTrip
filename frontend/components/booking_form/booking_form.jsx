@@ -12,12 +12,17 @@ class BookingForm extends React.Component{
             start_date: new Date(today.getFullYear(), today.getMonth(), today.getDate()),
             end_date: new Date(today.getFullYear(), today.getMonth(), today.getDate()+1),
             guests: 1,
-            savings: (this.props.spot.price/4)
+            savings: (this.props.spot.price/4),
+            day_picker_display: false,
+            day_picker_type: 'in'
         }
         this.handlePlus = this.handlePlus.bind(this);
         this.handleMinus = this.handleMinus.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleDayClick = this.handleDayClick.bind(this);
+        this.handleDayClickCheckIn = this.handleDayClickCheckIn.bind(this);
+        this.handleDayClickCheckOut = this.handleDayClickCheckOut.bind(this);
+        this.handleDayPickerDisplayCheckIn = this.handleDayPickerDisplayCheckIn.bind(this);
+        this.handleDayPickerDisplayCheckOut = this.handleDayPickerDisplayCheckOut.bind(this);
     }
 
     handlePlus(e){
@@ -34,27 +39,51 @@ class BookingForm extends React.Component{
         }
     }
 
-    handleDayClick(day){
-        this.setState({start_date: day});
+    handleDayClickCheckIn(day){
+        this.setState({start_date: day, day_picker_display: false});
+    }
+
+    handleDayClickCheckOut(day) {
+        this.setState({ end_date: day, day_picker_display: false });
+    }
+
+    handleDayPickerDisplayCheckIn(e){
+        this.state.day_picker_display ? this.setState({ day_picker_display: false, day_picker_type: 'in' }) : this.setState({ day_picker_display: true, day_picker_type: 'in'})
+    }
+
+    handleDayPickerDisplayCheckOut(e) {
+        this.state.day_picker_display ? this.setState({ day_picker_display: false, day_picker_type: 'out' }) : this.setState({ day_picker_display: true, day_picker_type: 'out' })
     }
 
     handleSubmit(e){
         e.preventDefault();
-        debugger;
+        if(this.props.session){
         this.props.action({
             spot_id: this.props.spot.id,
-            user_id: window.currentUser.id,
+            user_id: this.props.session,
             start_date: this.state.start_date,
             end_date: this.state.end_date,
             num_guests: this.state.guests,
             total_price: ((this.state.guests) * (this.state.end_date.getDate() - this.state.start_date.getDate()) * (this.props.spot.price)) - this.state.savings
-        }).then(() => this.props.history.push(`/users/${window.currentUser.id}/bookings`));
+        }).then(() => this.props.history.push(`/users/${this.props.session}/bookings`));
+        }else{
+            this.props.openModal('login');
+        }
     }
 
 
     render(){
         const day_diff = this.state.end_date.getDate() - this.state.start_date.getDate();
         const subtotal = ((this.state.guests) * (day_diff) * (this.props.spot.price)) - this.state.savings;
+        const modifiersStyles = {
+            selected: {
+                color: 'white',
+                backgroundColor: '#40d9ac'
+            }
+        }
+        const day_picker = this.state.day_picker_display ? (this.state.day_picker_type === 'in' ? <DayPicker className="day-picker-widget" onDayClick={this.handleDayClickCheckIn} selectedDays={this.state.start_date} modifiersStyles={modifiersStyles} /> : <DayPicker className="day-picker-widget" onDayClick={this.handleDayClickCheckOut} selectedDays={this.state.end_date} modifiersStyles={modifiersStyles} />) : null
+       
+        
         return(
             <div className={this.props.scroll}>
                 <div className="booking-price">
@@ -63,12 +92,12 @@ class BookingForm extends React.Component{
                 </div>
 
                 <div className="booking-checking">
-                    <div className="booking-check-in">
+                    <div className="booking-check-in" onClick={this.handleDayPickerDisplayCheckIn}>
                         <h3><strong>Check in</strong></h3>
                         <h3>{this.state.start_date.toLocaleDateString()}</h3>
                     </div>
 
-                    <div className="booking-check-out">
+                    <div className="booking-check-out" onClick={this.handleDayPickerDisplayCheckOut}>
                         <h3><strong>Check out</strong></h3>
                         <h3>{this.state.end_date.toLocaleDateString()}</h3>
                     </div>
@@ -83,8 +112,10 @@ class BookingForm extends React.Component{
                     </div>
                 </div>
 
+                {day_picker}
+
                 <div className="booking-savings">
-                    <h3>Weeknight savings</h3>
+                    <h3>Surprise savings</h3>
                     <h3 className="savings-amount">{`-$${this.state.savings.toFixed(2)}`}</h3>
                 </div>
 
@@ -96,8 +127,6 @@ class BookingForm extends React.Component{
                 <div onClick={this.handleSubmit} className="booking-submit">
                     <button>Book</button>
                 </div>
-
-                <DayPicker onDayClick={this.handleDayClick} selectedDays={this.state.start_date}/>
 
             </div>
         );

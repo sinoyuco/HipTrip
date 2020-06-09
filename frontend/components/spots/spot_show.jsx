@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import EssentialsTable from '../tables/essentials_table';
 import AmenitiesTable from '../tables/amenities_table';
 import CampSiteTable from '../tables/campsite_table';
-import BookingForm from '../booking_form/booking_form';
+import BookingFormContainer from '../booking_form/booking_form_container';
 
 class SpotShow extends React.Component{
     constructor(props){
@@ -124,7 +124,7 @@ class SpotShow extends React.Component{
                     
                 </div>
                 <div className="spot-show-side">
-                        <BookingForm action={this.props.createBooking} spot={this.props.spot} scroll={scrollClass} history={this.props.history}/>
+                        <BookingFormContainer action={this.props.createBooking} spot={this.props.spot} scroll={scrollClass} history={this.props.history}/>
                 </div>
                 
             </div>

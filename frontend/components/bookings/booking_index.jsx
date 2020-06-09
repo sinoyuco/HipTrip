@@ -6,8 +6,11 @@ class BookingIndex extends React.Component{
         super(props)
     }
 
+    componentDidMount(){
+        this.props.fetchBookings(this.props.user.id)
+    }
+
     render(){
-        debugger;
         const trips = this.props.bookings.map(trip => <BookingIndexItem key={trip.id} trip={trip} delete={this.props.deleteBooking} update={this.props.updateBooking}/>)
         return(
             <div className="user-bookings-index">

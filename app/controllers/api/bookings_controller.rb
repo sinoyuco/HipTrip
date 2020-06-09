@@ -9,9 +9,13 @@ class Api::BookingsController < ApplicationController
         end
     end
 
-    def show
-        @booking = Booking.find(params[:id])
-        render :show
+    # def show
+    #     @booking = Booking.find(params[:id])
+    #     render :show
+    # end
+
+    def index
+        @bookings = Booking.includes(:spot).where(user_id: params[:user_id])
     end
 
     def destroy

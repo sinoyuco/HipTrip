@@ -1,4 +1,5 @@
-ActiveRecord::Base.transaction do  
+ActiveRecord::Base.transaction do
+    Booking.destroy_all  
     Amenity.destroy_all
     Essential.destroy_all
     Campsite.destroy_all
@@ -91,4 +92,17 @@ spots = [a1,a2,a3,a4,a5,a6,a7,a8,a9,a10];
             Campsite.create!(campsite_property_type: type, spot_id: spot.id)
         end
     end
+
+date1 = DateTime.new(2020,6,5)
+date2 = DateTime.new(2020,6,10)
+date3 = DateTime.new(2020,7,1)
+date4 = DateTime.new(2020,7,2)
+
+Booking.create!(user_id: user1.id, spot_id: a4.id, start_date: date1, end_date: date2, num_guests: 1, total_price: 100)
+Booking.create!(user_id: user1.id, spot_id: a10.id, start_date: date3, end_date: date4, num_guests: 2, total_price: 150)
+
+Booking.create!(user_id: user3.id, spot_id: a1.id, start_date: date1, end_date: date2, num_guests: 2, total_price: 200)
+Booking.create!(user_id: user3.id, spot_id: a2.id, start_date: date3, end_date: date4, num_guests: 1, total_price: 150)
+
+
 end

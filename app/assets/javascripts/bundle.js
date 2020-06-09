@@ -90,14 +90,15 @@
 /*!*********************************************!*\
   !*** ./frontend/actions/booking_actions.js ***!
   \*********************************************/
-/*! exports provided: RECEIVE_BOOKING, REMOVE_BOOKING, fetchBooking, createBooking, deleteBooking, updateBooking */
+/*! exports provided: RECEIVE_BOOKING, REMOVE_BOOKING, RECEIVE_ALL_BOOKINGS, fetchBookings, createBooking, deleteBooking, updateBooking */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_BOOKING", function() { return RECEIVE_BOOKING; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_BOOKING", function() { return REMOVE_BOOKING; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBooking", function() { return fetchBooking; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_BOOKINGS", function() { return RECEIVE_ALL_BOOKINGS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBookings", function() { return fetchBookings; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createBooking", function() { return createBooking; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteBooking", function() { return deleteBooking; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateBooking", function() { return updateBooking; });
@@ -105,6 +106,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var RECEIVE_BOOKING = "RECEIVE_BOOKING";
 var REMOVE_BOOKING = "REMOVE_BOOKING";
+var RECEIVE_ALL_BOOKINGS = "RECEIVE_ALL_BOOKINGS";
 
 var receiveBooking = function receiveBooking(booking) {
   return {
@@ -120,10 +122,17 @@ var removeBooking = function removeBooking(bookingId) {
   };
 };
 
-var fetchBooking = function fetchBooking(bookingId) {
+var receiveAllBookings = function receiveAllBookings(bookings) {
+  return {
+    type: RECEIVE_ALL_BOOKINGS,
+    bookings: bookings
+  };
+};
+
+var fetchBookings = function fetchBookings(userId) {
   return function (dispatch) {
-    return _util_booking_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchBooking"](bookingId).then(function (booking) {
-      return dispatch(receiveBooking(booking));
+    return _util_booking_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchBookings"](userId).then(function (bookings) {
+      return dispatch(receiveAllBookings(bookings));
     });
   };
 };
@@ -891,12 +900,17 @@ var BookingForm = /*#__PURE__*/function (_React$Component) {
       start_date: new Date(today.getFullYear(), today.getMonth(), today.getDate()),
       end_date: new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1),
       guests: 1,
-      savings: _this.props.spot.price / 4
+      savings: _this.props.spot.price / 4,
+      day_picker_display: false,
+      day_picker_type: 'in'
     };
     _this.handlePlus = _this.handlePlus.bind(_assertThisInitialized(_this));
     _this.handleMinus = _this.handleMinus.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    _this.handleDayClick = _this.handleDayClick.bind(_assertThisInitialized(_this));
+    _this.handleDayClickCheckIn = _this.handleDayClickCheckIn.bind(_assertThisInitialized(_this));
+    _this.handleDayClickCheckOut = _this.handleDayClickCheckOut.bind(_assertThisInitialized(_this));
+    _this.handleDayPickerDisplayCheckIn = _this.handleDayPickerDisplayCheckIn.bind(_assertThisInitialized(_this));
+    _this.handleDayPickerDisplayCheckOut = _this.handleDayPickerDisplayCheckOut.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -926,10 +940,41 @@ var BookingForm = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
-    key: "handleDayClick",
-    value: function handleDayClick(day) {
+    key: "handleDayClickCheckIn",
+    value: function handleDayClickCheckIn(day) {
       this.setState({
-        start_date: day
+        start_date: day,
+        day_picker_display: false
+      });
+    }
+  }, {
+    key: "handleDayClickCheckOut",
+    value: function handleDayClickCheckOut(day) {
+      this.setState({
+        end_date: day,
+        day_picker_display: false
+      });
+    }
+  }, {
+    key: "handleDayPickerDisplayCheckIn",
+    value: function handleDayPickerDisplayCheckIn(e) {
+      this.state.day_picker_display ? this.setState({
+        day_picker_display: false,
+        day_picker_type: 'in'
+      }) : this.setState({
+        day_picker_display: true,
+        day_picker_type: 'in'
+      });
+    }
+  }, {
+    key: "handleDayPickerDisplayCheckOut",
+    value: function handleDayPickerDisplayCheckOut(e) {
+      this.state.day_picker_display ? this.setState({
+        day_picker_display: false,
+        day_picker_type: 'out'
+      }) : this.setState({
+        day_picker_display: true,
+        day_picker_type: 'out'
       });
     }
   }, {
@@ -938,23 +983,44 @@ var BookingForm = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       e.preventDefault();
-      debugger;
-      this.props.action({
-        spot_id: this.props.spot.id,
-        user_id: window.currentUser.id,
-        start_date: this.state.start_date,
-        end_date: this.state.end_date,
-        num_guests: this.state.guests,
-        total_price: this.state.guests * (this.state.end_date.getDate() - this.state.start_date.getDate()) * this.props.spot.price - this.state.savings
-      }).then(function () {
-        return _this2.props.history.push("/users/".concat(window.currentUser.id, "/bookings"));
-      });
+
+      if (this.props.session) {
+        this.props.action({
+          spot_id: this.props.spot.id,
+          user_id: this.props.session,
+          start_date: this.state.start_date,
+          end_date: this.state.end_date,
+          num_guests: this.state.guests,
+          total_price: this.state.guests * (this.state.end_date.getDate() - this.state.start_date.getDate()) * this.props.spot.price - this.state.savings
+        }).then(function () {
+          return _this2.props.history.push("/users/".concat(_this2.props.session, "/bookings"));
+        });
+      } else {
+        this.props.openModal('login');
+      }
     }
   }, {
     key: "render",
     value: function render() {
       var day_diff = this.state.end_date.getDate() - this.state.start_date.getDate();
       var subtotal = this.state.guests * day_diff * this.props.spot.price - this.state.savings;
+      var modifiersStyles = {
+        selected: {
+          color: 'white',
+          backgroundColor: '#40d9ac'
+        }
+      };
+      var day_picker = this.state.day_picker_display ? this.state.day_picker_type === 'in' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_day_picker__WEBPACK_IMPORTED_MODULE_1___default.a, {
+        className: "day-picker-widget",
+        onDayClick: this.handleDayClickCheckIn,
+        selectedDays: this.state.start_date,
+        modifiersStyles: modifiersStyles
+      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_day_picker__WEBPACK_IMPORTED_MODULE_1___default.a, {
+        className: "day-picker-widget",
+        onDayClick: this.handleDayClickCheckOut,
+        selectedDays: this.state.end_date,
+        modifiersStyles: modifiersStyles
+      }) : null;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: this.props.scroll
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -964,9 +1030,11 @@ var BookingForm = /*#__PURE__*/function (_React$Component) {
       }, "average per night")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "booking-checking"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "booking-check-in"
+        className: "booking-check-in",
+        onClick: this.handleDayPickerDisplayCheckIn
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Check in")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, this.state.start_date.toLocaleDateString())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "booking-check-out"
+        className: "booking-check-out",
+        onClick: this.handleDayPickerDisplayCheckOut
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Check out")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, this.state.end_date.toLocaleDateString())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "booking-guests"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Guests")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -977,19 +1045,16 @@ var BookingForm = /*#__PURE__*/function (_React$Component) {
       }, "-"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, this.state.guests), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "guests-plus",
         onClick: this.handlePlus
-      }, "+")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "+")))), day_picker, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "booking-savings"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Weeknight savings"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Surprise savings"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "savings-amount"
       }, "-$".concat(this.state.savings.toFixed(2)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "booking-subtotal"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Subtotal"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "$".concat(subtotal.toFixed(2)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         onClick: this.handleSubmit,
         className: "booking-submit"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Book")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_day_picker__WEBPACK_IMPORTED_MODULE_1___default.a, {
-        onDayClick: this.handleDayClick,
-        selectedDays: this.state.start_date
-      }));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Book")));
     }
   }]);
 
@@ -997,6 +1062,43 @@ var BookingForm = /*#__PURE__*/function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (BookingForm);
+
+/***/ }),
+
+/***/ "./frontend/components/booking_form/booking_form_container.js":
+/*!********************************************************************!*\
+  !*** ./frontend/components/booking_form/booking_form_container.js ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _booking_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./booking_form */ "./frontend/components/booking_form/booking_form.jsx");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+
+
+
+
+
+var mSTP = function mSTP(state, ownProps) {
+  return {
+    session: state.session.id
+  };
+};
+
+var mDTP = function mDTP(dispatch) {
+  return {
+    openModal: function openModal(type) {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["openModal"])(type));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mSTP, mDTP)(_booking_form__WEBPACK_IMPORTED_MODULE_2__["default"]));
 
 /***/ }),
 
@@ -1049,11 +1151,15 @@ var BookingIndex = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(BookingIndex, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchBookings(this.props.user.id);
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this = this;
 
-      debugger;
       var trips = this.props.bookings.map(function (trip) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_booking_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: trip.id,
@@ -1236,7 +1342,7 @@ __webpack_require__.r(__webpack_exports__);
 var mSTP = function mSTP(state, ownProps) {
   return {
     user: state.entities.users[ownProps.match.params.userId],
-    bookings: Object.values(state.entities.users[ownProps.match.params.userId].bookings)
+    bookings: Object.values(state.entities.bookings)
   };
 };
 
@@ -1247,6 +1353,9 @@ var mDTP = function mDTP(dispatch) {
     },
     deleteBooking: function deleteBooking(bookingId) {
       return dispatch(Object(_actions_booking_actions__WEBPACK_IMPORTED_MODULE_2__["deleteBooking"])(bookingId));
+    },
+    fetchBookings: function fetchBookings(userId) {
+      return dispatch(Object(_actions_booking_actions__WEBPACK_IMPORTED_MODULE_2__["fetchBookings"])(userId));
     },
     fetchSpot: function fetchSpot(spotId) {
       return dispatch(Object(_actions_spot_actions__WEBPACK_IMPORTED_MODULE_3__["fetchSpot"])(spotId));
@@ -1299,15 +1408,27 @@ var CategoryIndex = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(CategoryIndex);
 
   function CategoryIndex(props) {
+    var _this;
+
     _classCallCheck(this, CategoryIndex);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(CategoryIndex, [{
+    key: "handleClick",
+    value: function handleClick(type) {
+      var _this2 = this;
+
+      return function (e) {
+        return _this2.props.history.push("discover/".concat(type));
+      };
+    }
+  }, {
     key: "render",
     value: function render() {
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "category-index"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1343,16 +1464,51 @@ var CategoryIndex = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Discover camping..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "category-index-experiences-discover-1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onClick: this.handleClick('tent_camping'),
         className: "category-index-experiences-discover-1-sub"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "category-index-experiences-discover-1-sub-pic"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "https://hiptrip-aa-seed.s3.amazonaws.com/cats/tent_camping.jpg"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "category-index-experiences-discover-1-sub-text"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Tent camping"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Best tent camping near me"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onClick: this.handleClick('glamping'),
         className: "category-index-experiences-discover-1-sub"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "category-index-experiences-discover-1-sub-pic"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "https://hiptrip-aa-seed.s3.amazonaws.com/cats/glamping_camping.jpg"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "category-index-experiences-discover-1-sub-text"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Glamping"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Best glamping spots near me"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onClick: this.handleClick('rv_parks'),
         className: "category-index-experiences-discover-1-sub"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "category-index-experiences-discover-1-sub-pic"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "https://hiptrip-aa-seed.s3.amazonaws.com/cats/rvpark_camping.png"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "category-index-experiences-discover-1-sub-text"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "RV park"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Best RV parks near me"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onClick: this.handleClick('beach_camping'),
         className: "category-index-experiences-discover-1-sub"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "category-index-experiences-discover-1-sub-pic"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "https://hiptrip-aa-seed.s3.amazonaws.com/cats/beach_camping.jpg"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "category-index-experiences-discover-1-sub-text"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Beach camping"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Best beach camping near me"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onClick: this.handleClick('lake_camping'),
         className: "category-index-experiences-discover-1-sub"
-      }))));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "category-index-experiences-discover-1-sub-pic"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "https://hiptrip-aa-seed.s3.amazonaws.com/cats/lake_camping.jpg"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "category-index-experiences-discover-1-sub-text"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Lake camping"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Best lake camping near me"))))));
     }
   }]);
 
@@ -1542,7 +1698,7 @@ var SpotMap = /*#__PURE__*/function (_React$Component) {
           lng: -122.435
         },
         // this is SF
-        zoom: 13
+        zoom: 3.5
       };
       this.map = new google.maps.Map(this.mapNode, mapOptions);
       this.MarkerManager = new _util_marker_manager__WEBPACK_IMPORTED_MODULE_1__["default"](this.map);
@@ -2225,7 +2381,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _tables_essentials_table__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../tables/essentials_table */ "./frontend/components/tables/essentials_table.jsx");
 /* harmony import */ var _tables_amenities_table__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../tables/amenities_table */ "./frontend/components/tables/amenities_table.jsx");
 /* harmony import */ var _tables_campsite_table__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../tables/campsite_table */ "./frontend/components/tables/campsite_table.jsx");
-/* harmony import */ var _booking_form_booking_form__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../booking_form/booking_form */ "./frontend/components/booking_form/booking_form.jsx");
+/* harmony import */ var _booking_form_booking_form_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../booking_form/booking_form_container */ "./frontend/components/booking_form/booking_form_container.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2397,7 +2553,7 @@ var SpotShow = /*#__PURE__*/function (_React$Component) {
         })
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "spot-show-side"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_booking_form_booking_form__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_booking_form_booking_form_container__WEBPACK_IMPORTED_MODULE_5__["default"], {
         action: this.props.createBooking,
         spot: this.props.spot,
         scroll: scrollClass,
@@ -2724,6 +2880,9 @@ var bookingsReducer = function bookingsReducer() {
   Object.freeze(state);
 
   switch (action.type) {
+    case _actions_booking_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_BOOKINGS"]:
+      return action.bookings;
+
     case _actions_booking_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_BOOKING"]:
       return Object.assign({}, state, _defineProperty({}, action.booking.id, action.booking));
 
@@ -3042,19 +3201,25 @@ var configureStore = function configureStore() {
 /*!*******************************************!*\
   !*** ./frontend/util/booking_api_util.js ***!
   \*******************************************/
-/*! exports provided: fetchBooking, createBooking, updateBooking, deleteBooking */
+/*! exports provided: fetchBookings, createBooking, updateBooking, deleteBooking */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBooking", function() { return fetchBooking; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBookings", function() { return fetchBookings; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createBooking", function() { return createBooking; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateBooking", function() { return updateBooking; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteBooking", function() { return deleteBooking; });
-var fetchBooking = function fetchBooking(bookingId) {
+// export const fetchBooking = (bookingId) => {
+//     return $.ajax({
+//         method: 'GET',
+//         url: `/api/users/${userID}/${bookingId}`
+//     });
+// }
+var fetchBookings = function fetchBookings(userId) {
   return $.ajax({
     method: 'GET',
-    url: "/api/bookings/".concat(bookingId)
+    url: "api/users/".concat(userId, "/bookings")
   });
 };
 var createBooking = function createBooking(booking) {

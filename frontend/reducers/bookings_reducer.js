@@ -1,8 +1,10 @@
-import {RECEIVE_BOOKING, REMOVE_BOOKING} from '../actions/booking_actions';
+import {RECEIVE_BOOKING, REMOVE_BOOKING, RECEIVE_ALL_BOOKINGS} from '../actions/booking_actions';
 
 const bookingsReducer = (state={}, action) => {
     Object.freeze(state);
     switch(action.type){
+        case RECEIVE_ALL_BOOKINGS:
+            return action.bookings;
         case RECEIVE_BOOKING:
             return Object.assign({},state, {[action.booking.id]: action.booking});
         case REMOVE_BOOKING:
