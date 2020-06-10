@@ -7,7 +7,8 @@ import BookingIndex from './booking_index';
 const mSTP = (state, ownProps) => {
     return{
     user: state.entities.users[ownProps.match.params.userId],
-    bookings: Object.values(state.entities.bookings)
+    bookings: Object.values(state.entities.bookings),
+    session: state.session.id
 }};
 
 const mDTP = (dispatch) => ({

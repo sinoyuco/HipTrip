@@ -347,11 +347,7 @@ li{
   margin-left: 5px;
 }
 
-.map-container{
-  width: 440px;
-  height: 500px;
-  position: fixed !important;
-}
+
 
 .map-container-absolute{
   width: 440px;
@@ -359,6 +355,12 @@ li{
   position: absolute !important;
   bottom: 0;
   /* right: 15px; */
+}
+
+.map-container{
+  width: 440px;
+  height: 570px;
+  position: fixed !important;
 }
 
 .user-profile-logo-h{

@@ -9,7 +9,7 @@ import SpotMap from '../map/spot_map';
 class SpotSearch extends React.Component{
     constructor(props){
         super(props);
-        this.state = { scrollFixed: true }
+        this.state = { scrollFixed: false }
     }
 
     componentDidMount(){

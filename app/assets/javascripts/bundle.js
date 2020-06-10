@@ -929,7 +929,7 @@ var BookingForm = /*#__PURE__*/function (_React$Component) {
     var today = new Date();
     _this.state = {
       start_date: new Date(today.getFullYear(), today.getMonth(), today.getDate()),
-      end_date: new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1),
+      end_date: new Date(today.getFullYear(), today.getMonth(), today.getDate() + 3),
       guests: 1,
       savings: _this.props.spot.price / 4,
       day_picker_display: false,
@@ -973,18 +973,22 @@ var BookingForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleDayClickCheckIn",
     value: function handleDayClickCheckIn(day) {
-      this.setState({
-        start_date: day,
-        day_picker_display: false
-      });
+      if (day > new Date()) {
+        this.setState({
+          start_date: day,
+          day_picker_display: false
+        });
+      } else {}
     }
   }, {
     key: "handleDayClickCheckOut",
     value: function handleDayClickCheckOut(day) {
-      this.setState({
-        end_date: day,
-        day_picker_display: false
-      });
+      if (day > this.state.start_date) {
+        this.setState({
+          end_date: day,
+          day_picker_display: false
+        });
+      } else {}
     }
   }, {
     key: "handleDayPickerDisplayCheckIn",
@@ -1045,12 +1049,18 @@ var BookingForm = /*#__PURE__*/function (_React$Component) {
         className: "day-picker-widget",
         onDayClick: this.handleDayClickCheckIn,
         selectedDays: this.state.start_date,
-        modifiersStyles: modifiersStyles
+        modifiersStyles: modifiersStyles,
+        disabledDays: {
+          before: new Date()
+        }
       }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_day_picker__WEBPACK_IMPORTED_MODULE_1___default.a, {
         className: "day-picker-widget",
         onDayClick: this.handleDayClickCheckOut,
         selectedDays: this.state.end_date,
-        modifiersStyles: modifiersStyles
+        modifiersStyles: modifiersStyles,
+        disabledDays: {
+          before: new Date()
+        }
       }) : null;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: this.props.scroll
@@ -1191,7 +1201,11 @@ var BookingIndex = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this = this;
 
-      var trips = this.props.bookings.map(function (trip) {
+      if (!(this.props.session === this.props.user.id)) {
+        this.props.history.push("/");
+      }
+
+      var trips = this.props.bookings.reverse().map(function (trip) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_booking_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: trip.id,
           trip: trip,
@@ -1308,19 +1322,20 @@ var BookingIndexItem = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "dateFormat",
-    value: function dateFormat(date, days, months) {
-      var day_of_week = days[date.getDay()];
-      var date_num = date.getDate();
-      var month = months[date.getMonth()];
-      var year = date.getFullYear();
+    value: function dateFormat(date) {
+      var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      var months = ['Placeholder', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      var splitted = date.split("-");
+      var date_num = parseInt(splitted[2].slice(0, 2));
+      var month = months[parseInt(splitted[1])];
+      var year = parseInt(splitted[0]);
+      var day_of_week = days[new Date(year, parseInt(splitted[1]) - 1, date_num).getDay()];
       return "".concat(day_of_week, ", ").concat(date_num, " ").concat(month, " ").concat(year);
     }
   }, {
     key: "render",
     value: function render() {
       var spot = this.props.trip.spot;
-      var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-      var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-bookings-index-item"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1330,7 +1345,9 @@ var BookingIndexItem = /*#__PURE__*/function (_React$Component) {
         src: spot.image_url
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, spot.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "user-bookings-index-item-state"
-      }, spot.city, ", ", spot.state), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, this.props.trip.start_date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, spot.city, ", ", spot.state), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        className: "user-bookings-index-item-date"
+      }, this.dateFormat(this.props.trip.start_date), " - ", this.dateFormat(this.props.trip.end_date)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-bookings-index-item-buttons"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "update-bookings-button",
@@ -1373,7 +1390,8 @@ __webpack_require__.r(__webpack_exports__);
 var mSTP = function mSTP(state, ownProps) {
   return {
     user: state.entities.users[ownProps.match.params.userId],
-    bookings: Object.values(state.entities.bookings)
+    bookings: Object.values(state.entities.bookings),
+    session: state.session.id
   };
 };
 
@@ -1732,7 +1750,15 @@ var SpotMap = /*#__PURE__*/function (_React$Component) {
           lng: -98.556008
         },
         // KANSAS
-        zoom: 3.5
+        zoom: 3,
+        zoomControl: true,
+        zoomControlOptions: {
+          position: google.maps.ControlPosition.LEFT_BOTTOM
+        },
+        streetViewControl: true,
+        streetViewControlOptions: {
+          position: google.maps.ControlPosition.RIGHT_CENTER
+        }
       };
       this.map = new google.maps.Map(this.mapNode, mapOptions);
       this.MarkerManager = new _util_marker_manager__WEBPACK_IMPORTED_MODULE_1__["default"](this.map);
@@ -2246,15 +2272,35 @@ var Search = /*#__PURE__*/function (_React$Component) {
         className: "search-bar-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "search-bar-form"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "search-bar-main"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "search-bar-input-icon"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fa fa-search",
+        "aria-hidden": "true"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "search-bar-input",
         type: "text",
         placeholder: "Austin, Texas"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "search-bar-date"
-      }, " Date "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "search-bar-date-icon"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "far fa-calendar"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Enter dates")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "search-bar-category"
-      }, "All Camping"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "search-bar-category-icon"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fas fa-tree"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "All Camping "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "search-bar-category-icon-2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fa fa-angle-down",
+        "aria-hidden": "true"
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         className: "search-bar-submit-link",
         to: "/discover"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -2324,7 +2370,7 @@ var SpotSearch = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      scrollFixed: true
+      scrollFixed: false
     };
     return _this;
   }

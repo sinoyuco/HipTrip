@@ -13,7 +13,14 @@ class SpotMap extends React.Component{
         const mapOptions = {
             center: {
                 lat: 39.812057, lng: -98.556008}, // KANSAS
-            zoom: 3.5
+            zoom: 3,
+            zoomControl: true,
+            zoomControlOptions: {
+                position: google.maps.ControlPosition.LEFT_BOTTOM},
+            streetViewControl: true,
+            streetViewControlOptions: {
+                position: google.maps.ControlPosition.RIGHT_CENTER}
+            
         };
         this.map = new google.maps.Map(this.mapNode, mapOptions);
         this.MarkerManager = new MarkerManager(this.map);

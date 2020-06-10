@@ -58,9 +58,10 @@
     background: white;
     margin-bottom: 50px;
     padding-bottom: 10px;
-    width: 400px;
+    width: 350px;
     /* margin-left: 40px; */
-    border-bottom: 1px solid #ebebeb;
+    border: 1px solid #ebebeb;
+    border-radius: 5px;
 }
 
 .user-bookings-link{
@@ -75,6 +76,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .user-bookings-index-item-imagediv{
@@ -84,8 +88,9 @@
 
 .user-bookings-index-item-image{
     border-radius: 5px;
-    width: auto;
-    height: 200px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .user-bookings-index-item h3{
@@ -93,6 +98,8 @@
     font-weight: 500;
     margin-block-start: 0.5em;
     margin-block-end: 0.5em;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .update-bookings-button{
@@ -186,6 +193,12 @@
     color: #4b4b4b;
     font-family: "Calibre", Helvetica, Arial, sans-serif;
     font-weight: 500;
+}
+
+.user-bookings-index-item-date{
+    font-family: "Calibre", Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    font-size: 14px;
 }
 
 .day-picker-widget{

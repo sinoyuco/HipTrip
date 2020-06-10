@@ -10,7 +10,7 @@ class BookingForm extends React.Component{
         const today = new Date();
         this.state={
             start_date: new Date(today.getFullYear(), today.getMonth(), today.getDate()),
-            end_date: new Date(today.getFullYear(), today.getMonth(), today.getDate()+1),
+            end_date: new Date(today.getFullYear(), today.getMonth(), today.getDate()+3),
             guests: 1,
             savings: (this.props.spot.price/4),
             day_picker_display: false,
@@ -40,11 +40,20 @@ class BookingForm extends React.Component{
     }
 
     handleDayClickCheckIn(day){
-        this.setState({start_date: day, day_picker_display: false});
+
+        if(day > new Date()){
+            this.setState({start_date: day, day_picker_display: false});
+        }else{
+
+        }
     }
 
     handleDayClickCheckOut(day) {
-        this.setState({ end_date: day, day_picker_display: false });
+        if(day > this.state.start_date){
+            this.setState({ end_date: day, day_picker_display: false });
+        }else{
+
+        }
     }
 
     handleDayPickerDisplayCheckIn(e){
@@ -81,7 +90,7 @@ class BookingForm extends React.Component{
                 backgroundColor: '#40d9ac'
             }
         }
-        const day_picker = this.state.day_picker_display ? (this.state.day_picker_type === 'in' ? <DayPicker className="day-picker-widget" onDayClick={this.handleDayClickCheckIn} selectedDays={this.state.start_date} modifiersStyles={modifiersStyles} /> : <DayPicker className="day-picker-widget" onDayClick={this.handleDayClickCheckOut} selectedDays={this.state.end_date} modifiersStyles={modifiersStyles} />) : null
+        const day_picker = this.state.day_picker_display ? (this.state.day_picker_type === 'in' ? <DayPicker className="day-picker-widget" onDayClick={this.handleDayClickCheckIn} selectedDays={this.state.start_date} modifiersStyles={modifiersStyles} disabledDays={{ before: new Date() }} /> : <DayPicker className="day-picker-widget" onDayClick={this.handleDayClickCheckOut} selectedDays={this.state.end_date} modifiersStyles={modifiersStyles} disabledDays={{ before: new Date() }} />) : null
        
         
         return(

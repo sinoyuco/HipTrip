@@ -20,9 +20,33 @@ class Search extends React.Component{
                 </div>
                 <div className="search-bar-div">
                     <form className="search-bar-form">
-                        <input className="search-bar-input" type="text" placeholder="Austin, Texas"/>
-                        <button className="search-bar-date"> Date </button>
-                        <button className="search-bar-category">All Camping</button>
+                        <div className="search-bar-main">
+                            <div className="search-bar-input-icon">
+                                <i className="fa fa-search" aria-hidden="true"></i>
+                            </div>
+                            <input className="search-bar-input" type="text" placeholder="Austin, Texas"/>
+                        </div>
+
+                        <button className="search-bar-date">
+                            <div className="search-bar-date-icon">
+                                <i className="far fa-calendar"></i>
+                            </div>
+                            <h5>Enter dates</h5>
+                        </button>
+
+                        <button className="search-bar-category">
+
+                            <div className="search-bar-category-icon">
+                                <i className="fas fa-tree"></i>
+                            </div>
+
+                            <h5>All Camping </h5>
+
+                            <div className="search-bar-category-icon-2">
+                                <i className="fa fa-angle-down" aria-hidden="true"></i>
+                            </div>
+
+                        </button>
                         <Link className="search-bar-submit-link" to="/discover"><button className="search-bar-submit">Search</button></Link>
                     </form>
                 </div>
