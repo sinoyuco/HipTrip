@@ -7,7 +7,9 @@ class CategoryIndex extends React.Component{
     }
 
     handleClick(type){
-        return e => this.props.history.push(`discover/${type}`);
+        return e => {
+            this.props.history.push(`discover/${type}`);
+             window.scrollTo(0, 0);}
     }
 
     render(){

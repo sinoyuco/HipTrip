@@ -160,6 +160,27 @@ var updateBooking = function updateBooking(booking) {
 
 /***/ }),
 
+/***/ "./frontend/actions/filter_actions.js":
+/*!********************************************!*\
+  !*** ./frontend/actions/filter_actions.js ***!
+  \********************************************/
+/*! exports provided: UPDATE_BOUNDS, updateBounds */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_BOUNDS", function() { return UPDATE_BOUNDS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateBounds", function() { return updateBounds; });
+var UPDATE_BOUNDS = "UPDATE_BOUNDS";
+var updateBounds = function updateBounds(bounds) {
+  return {
+    type: UPDATE_BOUNDS,
+    bounds: bounds
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/modal_actions.js":
 /*!*******************************************!*\
   !*** ./frontend/actions/modal_actions.js ***!
@@ -291,9 +312,9 @@ var receiveSpot = function receiveSpot(spot) {
   };
 };
 
-var fetchSpots = function fetchSpots() {
+var fetchSpots = function fetchSpots(filters) {
   return function (dispatch) {
-    return _util_spot_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchSpots"]().then(function (spots) {
+    return _util_spot_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchSpots"](filters).then(function (spots) {
       return dispatch(receiveSpots(spots));
     });
   };
@@ -1423,7 +1444,9 @@ var CategoryIndex = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       return function (e) {
-        return _this2.props.history.push("discover/".concat(type));
+        _this2.props.history.push("discover/".concat(type));
+
+        window.scrollTo(0, 0);
       };
     }
   }, {
@@ -1691,37 +1714,59 @@ var SpotMap = /*#__PURE__*/function (_React$Component) {
   _createClass(SpotMap, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      // set the map to show SF
+      var _this = this;
+
       var mapOptions = {
         center: {
-          lat: 37.7758,
-          lng: -122.435
+          lat: 39.812057,
+          lng: -98.556008
         },
-        // this is SF
+        // KANSAS
         zoom: 3.5
       };
       this.map = new google.maps.Map(this.mapNode, mapOptions);
       this.MarkerManager = new _util_marker_manager__WEBPACK_IMPORTED_MODULE_1__["default"](this.map);
-      this.MarkerManager.updateMarkers(this.props.benches);
+      this.MarkerManager.updateMarkers(this.props.spots);
+      google.maps.event.addListener(this.map, 'idle', function () {
+        var _this$map$getBounds$t = _this.map.getBounds().toJSON(),
+            north = _this$map$getBounds$t.north,
+            south = _this$map$getBounds$t.south,
+            east = _this$map$getBounds$t.east,
+            west = _this$map$getBounds$t.west;
+
+        var bounds = {
+          northEast: {
+            lat: north,
+            lng: east
+          },
+          southWest: {
+            lat: south,
+            lng: west
+          }
+        };
+        debugger;
+
+        _this.props.updateBounds(bounds);
+      });
     }
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate() {
-      this.MarkerManager.updateMarkers(this.props.benches);
+      this.MarkerManager.updateMarkers(this.props.spots);
     }
   }, {
     key: "render",
     value: function render() {
-      var _this = this;
+      var _this2 = this;
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: this.props.scroll,
         ref: function ref(map) {
-          return _this.mapNode = map;
+          return _this2.mapNode = map;
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         ref: function ref(map) {
-          return _this.mapNode = map;
+          return _this2.mapNode = map;
         }
       }));
     }
@@ -1840,7 +1885,7 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: "/"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://fontmeme.com/permalink/200603/ef81bf1f1f2d6819aaf0a2e41a177943.png",
+        src: "https://hiptrip-aa-seed.s3.amazonaws.com/logo/logo.png",
         alt: "the-mandalorian-font",
         border: "0"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
@@ -2212,6 +2257,7 @@ var SpotSearch = /*#__PURE__*/function (_React$Component) {
       }, spots), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "search-map"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_map_spot_map__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        updateBounds: this.props.updateBounds,
         spots: spots,
         scroll: scrollClass
       })));
@@ -2239,12 +2285,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _spot_search__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./spot_search */ "./frontend/components/search/spot_search.jsx");
 /* harmony import */ var _actions_spot_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/spot_actions */ "./frontend/actions/spot_actions.js");
+/* harmony import */ var _actions_filter_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/filter_actions */ "./frontend/actions/filter_actions.js");
+
 
 
 
 
 
 var mSTP = function mSTP(state) {
+  debugger;
   return {
     spots: Object.values(state.entities.spots)
   };
@@ -2254,6 +2303,9 @@ var mDTP = function mDTP(dispatch) {
   return {
     fetchSpots: function fetchSpots() {
       return dispatch(Object(_actions_spot_actions__WEBPACK_IMPORTED_MODULE_3__["fetchSpots"])());
+    },
+    updateBounds: function updateBounds(bounds) {
+      return dispatch(Object(_actions_filter_actions__WEBPACK_IMPORTED_MODULE_4__["updateBounds"])(bounds));
     }
   };
 };
@@ -2319,6 +2371,7 @@ var SpotIndexItem = /*#__PURE__*/function (_React$Component) {
     value: function handleClick(e) {
       e.preventDefault();
       this.props.history.push("/spots/".concat(this.props.spot.id));
+      window.scrollTo(0, 0);
     }
   }, {
     key: "render",
@@ -2944,6 +2997,37 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./frontend/reducers/filter_reducer.js":
+/*!*********************************************!*\
+  !*** ./frontend/reducers/filter_reducer.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_filter_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/filter_actions */ "./frontend/actions/filter_actions.js");
+
+
+var filterReducer = function filterReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_filter_actions__WEBPACK_IMPORTED_MODULE_0__["UPDATE_BOUNDS"]:
+      debugger;
+      return action.bounds;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (filterReducer);
+
+/***/ }),
+
 /***/ "./frontend/reducers/modal_reducer.js":
 /*!********************************************!*\
   !*** ./frontend/reducers/modal_reducer.js ***!
@@ -3129,10 +3213,13 @@ var spotsReducer = function spotsReducer() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _modal_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modal_reducer */ "./frontend/reducers/modal_reducer.js");
+/* harmony import */ var _filter_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./filter_reducer */ "./frontend/reducers/filter_reducer.js");
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  modal: _modal_reducer__WEBPACK_IMPORTED_MODULE_1__["default"]
+  modal: _modal_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
+  filter: _filter_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
 }));
 
 /***/ }),
@@ -3276,7 +3363,47 @@ var MarkerManager = /*#__PURE__*/function () {
   _createClass(MarkerManager, [{
     key: "updateMarkers",
     value: function updateMarkers(spots) {
-      console.log("time to update");
+      var _this = this;
+
+      var spots_formatted = spots.map(function (spot) {
+        return spot.props.spot;
+      });
+      var spotsObj = {};
+      spots_formatted.forEach(function (spot) {
+        return spotsObj[spot.id] = spot;
+      });
+      spots_formatted.filter(function (spot) {
+        return !_this.markers[spot.id];
+      }).forEach(function (newSpot) {
+        return _this.createMarkerFromSpot(newSpot, _this.handleClick);
+      });
+      Object.keys(this.markers).filter(function (spotId) {
+        return !spotsObj[spotId];
+      }).forEach(function (spotId) {
+        return _this.removeMarker(_this.markers[spotId]);
+      });
+    }
+  }, {
+    key: "createMarkerFromSpot",
+    value: function createMarkerFromSpot(spot) {
+      var _this2 = this;
+
+      var position = new google.maps.LatLng(spot.latitude, spot.longitude);
+      var marker = new google.maps.Marker({
+        position: position,
+        map: this.map,
+        spotId: spot.id
+      });
+      marker.addListener('click', function () {
+        return _this2.handleClick(spot);
+      });
+      this.markers[marker.spotId] = marker;
+    }
+  }, {
+    key: "removeMarker",
+    value: function removeMarker(marker) {
+      this.markers[marker.spotId].setMap(null);
+      delete this.markers[marker.spotId];
     }
   }]);
 
@@ -3337,10 +3464,11 @@ var signup = function signup(user) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchSpots", function() { return fetchSpots; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchSpot", function() { return fetchSpot; });
-var fetchSpots = function fetchSpots() {
+var fetchSpots = function fetchSpots(data) {
   return $.ajax({
     method: 'GET',
-    url: 'api/spots/'
+    url: 'api/spots/',
+    data: data
   });
 };
 var fetchSpot = function fetchSpot(spotId) {

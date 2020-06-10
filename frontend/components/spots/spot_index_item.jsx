@@ -11,6 +11,7 @@ class SpotIndexItem extends React.Component{
     handleClick(e){
         e.preventDefault();
         this.props.history.push(`/spots/${this.props.spot.id}`);
+        window.scrollTo(0, 0);
     }
 
     render(){

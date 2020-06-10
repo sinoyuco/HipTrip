@@ -360,3 +360,9 @@ li{
   bottom: 0;
   /* right: 15px; */
 }
+
+.user-profile-logo-h{
+  height: 30px;
+  width: auto;
+  background: white;
+}

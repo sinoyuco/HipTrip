@@ -32,7 +32,7 @@ class SpotSearch extends React.Component{
                     {spots}
                 </div>
                 <div className="search-map">
-                    <SpotMap spots={spots} scroll={scrollClass}/>
+                    <SpotMap updateBounds={this.props.updateBounds} spots={spots} scroll={scrollClass}/>
                 </div>
             </div>
         );

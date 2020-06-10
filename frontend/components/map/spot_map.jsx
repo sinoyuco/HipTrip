@@ -9,19 +9,29 @@ class SpotMap extends React.Component{
    
 
     componentDidMount() {
-        // set the map to show SF
+        
         const mapOptions = {
-            center: { lat: 37.7758, lng: -122.435 }, // this is SF
+            center: {
+                lat: 39.812057, lng: -98.556008}, // KANSAS
             zoom: 3.5
         };
         this.map = new google.maps.Map(this.mapNode, mapOptions);
         this.MarkerManager = new MarkerManager(this.map);
+        this.MarkerManager.updateMarkers(this.props.spots);
 
-        this.MarkerManager.updateMarkers(this.props.benches);
+        google.maps.event.addListener(this.map, 'idle', () => {
+            const { north, south, east, west } = this.map.getBounds().toJSON();
+            const bounds = {
+                northEast: { lat: north, lng: east },
+                southWest: { lat: south, lng: west }
+            };
+            debugger;
+            this.props.updateBounds(bounds);
+        });
     }
 
     componentDidUpdate(){
-        this.MarkerManager.updateMarkers(this.props.benches);
+        this.MarkerManager.updateMarkers(this.props.spots);
     }
 
     render(){

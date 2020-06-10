@@ -28,7 +28,7 @@ class Navbar extends React.Component{
                 <li><Link className="user-bookings-link" to={`/users/${this.props.user.id}/bookings`}>Trips</Link></li>
                 <li>Saves</li>
                 <li>Messages</li>
-                <div className="user-profile"> Profile 
+                <div className="user-profile"> Profile
                     <div className="user-profile-content">
                         <li>Manage User Profile</li>
                         <li onClick={this.handleLogout}>Log Out</li>
@@ -53,7 +53,7 @@ class Navbar extends React.Component{
         return(
             <div className="main-navbar">
                 <div className="main-navbar-1">
-                    <a href="/"><img src="https://fontmeme.com/permalink/200603/ef81bf1f1f2d6819aaf0a2e41a177943.png" alt="the-mandalorian-font" border="0"/></a>
+                    <a href="/"><img src="https://hiptrip-aa-seed.s3.amazonaws.com/logo/logo.png" alt="the-mandalorian-font" border="0"/></a>
                     <Switch>
                         <Route path="/users/:userId/bookings" component={NavBarSearchInput} />
                         <Route path="/spots/:spotId" component={NavBarSearchInput} />
