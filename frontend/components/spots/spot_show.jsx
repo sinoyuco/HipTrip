@@ -4,6 +4,7 @@ import EssentialsTable from '../tables/essentials_table';
 import AmenitiesTable from '../tables/amenities_table';
 import CampSiteTable from '../tables/campsite_table';
 import BookingFormContainer from '../booking_form/booking_form_container';
+import SpotShowMap from '../map/spot_show_map';
 
 class SpotShow extends React.Component{
     constructor(props){
@@ -128,7 +129,9 @@ class SpotShow extends React.Component{
                 </div>
                 
             </div>
-        </div>
+                <SpotShowMap latitude={this.props.spot.latitude} longitude={this.props.spot.longitude} />
+            </div>
+        
         );
     }
 
