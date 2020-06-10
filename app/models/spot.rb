@@ -22,6 +22,10 @@ class Spot < ApplicationRecord
         foreign_key: :spot_id, 
         class_name: :Campsite)
 
+    has_many(:reviews,
+        foreign_key: :spot_id,
+        class_name: :Review)
+
     # function to check for lat and long validation
     def self.in_bounds(bounds)
         self.where("latitude < ?", bounds[:northEast][:lat])

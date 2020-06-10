@@ -74,7 +74,10 @@ class BookingForm extends React.Component{
             end_date: this.state.end_date,
             num_guests: this.state.guests,
             total_price: ((this.state.guests) * (this.state.end_date.getDate() - this.state.start_date.getDate()) * (this.props.spot.price)) - this.state.savings
-        }).then(() => this.props.history.push(`/users/${this.props.session}/bookings`));
+        }).then(() => {
+            this.props.history.push(`/users/${this.props.session}/bookings`);
+            window.scrollTo(0,0);
+        });
         }else{
             this.props.openModal('login');
         }

@@ -1,0 +1,134 @@
+.reviews-index-main{
+    margin-top: 50px;
+    min-height: 300px;
+    width: 100%;
+}
+
+.reviews-index-main h3{
+    font-family: "Calibre", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+
+.review-show-header{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+.review-show-header-1{
+    display: flex;
+}
+
+.review-show-header-2{
+    display: flex;
+}
+
+.review-show-header-2 h5{
+    font-family: "Calibre", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    margin-block-start: 1.9em;
+    font-size: 16px;
+}
+
+.review-show-header-2-star{
+    margin: auto 5px;
+}
+
+.review-rating-star{
+    color: #40d9ac;
+}
+
+.review-show-header-2-text{
+    margin-block-start: 1.67em;
+}
+
+.review-show-header-1 h5{
+    font-family: "Calibre", Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    margin-block-start: 2em;
+    -webkit-font-smoothing: antialiased;
+}
+
+.review-photo{
+  width: 70px;
+  height: 70px;
+  background: white;
+  border-radius: 50px;
+  border: 1px solid #cccccc;
+  display: flex;
+  overflow: hidden;
+  margin: auto 10px auto 0px;
+}
+
+
+.review-photo img{
+  width: 100%;
+  height: auto;
+}
+
+.review-show-header-content-icon{
+    margin: auto 5px auto 0px;
+}
+
+.review-show-header-content{
+    display: flex;
+}
+
+.review-show-body{
+    display: flex;
+}
+
+
+
+.review-show-body-1{
+    width: 13%;
+}
+
+.review-show-body-2{
+    width: 87%;
+    font-family: "Calibre", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 16px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.review-show-body-2 p{
+    margin-block-start: 0em;
+    margin-block-end: 1em;
+}
+
+.review-show-body-2-button{
+    display: flex;
+    color: white;
+    background: #40d9ac;
+    width: 100px;
+}
+
+
+.secondthumbs:before{
+    outline: white;
+}
+
+.review-helpful-text{
+    margin-right: 5px;
+}
+
+.secondthumbs-div{
+    margin: auto 5px auto 10px;
+}
+
+.review-show-body-2-button h5{
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+}
+
+.review-show-header-3-date{
+    font-family: "Calibre", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: #757575;
+    font-size: 14px;
+    font-weight: 500;
+    margin-block-start: 2.1em;
+}

@@ -5,6 +5,7 @@ import AmenitiesTable from '../tables/amenities_table';
 import CampSiteTable from '../tables/campsite_table';
 import BookingFormContainer from '../booking_form/booking_form_container';
 import SpotShowMap from '../map/spot_show_map';
+import ReviewIndex from '../reviews/review_index';
 
 class SpotShow extends React.Component{
     constructor(props){
@@ -65,7 +66,9 @@ class SpotShow extends React.Component{
                         </div>
                         <div className="spot-show-header-2">
                             <div className="spot-show-header-2-1">
-                                <i className="fa fa-thumbs-up" aria-hidden="true"></i>
+                                    <div className="abovethumbs-div">
+                                         <i className="abovethumbs fa fa-thumbs-up" aria-hidden="true"></i>
+                                    </div>
                                     <h3 className="spot-show-header-hundred-percent">100%</h3>
                                 <h3>Recommend</h3>
                             </div>
@@ -121,6 +124,10 @@ class SpotShow extends React.Component{
                             <AmenitiesTable elements={this.props.spot.amenities.map(el => el.amenity_type)} />
                         </div>
 
+                    </div>
+
+                    <div className="spot-show-reviews">
+                        <ReviewIndex reviews={Object.values(this.props.spot.reviews)}/>
                     </div>
                     
                 </div>

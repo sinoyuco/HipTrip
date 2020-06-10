@@ -1,4 +1,5 @@
 ActiveRecord::Base.transaction do
+    Review.destroy_all
     Booking.destroy_all  
     Amenity.destroy_all
     Essential.destroy_all
@@ -105,5 +106,7 @@ Booking.create!(user_id: user1.id, spot_id: a10.id, start_date: date3, end_date:
 Booking.create!(user_id: user3.id, spot_id: a1.id, start_date: date1, end_date: date2, num_guests: 2, total_price: 200)
 Booking.create!(user_id: user3.id, spot_id: a2.id, start_date: date3, end_date: date4, num_guests: 1, total_price: 150)
 
+Review.create!(title: 'Exquisite Place', body: 'The host went out of his way to help us during our stay, and the campground was charming.', rating: 5, spot_id: a1.id, user_id: user3.id)
+Review.create!(title: 'Worst Vacation Ever', body: 'Your place is even worse than your ball game, and I didn\'t even know that was possible.', rating: 2, spot_id: a1.id, user_id: user2.id)
 
 end

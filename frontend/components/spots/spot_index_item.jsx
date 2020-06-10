@@ -15,6 +15,7 @@ class SpotIndexItem extends React.Component{
     }
 
     render(){
+        const reviews = this.props.spot.reviews || {};
         return(
             <div className="spot-item" key={this.props.spot.id} onClick={this.handleClick}>
                 <div className="spot-item-image">
@@ -36,7 +37,7 @@ class SpotIndexItem extends React.Component{
                         <div className="spot-item-content-footer-review">
                             <i className="fa fa-thumbs-up" aria-hidden="true"></i>
                             <h3 className="spot-index-header-hundred-percent">100%</h3>
-                            <h5 className="spot-show-header-review-count">- 0 Reviews</h5>
+                            <h5 className="spot-show-header-review-count">- {Object.keys(reviews).length} Reviews</h5>
                         </div>
                         <h4 className="spot-item-content-footer-price">{`$${this.props.spot.price}/night`}</h4>
                     </div>
