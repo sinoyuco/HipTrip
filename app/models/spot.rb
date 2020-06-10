@@ -23,7 +23,7 @@ class Spot < ApplicationRecord
         class_name: :Campsite)
 
     # function to check for lat and long validation
-    def self.in_bounds
+    def self.in_bounds(bounds)
         self.where("latitude < ?", bounds[:northEast][:lat])
         .where("latitude > ?", bounds[:southWest][:lat])
         .where("longitude > ?", bounds[:southWest][:lng])

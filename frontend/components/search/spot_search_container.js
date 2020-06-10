@@ -5,7 +5,6 @@ import {fetchSpots} from '../../actions/spot_actions';
 import {updateBounds} from '../../actions/filter_actions';
 
 const mSTP = (state) => {
-    debugger;
     return {spots: Object.values(state.entities.spots)}
 };
 

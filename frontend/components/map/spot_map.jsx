@@ -25,7 +25,6 @@ class SpotMap extends React.Component{
                 northEast: { lat: north, lng: east },
                 southWest: { lat: south, lng: west }
             };
-            debugger;
             this.props.updateBounds(bounds);
         });
     }

@@ -171,11 +171,21 @@ var updateBooking = function updateBooking(booking) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_BOUNDS", function() { return UPDATE_BOUNDS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateBounds", function() { return updateBounds; });
+/* harmony import */ var _spot_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./spot_actions */ "./frontend/actions/spot_actions.js");
+
 var UPDATE_BOUNDS = "UPDATE_BOUNDS";
-var updateBounds = function updateBounds(bounds) {
+
+var changeBounds = function changeBounds(bounds) {
   return {
     type: UPDATE_BOUNDS,
     bounds: bounds
+  };
+};
+
+var updateBounds = function updateBounds(bounds) {
+  return function (dispatch, getState) {
+    dispatch(changeBounds(bounds));
+    return Object(_spot_actions__WEBPACK_IMPORTED_MODULE_0__["fetchSpots"])(getState().ui.filter)(dispatch);
   };
 };
 
@@ -1744,7 +1754,6 @@ var SpotMap = /*#__PURE__*/function (_React$Component) {
             lng: west
           }
         };
-        debugger;
 
         _this.props.updateBounds(bounds);
       });
@@ -2229,7 +2238,7 @@ var SpotSearch = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      this.props.fetchSpots();
+      // this.props.fetchSpots();
       document.addEventListener('scroll', function () {
         var belowPictures = window.scrollY > 1400;
 
@@ -2293,7 +2302,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state) {
-  debugger;
   return {
     spots: Object.values(state.entities.spots)
   };
@@ -3016,8 +3024,9 @@ var filterReducer = function filterReducer() {
 
   switch (action.type) {
     case _actions_filter_actions__WEBPACK_IMPORTED_MODULE_0__["UPDATE_BOUNDS"]:
-      debugger;
-      return action.bounds;
+      return {
+        bounds: action.bounds
+      };
 
     default:
       return state;

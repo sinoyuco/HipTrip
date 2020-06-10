@@ -13,7 +13,7 @@ class SpotSearch extends React.Component{
     }
 
     componentDidMount(){
-        this.props.fetchSpots();
+        // this.props.fetchSpots();
         document.addEventListener('scroll', () => {
             const belowPictures = window.scrollY > 1400;
             if (belowPictures !== this.state.scrollFixed) {
