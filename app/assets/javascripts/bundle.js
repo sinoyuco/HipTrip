@@ -1369,7 +1369,12 @@ var BookingIndexItem = /*#__PURE__*/function (_React$Component) {
     key: "handleDelete",
     value: function handleDelete(e) {
       e.preventDefault();
-      this.props["delete"](this.props.trip.id);
+      var start_date_disabled = new Date(parseInt(this.props.trip.start_date.split("-")[0]), parseInt(this.props.trip.start_date.split("-")[1]) - 1, parseInt(this.props.trip.start_date.split("-")[2].slice(0, 2)));
+
+      if (new Date() < start_date_disabled) {
+        this.props["delete"](this.props.trip.id);
+      } else {//
+      }
     }
   }, {
     key: "dateFormat",
@@ -1387,6 +1392,19 @@ var BookingIndexItem = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var spot = this.props.trip.spot;
+      var start_date_disabled = new Date(parseInt(this.props.trip.start_date.split("-")[0]), parseInt(this.props.trip.start_date.split("-")[1]) - 1, parseInt(this.props.trip.start_date.split("-")[2].slice(0, 2)));
+      var update_class = new Date() < start_date_disabled ? 'update-bookings-button' : 'update-bookings-button-disabled';
+      var delete_class = new Date() < start_date_disabled ? 'delete-bookings-button' : 'delete-bookings-button-disabled';
+      var disabled_message;
+
+      if (update_class === 'update-bookings-button-disabled') {
+        disabled_message = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "disabled-message"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "This trip has already started or ended, hence you cannot edit this booking."));
+      } else {
+        disabled_message = null;
+      }
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-bookings-index-item"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1401,12 +1419,12 @@ var BookingIndexItem = /*#__PURE__*/function (_React$Component) {
       }, this.dateFormat(this.props.trip.start_date), " - ", this.dateFormat(this.props.trip.end_date)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-bookings-index-item-buttons"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "update-bookings-button",
+        className: update_class,
         onClick: this.handleEdit
-      }, "Edit Booking"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "delete-bookings-button",
+      }, "Edit Booking"), disabled_message, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: delete_class,
         onClick: this.handleDelete
-      }, "Delete Booking")));
+      }, "Delete Booking"), disabled_message));
     }
   }]);
 
@@ -2806,7 +2824,7 @@ var SpotIndexItem = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "spot-item-content-footer-review"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fa fa-thumbs-up",
+        className: "indexthumbs fa fa-thumbs-up",
         "aria-hidden": "true"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "spot-index-header-hundred-percent"
@@ -2924,6 +2942,7 @@ var SpotShow = /*#__PURE__*/function (_React$Component) {
         }));
       });
       var scrollClass = this.state.scrollFixed ? 'spot-show-booking-div' : 'spot-show-booking-div-absolute';
+      var reviews_passed = this.props.spot.reviews ? Object.values(this.props.spot.reviews) : [];
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "spot-show-master"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3019,7 +3038,7 @@ var SpotShow = /*#__PURE__*/function (_React$Component) {
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "spot-show-reviews"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reviews_review_index__WEBPACK_IMPORTED_MODULE_7__["default"], {
-        reviews: Object.values(this.props.spot.reviews)
+        reviews: reviews_passed
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "spot-show-side"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_booking_form_booking_form_container__WEBPACK_IMPORTED_MODULE_5__["default"], {
@@ -3060,7 +3079,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  // debugger;
   return {
     spot: state.entities.spots[ownProps.match.params.spotId]
   };

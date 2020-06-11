@@ -368,3 +368,7 @@ li{
   width: auto;
   background: white;
 }
+
+.indexthumbs::before{
+  color: #40d9ac;
+}

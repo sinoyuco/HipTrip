@@ -93,6 +93,7 @@ class BookingForm extends React.Component{
                 backgroundColor: '#40d9ac'
             }
         }
+
         const day_picker = this.state.day_picker_display ? (this.state.day_picker_type === 'in' ? <DayPicker className="day-picker-widget" onDayClick={this.handleDayClickCheckIn} selectedDays={this.state.start_date} modifiersStyles={modifiersStyles} disabledDays={{ before: new Date() }} /> : <DayPicker className="day-picker-widget" onDayClick={this.handleDayClickCheckOut} selectedDays={this.state.end_date} modifiersStyles={modifiersStyles} disabledDays={{ before: new Date() }} />) : null
        
         

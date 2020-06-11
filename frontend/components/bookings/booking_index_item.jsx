@@ -13,7 +13,12 @@ class BookingIndexItem extends React.Component{
 
     handleDelete(e){
         e.preventDefault();
-        this.props.delete(this.props.trip.id)
+        const start_date_disabled = new Date(parseInt(this.props.trip.start_date.split("-")[0]), parseInt(this.props.trip.start_date.split("-")[1]) - 1, parseInt(this.props.trip.start_date.split("-")[2].slice(0, 2)));
+        if(new Date() < start_date_disabled){
+            this.props.delete(this.props.trip.id);
+        }else{
+            //
+        }
     }
 
     dateFormat(date){
@@ -31,6 +36,20 @@ class BookingIndexItem extends React.Component{
 
     render(){
         const spot = this.props.trip.spot;
+        const start_date_disabled = new Date(parseInt(this.props.trip.start_date.split("-")[0]), parseInt(this.props.trip.start_date.split("-")[1]) - 1, parseInt(this.props.trip.start_date.split("-")[2].slice(0,2)));
+
+        const update_class = (new Date() < start_date_disabled) ? 'update-bookings-button' : 'update-bookings-button-disabled';
+        const delete_class = (new Date() < start_date_disabled) ? 'delete-bookings-button' : 'delete-bookings-button-disabled';
+
+        let disabled_message;
+        if (update_class === 'update-bookings-button-disabled'){
+            disabled_message = (<div className="disabled-message">
+                <p>This trip has already started or ended, hence you cannot edit this booking.</p>
+            </div>);
+        }else{
+            disabled_message = null;
+        }
+
         return(
             <div className="user-bookings-index-item">
                 <div className="user-bookings-index-item-imagediv">
@@ -40,11 +59,14 @@ class BookingIndexItem extends React.Component{
                 <h3 className="user-bookings-index-item-state">{spot.city}, {spot.state}</h3>
                 <h3 className="user-bookings-index-item-date">{this.dateFormat(this.props.trip.start_date)} - {this.dateFormat(this.props.trip.end_date)}</h3>
                 <div className="user-bookings-index-item-buttons">
-                    <button className="update-bookings-button" onClick={this.handleEdit}>Edit Booking</button>
-                    <button className="delete-bookings-button" onClick={this.handleDelete}>Delete Booking</button>
+                    <button className={update_class} onClick={this.handleEdit}>Edit Booking</button>
+                    {disabled_message}
+                    <button className={delete_class} onClick={this.handleDelete}>Delete Booking</button>
+                    {disabled_message}
                 </div>
+                
             </div>
-        )
+        );
     }
 
 

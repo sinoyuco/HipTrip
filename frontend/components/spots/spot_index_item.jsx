@@ -35,7 +35,7 @@ class SpotIndexItem extends React.Component{
                     <h5>{`${this.props.spot.city}, ${this.props.spot.state}`}</h5>
                     <div className="spot-item-content-footer">
                         <div className="spot-item-content-footer-review">
-                            <i className="fa fa-thumbs-up" aria-hidden="true"></i>
+                            <i className="indexthumbs fa fa-thumbs-up" aria-hidden="true"></i>
                             <h3 className="spot-index-header-hundred-percent">100%</h3>
                             <h5 className="spot-show-header-review-count">- {Object.keys(reviews).length} Reviews</h5>
                         </div>

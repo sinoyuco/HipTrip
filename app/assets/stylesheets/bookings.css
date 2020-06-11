@@ -114,6 +114,23 @@
   border-radius: 2px;
 }
 
+.update-bookings-button-disabled{
+  background-color: #a0a0a0;
+  color: white;
+  font-family: "Calibre", Helvetica, Arial, sans-serif;
+  position: relative;
+  font-size: 16px;
+  border: 2px solid #a0a0a0;
+  -webkit-font-smoothing: antialiased;
+  width: 30%;
+  height: 80%;
+  border-radius: 2px;
+}
+
+.update-bookings-button-disabled:focus{
+    outline: none;
+}
+
 .update-bookings-button:hover{
   background-color: inherit;
   color: #40d9ac;
@@ -126,10 +143,27 @@
   font-family: "Calibre", Helvetica, Arial, sans-serif;
   font-size: 16px;
   border: 2px solid #d94064;
-  /* -webkit-font-smoothing: antialiased; */
+  -webkit-font-smoothing: antialiased;
   width: 30%;
   height: 80%;
   border-radius: 2px;
+}
+
+.delete-bookings-button-disabled{
+  background-color: #a0a0a0;
+  position: relative;
+  color: white;
+  font-family: "Calibre", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  border: 2px solid #a0a0a0;
+  -webkit-font-smoothing: antialiased;
+  width: 30%;
+  height: 80%;
+  border-radius: 2px;
+}
+
+.delete-bookings-button-disabled:focus{
+    outline: none;
 }
 
 .delete-bookings-button:hover{
@@ -208,4 +242,28 @@
     background: white;
     width: 298px;
     font-family: "Calibre", Helvetica, Arial, sans-serif;
+}
+
+.disabled-message{
+    display: none;
+    position: absolute;
+    background: black;
+    border-radius: 3px;
+    z-index: 1;
+    top: 0;
+    right: 0;
+}
+
+.disabled-message p{
+    font-family: "Calibre", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: white;
+}
+
+.delete-bookings-button-disabled:hover .disabled-message {
+  display: block;
+}
+
+.update-bookings-button-disabled:hover .disabled-message {
+  display: block;
 }

@@ -34,6 +34,8 @@ class SpotShow extends React.Component{
 
         const scrollClass = this.state.scrollFixed ? 'spot-show-booking-div' : 'spot-show-booking-div-absolute';
 
+        const reviews_passed = this.props.spot.reviews ? Object.values(this.props.spot.reviews) : []
+
         return(
             <div className="spot-show-master">
             <div className="spot-show-images">
@@ -127,7 +129,7 @@ class SpotShow extends React.Component{
                     </div>
 
                     <div className="spot-show-reviews">
-                        <ReviewIndex reviews={Object.values(this.props.spot.reviews)}/>
+                        <ReviewIndex reviews={reviews_passed}/>
                     </div>
                     
                 </div>
