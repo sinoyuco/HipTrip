@@ -1405,6 +1405,16 @@ var BookingIndexItem = /*#__PURE__*/function (_React$Component) {
         disabled_message = null;
       }
 
+      var disabled_triangle;
+
+      if (update_class === 'update-bookings-button-disabled') {
+        disabled_triangle = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "disabled-message-triangle"
+        });
+      } else {
+        disabled_triangle = null;
+      }
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-bookings-index-item"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1418,13 +1428,17 @@ var BookingIndexItem = /*#__PURE__*/function (_React$Component) {
         className: "user-bookings-index-item-date"
       }, this.dateFormat(this.props.trip.start_date), " - ", this.dateFormat(this.props.trip.end_date)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-bookings-index-item-buttons"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "user-bookings-buttons-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: update_class,
         onClick: this.handleEdit
-      }, "Edit Booking"), disabled_message, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, "Edit Booking"), disabled_triangle, disabled_message), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "user-bookings-buttons-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: delete_class,
         onClick: this.handleDelete
-      }, "Delete Booking"), disabled_message));
+      }, "Delete Booking"), disabled_triangle, disabled_message)));
     }
   }]);
 

@@ -43,11 +43,21 @@ class BookingIndexItem extends React.Component{
 
         let disabled_message;
         if (update_class === 'update-bookings-button-disabled'){
-            disabled_message = (<div className="disabled-message">
+            disabled_message = (
+            <div className="disabled-message">
                 <p>This trip has already started or ended, hence you cannot edit this booking.</p>
             </div>);
         }else{
             disabled_message = null;
+        }
+
+        let disabled_triangle;
+        if (update_class === 'update-bookings-button-disabled') {
+            disabled_triangle = (
+                <div className="disabled-message-triangle"></div>
+                );
+        } else {
+            disabled_triangle = null;
         }
 
         return(
@@ -59,10 +69,20 @@ class BookingIndexItem extends React.Component{
                 <h3 className="user-bookings-index-item-state">{spot.city}, {spot.state}</h3>
                 <h3 className="user-bookings-index-item-date">{this.dateFormat(this.props.trip.start_date)} - {this.dateFormat(this.props.trip.end_date)}</h3>
                 <div className="user-bookings-index-item-buttons">
-                    <button className={update_class} onClick={this.handleEdit}>Edit Booking</button>
-                    {disabled_message}
-                    <button className={delete_class} onClick={this.handleDelete}>Delete Booking</button>
-                    {disabled_message}
+
+                    <div className="user-bookings-buttons-div">
+                        <button className={update_class} onClick={this.handleEdit}>Edit Booking</button>
+                        {disabled_triangle}
+                        {disabled_message}
+                        
+                    </div>
+
+                    <div className="user-bookings-buttons-div">
+                        <button className={delete_class} onClick={this.handleDelete}>Delete Booking</button>
+                        {disabled_triangle}
+                        {disabled_message}
+                       
+                    </div>
                 </div>
                 
             </div>
