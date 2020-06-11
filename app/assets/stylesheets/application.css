@@ -340,12 +340,13 @@ li{
   height: 50px;
   margin-left: 5px;
   width: 200px;
+  font-size: 14px;
 }
 
 .navbar-search-input::placeholder{
   color: #555555;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 14px;
 } 
 
 .fa-search{

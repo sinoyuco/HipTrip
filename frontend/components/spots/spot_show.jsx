@@ -6,6 +6,7 @@ import CampSiteTable from '../tables/campsite_table';
 import BookingFormContainer from '../booking_form/booking_form_container';
 import SpotShowMap from '../map/spot_show_map';
 import ReviewIndex from '../reviews/review_index';
+// import CreateReviewContainer from '../reviews/create_review_container';
 
 class SpotShow extends React.Component{
     constructor(props){
@@ -16,12 +17,14 @@ class SpotShow extends React.Component{
     componentDidMount(){
         let spotId = parseInt(this.props.match.params.spotId);
         this.props.fetchSpot(spotId);
+        // this.props.fetchAllReviews(spotId);
         document.addEventListener('scroll', () => {
             const belowPictures = window.scrollY < 550;
             if (belowPictures !== this.state.scrollFixed) {
                 this.setState({ scrollFixed: belowPictures });
             }
         });
+        
     }
 
     render(){
@@ -33,14 +36,13 @@ class SpotShow extends React.Component{
         </div>);
 
         const scrollClass = this.state.scrollFixed ? 'spot-show-booking-div' : 'spot-show-booking-div-absolute';
-
         const reviews_passed = this.props.spot.reviews ? Object.values(this.props.spot.reviews) : []
 
-        let review_form = null;
+        // const review_form = null;
 
-        if(this.props.user && Object.keys(this.props.user.bookings).length && Object.values(this.props.user.bookings).some(ele => ele.spot_id === this.props.spot.id)){
-            review_form = <CreateReviewContainer spot_id={this.props.spot_id} user_id={this.props.user_id} />
-        }
+        // if(this.props.user && Object.keys(this.props.user.bookings).length && Object.values(this.props.user.bookings).some(ele => ele.spot_id === this.props.spot.id)){
+        //     review_form = <CreateReviewContainer spot_id={this.props.spot.id} user_id={this.props.user.id} action={this.props.createReview}/>
+        // }
 
         return(
             <div className="spot-show-master">
@@ -137,7 +139,7 @@ class SpotShow extends React.Component{
                     <div className="spot-show-reviews">
                         <ReviewIndex reviews={reviews_passed}/>
                     </div>
-                    {review_form}
+                    {/* {review_form} */}
                     
                 </div>
                 <div className="spot-show-side">
