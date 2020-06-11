@@ -95,8 +95,8 @@ spots = [a1,a2,a3,a4,a5,a6,a7,a8,a9,a10];
         end
     end
 
-date1 = DateTime.new(2020,6,5)
-date2 = DateTime.new(2020,6,10)
+date1 = DateTime.new(2020,6,20)
+date2 = DateTime.new(2020,6,25)
 date3 = DateTime.new(2020,7,1)
 date4 = DateTime.new(2020,7,2)
 

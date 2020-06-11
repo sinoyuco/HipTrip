@@ -3803,7 +3803,7 @@ var fetchBookings = function fetchBookings(userId) {
 var createBooking = function createBooking(booking) {
   return $.ajax({
     method: 'POST',
-    url: '/api/bookings/',
+    url: '/api/bookings',
     data: {
       booking: booking
     }
