@@ -1,4 +1,4 @@
-class Api::BookingsController < ApplicationController
+class Api::ReviewsController < ApplicationController
     def index
         @reviews = Review.includes(:user).where(spot_id: params[:spot_id])
     end
