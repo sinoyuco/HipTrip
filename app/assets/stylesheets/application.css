@@ -49,8 +49,13 @@
   z-index: 1;
 }
 
+.green-logo{
+  height: 65px;
+  width: auto;
+}
+
 .main-navbar a{
-  padding: 10px;
+  padding: 10px 0;
 }
 
 .auth-navbar{
@@ -326,7 +331,7 @@ li{
   align-items: center;
   border: 1px solid #ebebeb;
   height: 60%;
-  margin: auto 10px;
+  margin: auto 10px auto 20px;
 }
 
 .navbar-search-input{
@@ -371,4 +376,23 @@ li{
 
 .indexthumbs::before{
   color: #40d9ac;
+}
+
+.no-shame-plugs{
+  display: flex;
+  padding: 5px;
+}
+
+.no-shame-plugs-github{
+  margin: auto 0 auto 50px;
+}
+
+.no-shame-plugs-linkedin{
+  margin: auto 0;
+}
+
+.no-shame-plugs a{
+  text-decoration: none;
+  color: #40d9ac;
+  padding: 10px;
 }

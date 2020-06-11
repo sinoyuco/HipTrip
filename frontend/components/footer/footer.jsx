@@ -11,7 +11,7 @@ class Footer extends React.Component{
         <div className="main-footer">
             <div className="footer-content">
                     <div className="footer-content-header">
-                       <img src="https://fontmeme.com/permalink/200603/ef81bf1f1f2d6819aaf0a2e41a177943.png" alt="the-mandalorian-font" border="0" />
+                        <img src="https://hiptrip-aa-seed.s3.amazonaws.com/logo/green_logo.png" border="0" />
                     </div>
 
                     <div className="footer-content-body">

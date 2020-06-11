@@ -53,13 +53,24 @@ class Navbar extends React.Component{
         return(
             <div className="main-navbar">
                 <div className="main-navbar-1">
-                    <a href="/"><img src="https://hiptrip-aa-seed.s3.amazonaws.com/logo/logo.png" alt="the-mandalorian-font" border="0"/></a>
+                    <a href="/"><img className="green-logo" src="https://hiptrip-aa-seed.s3.amazonaws.com/logo/green_icon.png" /></a>
+                    <a href="/"><img src="https://hiptrip-aa-seed.s3.amazonaws.com/logo/green_logo.png" border="0"/></a>
                     <Switch>
                         <Route path="/users/:userId/bookings" component={NavBarSearchInput} />
                         <Route path="/spots/:spotId" component={NavBarSearchInput} />
                         <Route path="/discover" component={NavBarSearchInput} />
                     </Switch>
                 </div>
+
+                <div className="no-shame-plugs">
+                    <div className="no-shame-plugs-github">
+                        <a href="https://github.com/sinoyuco/HipTrip/"><i className="fab fa-github fa-2x"></i></a>
+                    </div>
+                    <div className="no-shame-plugs-linkedin">
+                        <a href="https://www.linkedin.com/in/sinan-yucesan-91289a134"><i className="fab fa-linkedin fa-2x"></i></a>
+                    </div>
+                </div>
+
                 <ul className="auth-navbar">
                     {links}
                 </ul>

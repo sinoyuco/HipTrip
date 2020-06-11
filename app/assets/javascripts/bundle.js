@@ -1738,8 +1738,7 @@ var Footer = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "footer-content-header"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://fontmeme.com/permalink/200603/ef81bf1f1f2d6819aaf0a2e41a177943.png",
-        alt: "the-mandalorian-font",
+        src: "https://hiptrip-aa-seed.s3.amazonaws.com/logo/green_logo.png",
         border: "0"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "footer-content-body"
@@ -2099,8 +2098,12 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: "/"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://hiptrip-aa-seed.s3.amazonaws.com/logo/logo.png",
-        alt: "the-mandalorian-font",
+        className: "green-logo",
+        src: "https://hiptrip-aa-seed.s3.amazonaws.com/logo/green_icon.png"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "/"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "https://hiptrip-aa-seed.s3.amazonaws.com/logo/green_logo.png",
         border: "0"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
         path: "/users/:userId/bookings",
@@ -2111,7 +2114,21 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
         path: "/discover",
         component: _navbar_search_input__WEBPACK_IMPORTED_MODULE_2__["default"]
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "no-shame-plugs"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "no-shame-plugs-github"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "https://github.com/sinoyuco/HipTrip/"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fab fa-github fa-2x"
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "no-shame-plugs-linkedin"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "https://www.linkedin.com/in/sinan-yucesan-91289a134"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fab fa-linkedin fa-2x"
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "auth-navbar"
       }, links));
     }
@@ -2669,7 +2686,7 @@ var SpotSearch = /*#__PURE__*/function (_React$Component) {
 
       // this.props.fetchSpots();
       document.addEventListener('scroll', function () {
-        var belowPictures = window.scrollY > 1400;
+        var belowPictures = window.scrollY > 1300;
 
         if (belowPictures !== _this2.state.scrollFixed) {
           _this2.setState({

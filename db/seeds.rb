@@ -84,15 +84,25 @@ essential_types = ['Campfires', 'Toilet' ,'Pets']
 campsite_area = ['Tents', 'Parking', 'ADA Access']
 spots = [a1,a2,a3,a4,a5,a6,a7,a8,a9,a10];
     spots.each do |spot|
-        amenity_types.each do |type|
+
+        coin_a = rand(3..6);
+        amenity_sub = amenity_types.sample(coin_a)
+        amenity_sub.each do |type|
             Amenity.create!(amenity_type: type, spot_id: spot.id)
         end
-        essential_types.each do |type|
+
+        coin_b = rand(2..3);
+        essential_sub = essential_types.sample(coin_b)
+        essential_sub.each do |type|
             Essential.create!(essential_type: type, spot_id: spot.id)
         end
-        campsite_area.each do |type|
+
+        coin_c = rand(2..3);
+        campsite_sub = campsite_area.sample(coin_c)
+        campsite_sub.each do |type|
             Campsite.create!(campsite_property_type: type, spot_id: spot.id)
         end
+
     end
 
 date1 = DateTime.new(2020,6,20)
@@ -116,5 +126,12 @@ Booking.create!(user_id: demo.id, spot_id: a2.id, start_date: date7, end_date: d
 
 Review.create!(title: 'Exquisite Place', body: 'The host went out of his way to help us during our stay, and the campground was charming.', rating: 5, spot_id: a1.id, user_id: user3.id)
 Review.create!(title: 'Worst Vacation Ever', body: 'Your place is even worse than your ball game, and I didn\'t even know that was possible.', rating: 2, spot_id: a1.id, user_id: user2.id)
+
+Review.create!(title: 'Worst Vacation Ever', body: 'Too much sand for my liking, it was OK overall.', rating: 3, spot_id: a3.id, user_id: demo.id)
+
+Review.create!(title: 'Exquisite Place', body: 'There was bugs everywhere in this campground. Worst experience I ever had. I am still on the phone with the owner to get my money back.', rating: 1, spot_id: a4.id, user_id: user1.id)
+
+Review.create!(title: 'Exquisite Place', body: 'Our RV got stolen but we partied like hell until 6AM so it worth it.', rating: 4, spot_id: a7.id, user_id: user1.id)
+Review.create!(title: 'Exquisite Place', body: 'Experience of a lifetime, everyone should check out Rave Ranch. I am 60% sure I met Bon Jovi.', rating: 1, spot_id: a7.id, user_id: user2.id)
 
 end
