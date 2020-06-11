@@ -2960,6 +2960,8 @@ var SpotShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this3 = this;
+
       if (!this.props.spot) {
         return null;
       }
@@ -2974,6 +2976,17 @@ var SpotShow = /*#__PURE__*/function (_React$Component) {
       });
       var scrollClass = this.state.scrollFixed ? 'spot-show-booking-div' : 'spot-show-booking-div-absolute';
       var reviews_passed = this.props.spot.reviews ? Object.values(this.props.spot.reviews) : [];
+      var review_form = null;
+
+      if (this.props.user && Object.keys(this.props.user.bookings).length && Object.values(this.props.user.bookings).some(function (ele) {
+        return ele.spot_id === _this3.props.spot.id;
+      })) {
+        review_form = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(CreateReviewContainer, {
+          spot_id: this.props.spot_id,
+          user_id: this.props.user_id
+        });
+      }
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "spot-show-master"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3070,7 +3083,7 @@ var SpotShow = /*#__PURE__*/function (_React$Component) {
         className: "spot-show-reviews"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reviews_review_index__WEBPACK_IMPORTED_MODULE_7__["default"], {
         reviews: reviews_passed
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), review_form), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "spot-show-side"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_booking_form_booking_form_container__WEBPACK_IMPORTED_MODULE_5__["default"], {
         action: this.props.createBooking,
@@ -3104,6 +3117,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _spot_show__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./spot_show */ "./frontend/components/spots/spot_show.jsx");
 /* harmony import */ var _actions_spot_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/spot_actions */ "./frontend/actions/spot_actions.js");
 /* harmony import */ var _actions_booking_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/booking_actions */ "./frontend/actions/booking_actions.js");
+/* harmony import */ var _actions_review_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/review_actions */ "./frontend/actions/review_actions.js");
+
 
 
 
@@ -3111,7 +3126,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var mSTP = function mSTP(state, ownProps) {
   return {
-    spot: state.entities.spots[ownProps.match.params.spotId]
+    spot: state.entities.spots[ownProps.match.params.spotId],
+    user: state.entities.users[state.session.id]
   };
 };
 
@@ -3122,6 +3138,9 @@ var mDTP = function mDTP(dispatch) {
     },
     createBooking: function createBooking(booking) {
       return dispatch(Object(_actions_booking_actions__WEBPACK_IMPORTED_MODULE_3__["createBooking"])(booking));
+    },
+    createReview: function createReview(review) {
+      return dispatch(Object(_actions_review_actions__WEBPACK_IMPORTED_MODULE_4__["createReview"])(review));
     }
   };
 };

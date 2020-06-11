@@ -36,6 +36,12 @@ class SpotShow extends React.Component{
 
         const reviews_passed = this.props.spot.reviews ? Object.values(this.props.spot.reviews) : []
 
+        let review_form = null;
+
+        if(this.props.user && Object.keys(this.props.user.bookings).length && Object.values(this.props.user.bookings).some(ele => ele.spot_id === this.props.spot.id)){
+            review_form = <CreateReviewContainer spot_id={this.props.spot_id} user_id={this.props.user_id} />
+        }
+
         return(
             <div className="spot-show-master">
             <div className="spot-show-images">
@@ -131,6 +137,7 @@ class SpotShow extends React.Component{
                     <div className="spot-show-reviews">
                         <ReviewIndex reviews={reviews_passed}/>
                     </div>
+                    {review_form}
                     
                 </div>
                 <div className="spot-show-side">

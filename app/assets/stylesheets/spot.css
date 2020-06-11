@@ -251,7 +251,7 @@
 }
 
 .spot-show-images-sub:last-child{
-  width: calc(100% - 1015px);
+  max-width: calc(100% - 1015px);
 }
 
 .spot-show-images-sub img{
@@ -265,9 +265,12 @@
   min-width: 0;
 }
 
-/* .spot-show-images-sub img:last-child{
-  width: calc(100% - 1000px);
-} */
+.spot-show-images-sub img:last-child{
+  height: 500px;
+  width: 100%;
+  object-fit: cover;
+}
+
 .spot-show-1 h2{
     margin-top: 10px;
     margin-bottom: 10px;

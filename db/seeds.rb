@@ -40,9 +40,9 @@ a2.photos.attach(io: open('https://hiptrip-aa-seed.s3.amazonaws.com/camp2.jpg'),
 a2.photos.attach(io: open('https://hiptrip-aa-seed.s3.amazonaws.com/camp3.jpg'), filename:'camp3.jpg')
 
 a3 = Spot.create!(name: 'Baffling Bay Beach', price: 80, city:'San Simeon', state: 'California', latitude: 35.6440, longitude: -121.1893, category: 'Beach Camping', host_id: user1.id, image_url: 'https://cdn.coolofthewild.com/wp-content/uploads/2016/03/Beach-Camping.jpg', description: 'The term camp comes from the Latin word campus, meaning \'field\'. Therefore, a campground consists typically of open pieces of ground where a camper can pitch a tent or park a camper. More specifically a campsite is a dedicated area set aside for camping and for which often a user fee is charged. Campsites typically feature a few (but sometimes no) improvements.')
-a3.photos.attach(io: open('https://hiptrip-aa-seed.s3.amazonaws.com/camp1.jpg'), filename:'camp1.jpg')
-a3.photos.attach(io: open('https://hiptrip-aa-seed.s3.amazonaws.com/camp2.jpg'), filename:'camp2.jpg')
-a3.photos.attach(io: open('https://hiptrip-aa-seed.s3.amazonaws.com/camp3.jpg'), filename:'camp3.jpg')
+a3.photos.attach(io: open('https://hiptrip-aa-seed.s3.amazonaws.com/beachandfield/beachfirst.jpg'), filename:'beachfirst.jpg')
+a3.photos.attach(io: open('https://hiptrip-aa-seed.s3.amazonaws.com/beachandfield/beachsecond.jpg'), filename:'beachsecond.jpg')
+a3.photos.attach(io: open('https://hiptrip-aa-seed.s3.amazonaws.com/beachandfield/beachthird.jpg'), filename:'beachthird.jpg')
 
 a4 = Spot.create!(name: 'Shady Shack', price: 20, city:'Austin', state: 'Texas', latitude: 30.305388, longitude: -97.759791, category: 'RV Park', host_id: user2.id, image_url: 'https://cdn.carrot.com/uploads/sites/19301/2020/03/rundown-house-ts-300x197.jpg', description: 'The term camp comes from the Latin word campus, meaning \'field\'. Therefore, a campground consists typically of open pieces of ground where a camper can pitch a tent or park a camper. More specifically a campsite is a dedicated area set aside for camping and for which often a user fee is charged. Campsites typically feature a few (but sometimes no) improvements.')
 a4.photos.attach(io: open('https://hiptrip-aa-seed.s3.amazonaws.com/camp1.jpg'), filename:'camp1.jpg')
@@ -60,9 +60,9 @@ a6.photos.attach(io: open('https://hiptrip-aa-seed.s3.amazonaws.com/camp2.jpg'),
 a6.photos.attach(io: open('https://hiptrip-aa-seed.s3.amazonaws.com/camp3.jpg'), filename:'camp3.jpg')
 
 a7 = Spot.create!(name: 'Rave Ranch', price: 100, city:'Iowa City', state: 'Iowa', latitude: 41.635423, longitude: -91.554952, category: 'RV Park', host_id: user3.id, image_url: 'https://images.fineartamerica.com/images-medium-large-5/midwest-farm-tom-weisbrook.jpg', description: 'The term camp comes from the Latin word campus, meaning \'field\'. Therefore, a campground consists typically of open pieces of ground where a camper can pitch a tent or park a camper. More specifically a campsite is a dedicated area set aside for camping and for which often a user fee is charged. Campsites typically feature a few (but sometimes no) improvements.')
-a7.photos.attach(io: open('https://hiptrip-aa-seed.s3.amazonaws.com/camp1.jpg'), filename:'camp1.jpg')
-a7.photos.attach(io: open('https://hiptrip-aa-seed.s3.amazonaws.com/camp2.jpg'), filename:'camp2.jpg')
-a7.photos.attach(io: open('https://hiptrip-aa-seed.s3.amazonaws.com/camp3.jpg'), filename:'camp3.jpg')
+a7.photos.attach(io: open('https://hiptrip-aa-seed.s3.amazonaws.com/beachandfield/fieldfirst.jpg'), filename:'fieldfirst.jpg')
+a7.photos.attach(io: open('https://hiptrip-aa-seed.s3.amazonaws.com/beachandfield/fieldsecond.jpg'), filename:'fieldsecond.jpg')
+a7.photos.attach(io: open('https://hiptrip-aa-seed.s3.amazonaws.com/beachandfield/fieldthird.jpg'), filename:'fieldthird.jpg')
 
 a8 = Spot.create!(name: 'Ghost Graveyard', price: 150, city:'Seattle', state: 'Washington', latitude: 47.629955, longitude: -122.362360, category: 'Tent Camping', host_id: user3.id, image_url: 'https://www.irishcentral.com/uploads/article/134961/cropped_graveyard___getty.jpg?t=1568620780', description: 'The term camp comes from the Latin word campus, meaning \'field\'. Therefore, a campground consists typically of open pieces of ground where a camper can pitch a tent or park a camper. More specifically a campsite is a dedicated area set aside for camping and for which often a user fee is charged. Campsites typically feature a few (but sometimes no) improvements.')
 a8.photos.attach(io: open('https://hiptrip-aa-seed.s3.amazonaws.com/camp1.jpg'), filename:'camp1.jpg')
@@ -132,6 +132,6 @@ Review.create!(title: 'Worst Vacation Ever', body: 'Too much sand for my liking,
 Review.create!(title: 'Exquisite Place', body: 'There was bugs everywhere in this campground. Worst experience I ever had. I am still on the phone with the owner to get my money back.', rating: 1, spot_id: a4.id, user_id: user1.id)
 
 Review.create!(title: 'Exquisite Place', body: 'Our RV got stolen but we partied like hell until 6AM so it worth it.', rating: 4, spot_id: a7.id, user_id: user1.id)
-Review.create!(title: 'Exquisite Place', body: 'Experience of a lifetime, everyone should check out Rave Ranch. I am 60% sure I met Bon Jovi.', rating: 1, spot_id: a7.id, user_id: user2.id)
+Review.create!(title: 'Exquisite Place', body: 'Experience of a lifetime, everyone should check out Rave Ranch. I am 60% sure I met Bon Jovi.', rating: 5, spot_id: a7.id, user_id: user2.id)
 
 end
