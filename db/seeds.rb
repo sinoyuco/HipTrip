@@ -96,7 +96,7 @@ spots = [a1,a2,a3,a4,a5,a6,a7,a8,a9,a10];
     end
 
 date1 = DateTime.new(2020,6,20)
-date2 = DateTime.new(2020,6,25)
+date2 = DateTime.new(2020,6, 25)
 date3 = DateTime.new(2020,7,1)
 date4 = DateTime.new(2020,7,2)
 
@@ -105,6 +105,14 @@ Booking.create!(user_id: user1.id, spot_id: a10.id, start_date: date3, end_date:
 
 Booking.create!(user_id: user3.id, spot_id: a1.id, start_date: date1, end_date: date2, num_guests: 2, total_price: 200)
 Booking.create!(user_id: user3.id, spot_id: a2.id, start_date: date3, end_date: date4, num_guests: 1, total_price: 150)
+
+date5 = DateTime.new(2019, 3, 5);
+date6 = DateTime.new(2019, 3, 9);
+date7 = DateTime.new(2020, 2, 2);
+date8 = DateTime.new(2019, 2, 9);
+
+Booking.create!(user_id: demo.id, spot_id: a7.id, start_date: date5, end_date: date6, num_guests: 2, total_price: 200)
+Booking.create!(user_id: demo.id, spot_id: a2.id, start_date: date7, end_date: date8, num_guests: 1, total_price: 150)
 
 Review.create!(title: 'Exquisite Place', body: 'The host went out of his way to help us during our stay, and the campground was charming.', rating: 5, spot_id: a1.id, user_id: user3.id)
 Review.create!(title: 'Worst Vacation Ever', body: 'Your place is even worse than your ball game, and I didn\'t even know that was possible.', rating: 2, spot_id: a1.id, user_id: user2.id)
