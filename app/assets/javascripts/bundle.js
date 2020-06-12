@@ -2686,7 +2686,8 @@ var SpotSearch = /*#__PURE__*/function (_React$Component) {
 
       // this.props.fetchSpots();
       document.addEventListener('scroll', function () {
-        var belowPictures = window.scrollY > 1300;
+        // -491 for footer, +94 for fixed header
+        var belowPictures = window.scrollY > document.body.scrollHeight - window.innerHeight - 491 + 94;
 
         if (belowPictures !== _this2.state.scrollFixed) {
           _this2.setState({
@@ -2694,6 +2695,7 @@ var SpotSearch = /*#__PURE__*/function (_React$Component) {
           });
         }
       });
+      debugger;
     }
   }, {
     key: "render",
@@ -2935,7 +2937,8 @@ var SpotShow = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      scrollFixed: true
+      scrollFixedUp: true,
+      scrollFixedDown: false
     };
     return _this;
   }
@@ -2946,14 +2949,23 @@ var SpotShow = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       var spotId = parseInt(this.props.match.params.spotId);
-      this.props.fetchSpot(spotId); // this.props.fetchAllReviews(spotId);
-
+      this.props.fetchSpot(spotId);
       document.addEventListener('scroll', function () {
         var belowPictures = window.scrollY < 550;
 
-        if (belowPictures !== _this2.state.scrollFixed) {
+        if (belowPictures !== _this2.state.scrollFixedUp) {
           _this2.setState({
-            scrollFixed: belowPictures
+            scrollFixedUp: belowPictures
+          });
+        }
+      });
+      document.addEventListener('scroll', function () {
+        //-491 for footer, -400 for map, +94 for fixed header
+        var belowPictures2 = window.scrollY > document.body.scrollHeight - window.innerHeight - 491 - 400 + 94 + 250;
+
+        if (belowPictures2 !== _this2.state.scrollFixedDown) {
+          _this2.setState({
+            scrollFixedDown: belowPictures2
           });
         }
       });
@@ -2973,7 +2985,7 @@ var SpotShow = /*#__PURE__*/function (_React$Component) {
           src: photo_url
         }));
       });
-      var scrollClass = this.state.scrollFixed ? 'spot-show-booking-div' : 'spot-show-booking-div-absolute';
+      var scrollClass = this.state.scrollFixedUp ? 'spot-show-booking-div' : this.state.scrollFixedDown ? 'spot-show-booking-div-fixed-down' : 'spot-show-booking-div-absolute';
       var reviews_passed = this.props.spot.reviews ? Object.values(this.props.spot.reviews) : []; // const review_form = null;
       // if(this.props.user && Object.keys(this.props.user.bookings).length && Object.values(this.props.user.bookings).some(ele => ele.spot_id === this.props.spot.id)){
       //     review_form = <CreateReviewContainer spot_id={this.props.spot.id} user_id={this.props.user.id} action={this.props.createReview}/>

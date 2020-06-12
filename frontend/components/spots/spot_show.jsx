@@ -11,17 +11,25 @@ import ReviewIndex from '../reviews/review_index';
 class SpotShow extends React.Component{
     constructor(props){
         super(props);
-        this.state={scrollFixed: true}
+        this.state = { scrollFixedUp: true, scrollFixedDown: false}
     }
 
     componentDidMount(){
         let spotId = parseInt(this.props.match.params.spotId);
         this.props.fetchSpot(spotId);
-        // this.props.fetchAllReviews(spotId);
+
         document.addEventListener('scroll', () => {
             const belowPictures = window.scrollY < 550;
-            if (belowPictures !== this.state.scrollFixed) {
-                this.setState({ scrollFixed: belowPictures });
+            if (belowPictures !== this.state.scrollFixedUp) {
+                this.setState({ scrollFixedUp: belowPictures });
+            }
+        });
+
+        document.addEventListener('scroll', () => {
+            //-491 for footer, -400 for map, +94 for fixed header
+            const belowPictures2 = window.scrollY > (document.body.scrollHeight - window.innerHeight - 491 - 400 + 94 + 250);
+            if (belowPictures2 !== this.state.scrollFixedDown){ 
+                this.setState({ scrollFixedDown: belowPictures2 });
             }
         });
         
@@ -34,8 +42,8 @@ class SpotShow extends React.Component{
         const spot_photos = this.props.spot.photoUrls.map((photo_url,idx) => <div className="spot-show-images-sub" key={idx}>
             <img src={photo_url}></img>
         </div>);
-
-        const scrollClass = this.state.scrollFixed ? 'spot-show-booking-div' : 'spot-show-booking-div-absolute';
+    
+        const scrollClass = this.state.scrollFixedUp ? 'spot-show-booking-div' : (this.state.scrollFixedDown ? 'spot-show-booking-div-fixed-down' : 'spot-show-booking-div-absolute');
         const reviews_passed = this.props.spot.reviews ? Object.values(this.props.spot.reviews) : []
 
         // const review_form = null;
