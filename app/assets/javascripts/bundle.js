@@ -486,6 +486,50 @@ var App = /*#__PURE__*/function (_React$Component) {
 
 /***/ }),
 
+/***/ "./frontend/components/auth/edit_form_container.js":
+/*!*********************************************************!*\
+  !*** ./frontend/components/auth/edit_form_container.js ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_booking_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/booking_actions */ "./frontend/actions/booking_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _session_form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./session_form */ "./frontend/components/auth/session_form.jsx");
+
+
+
+
+
+
+var mSTP = function mSTP(state) {
+  return {
+    errors: state.errors.session,
+    formType: 'edit',
+    formText: 'Update Booking'
+  };
+};
+
+var mDTP = function mDTP(dispatch) {
+  return {
+    processForm: function processForm(booking) {
+      return dispatch(Object(_actions_booking_actions__WEBPACK_IMPORTED_MODULE_2__["updateBooking"])(booking));
+    },
+    closeModal: function closeModal() {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["closeModal"])());
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mSTP, mDTP)(EditForm));
+
+/***/ }),
+
 /***/ "./frontend/components/auth/login_form_container.js":
 /*!**********************************************************!*\
   !*** ./frontend/components/auth/login_form_container.js ***!
@@ -559,8 +603,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _login_form_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./login_form_container */ "./frontend/components/auth/login_form_container.js");
 /* harmony import */ var _signup_form_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./signup_form_container */ "./frontend/components/auth/signup_form_container.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _edit_form_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./edit_form_container */ "./frontend/components/auth/edit_form_container.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_6__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -582,6 +627,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -618,6 +664,9 @@ var Modal = /*#__PURE__*/function (_React$Component) {
         case 'signup':
           component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_signup_form_container__WEBPACK_IMPORTED_MODULE_4__["default"], null);
           break;
+
+        case 'edit':
+          component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_edit_form_container__WEBPACK_IMPORTED_MODULE_5__["default"], null);
 
         default:
           return null;
@@ -1246,7 +1295,6 @@ var BookingIndex = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchBookings(this.props.user.id);
-      window.scrollTo(0, 0);
     }
   }, {
     key: "render",
@@ -1376,8 +1424,14 @@ var BookingIndexItem = /*#__PURE__*/function (_React$Component) {
 
       if (new Date() < start_date_disabled) {
         this.props["delete"](this.props.trip.id);
-      } else {//
+      } else {//No deletion
       }
+    }
+  }, {
+    key: "handleUpdateClick",
+    value: function handleUpdateClick(e) {
+      e.preventDefault();
+      this.props.openModal('edit');
     }
   }, {
     key: "dateFormat",
@@ -1393,9 +1447,10 @@ var BookingIndexItem = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "handleClick",
-    value: function handleClick(e) {
+    value: function handleClick() {
       e.preventDefault();
       this.props.history.push("/spots/".concat(this.props.trip.spot_id));
+      window.scrollTo(0, 0);
     }
   }, {
     key: "render",

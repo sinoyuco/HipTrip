@@ -3,6 +3,7 @@ import {closeModal} from '../../actions/modal_actions';
 import {connect} from 'react-redux';
 import LoginFormContainer from './login_form_container';
 import SignupFormContainer from './signup_form_container';
+import EditFormContainer from './edit_form_container';
 import { render } from 'react-dom';
 
 class Modal extends React.Component{
@@ -25,6 +26,8 @@ class Modal extends React.Component{
         case 'signup':
             component = <SignupFormContainer/>
             break;
+        case 'edit':
+            component = <EditFormContainer/>
         default:
             return null;
     }

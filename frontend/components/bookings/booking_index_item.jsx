@@ -18,8 +18,13 @@ class BookingIndexItem extends React.Component{
         if(new Date() < start_date_disabled){
             this.props.delete(this.props.trip.id);
         }else{
-            //
+            //No deletion
         }
+    }
+
+    handleUpdateClick(e){
+        e.preventDefault();
+        this.props.openModal('edit');
     }
 
     dateFormat(date){
@@ -35,9 +40,10 @@ class BookingIndexItem extends React.Component{
         return `${day_of_week}, ${date_num} ${month} ${year}`;
     }
 
-    handleClick(e){
+    handleClick(){
         e.preventDefault();
         this.props.history.push(`/spots/${this.props.trip.spot_id}`);
+        window.scrollTo(0,0);
     }
 
     render(){

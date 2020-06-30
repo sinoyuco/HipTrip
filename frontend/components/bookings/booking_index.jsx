@@ -8,7 +8,6 @@ class BookingIndex extends React.Component{
 
     componentDidMount(){
         this.props.fetchBookings(this.props.user.id)
-        window.scrollTo(0, 0);
     }
 
     render(){
