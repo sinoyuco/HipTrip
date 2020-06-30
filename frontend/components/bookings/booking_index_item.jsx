@@ -5,6 +5,7 @@ class BookingIndexItem extends React.Component{
         super(props);
         this.handleDelete = this.handleDelete.bind(this);
         this.dateFormat = this.dateFormat.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     // componentDidMount(){
@@ -34,7 +35,13 @@ class BookingIndexItem extends React.Component{
         return `${day_of_week}, ${date_num} ${month} ${year}`;
     }
 
+    handleClick(e){
+        e.preventDefault();
+        this.props.history.push(`/spots/${this.props.trip.spot_id}`);
+    }
+
     render(){
+        // debugger;
         const spot = this.props.trip.spot;
         const start_date_disabled = new Date(parseInt(this.props.trip.start_date.split("-")[0]), parseInt(this.props.trip.start_date.split("-")[1]) - 1, parseInt(this.props.trip.start_date.split("-")[2].slice(0,2)));
 
@@ -61,7 +68,7 @@ class BookingIndexItem extends React.Component{
         }
 
         return(
-            <div className="user-bookings-index-item">
+            <div onClick={this.handleClick} className="user-bookings-index-item">
                 <div className="user-bookings-index-item-imagediv">
                     <img className="user-bookings-index-item-image" src={spot.image_url}></img>
                 </div>

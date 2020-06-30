@@ -1246,6 +1246,7 @@ var BookingIndex = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchBookings(this.props.user.id);
+      window.scrollTo(0, 0);
     }
   }, {
     key: "render",
@@ -1261,7 +1262,8 @@ var BookingIndex = /*#__PURE__*/function (_React$Component) {
           key: trip.id,
           trip: trip,
           "delete": _this.props.deleteBooking,
-          update: _this.props.updateBooking
+          update: _this.props.updateBooking,
+          history: _this.props.history
         });
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1359,6 +1361,7 @@ var BookingIndexItem = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
     _this.dateFormat = _this.dateFormat.bind(_assertThisInitialized(_this));
+    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
     return _this;
   } // componentDidMount(){
   //     this.props.fetchSpot(this.props.trip.spot_id);
@@ -1389,8 +1392,15 @@ var BookingIndexItem = /*#__PURE__*/function (_React$Component) {
       return "".concat(day_of_week, ", ").concat(date_num, " ").concat(month, " ").concat(year);
     }
   }, {
+    key: "handleClick",
+    value: function handleClick(e) {
+      e.preventDefault();
+      this.props.history.push("/spots/".concat(this.props.trip.spot_id));
+    }
+  }, {
     key: "render",
     value: function render() {
+      // debugger;
       var spot = this.props.trip.spot;
       var start_date_disabled = new Date(parseInt(this.props.trip.start_date.split("-")[0]), parseInt(this.props.trip.start_date.split("-")[1]) - 1, parseInt(this.props.trip.start_date.split("-")[2].slice(0, 2)));
       var update_class = new Date() < start_date_disabled ? 'update-bookings-button' : 'update-bookings-button-disabled';
@@ -1416,6 +1426,7 @@ var BookingIndexItem = /*#__PURE__*/function (_React$Component) {
       }
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onClick: this.handleClick,
         className: "user-bookings-index-item"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-bookings-index-item-imagediv"
