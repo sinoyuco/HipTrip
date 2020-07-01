@@ -1,10 +1,12 @@
 import React from 'react';
+import {openModal} from '../../actions/modal_actions';
 
 class BookingIndexItem extends React.Component{
     constructor(props){
         super(props);
         this.handleDelete = this.handleDelete.bind(this);
         this.dateFormat = this.dateFormat.bind(this);
+        this.handleUpdateClick = this.handleUpdateClick.bind(this);
         this.handleClick = this.handleClick.bind(this);
     }
 
@@ -17,14 +19,17 @@ class BookingIndexItem extends React.Component{
         const start_date_disabled = new Date(parseInt(this.props.trip.start_date.split("-")[0]), parseInt(this.props.trip.start_date.split("-")[1]) - 1, parseInt(this.props.trip.start_date.split("-")[2].slice(0, 2)));
         if(new Date() < start_date_disabled){
             this.props.delete(this.props.trip.id);
-        }else{
-            //No deletion
         }
     }
 
     handleUpdateClick(e){
         e.preventDefault();
-        this.props.openModal('edit');
+        const start_date_disabled = new Date(parseInt(this.props.trip.start_date.split("-")[0]), parseInt(this.props.trip.start_date.split("-")[1]) - 1, parseInt(this.props.trip.start_date.split("-")[2].slice(0, 2)));
+        if(new Date() < start_date_disabled){
+            this.props.openModal('edit', this.props.trip)
+        }
+        e.stopPropagation();
+       
     }
 
     dateFormat(date){
@@ -40,7 +45,7 @@ class BookingIndexItem extends React.Component{
         return `${day_of_week}, ${date_num} ${month} ${year}`;
     }
 
-    handleClick(){
+    handleClick(e){
         e.preventDefault();
         this.props.history.push(`/spots/${this.props.trip.spot_id}`);
         window.scrollTo(0,0);
@@ -84,7 +89,7 @@ class BookingIndexItem extends React.Component{
                 <div className="user-bookings-index-item-buttons">
 
                     <div className="user-bookings-buttons-div">
-                        <button className={update_class} onClick={this.handleEdit}>Edit Booking</button>
+                        <button className={update_class} onClick={this.handleUpdateClick}>Edit Booking</button>
                         {disabled_triangle}
                         {disabled_message}
                         

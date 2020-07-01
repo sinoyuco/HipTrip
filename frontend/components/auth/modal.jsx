@@ -17,19 +17,22 @@ class Modal extends React.Component{
     if(!this.props.modal){ 
         return null;
     }
-
+    let modal_classname = "modal-child";
     let component;
-    switch(this.props.modal){
-        case 'login':
-            component = <LoginFormContainer/>
-            break;
-        case 'signup':
-            component = <SignupFormContainer/>
-            break;
-        case 'edit':
-            component = <EditFormContainer/>
-        default:
-            return null;
+    if(this.props.modal.spot_id){
+        component = <EditFormContainer trip={this.props.modal} />
+        modal_classname = "modal-child-edit";
+    }else{
+        switch(this.props.modal){
+            case 'login':
+                component = <LoginFormContainer/>
+                break;
+            case 'signup':
+                component = <SignupFormContainer/>
+                break;
+            default:
+                return null;
+        }
     }
     const errors = this.props.error.map((error,idx) => <li key={idx}>{error}</li>)
     let errors_div;
@@ -49,7 +52,7 @@ class Modal extends React.Component{
 
     return(
         <div className="modal-background" onClick={this.props.closeModal}>
-            <div className="modal-child" onClick={e => e.stopPropagation()}>
+            <div className={modal_classname} onClick={e => e.stopPropagation()}>
                 {component}
             </div>
             {errors_div}

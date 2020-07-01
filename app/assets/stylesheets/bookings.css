@@ -303,3 +303,34 @@
 /* .update-bookings-button-disabled:hover .disabled-message {
   display: block;
 } */
+
+.edit-form-spot-show{
+    width: 400px;
+    height: 310px;
+}
+
+.edit-form-spot-show-image{
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+}
+
+.edit-form-spot-show-name{
+    font-family: "Calibre", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    margin-block-end: 0em;
+    margin-left: 20px;
+}
+
+.edit-form-spot-show-location{
+    font-family: "Calibre", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: gray;
+    margin-block-start: 0.5em;
+    margin-block-end: 0em;
+    margin-left: 20px;
+}
+
+.edit-form-master{
+    display: flex;
+}

@@ -2,11 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { updateBooking } from '../../actions/booking_actions';
 import { openModal, closeModal } from '../../actions/modal_actions';
-import SessionForm from './session_form'
+import EditForm from './edit_form';
 
 const mSTP = (state) => ({
     errors: state.errors.session,
-    formType: 'edit',
+    booking: state.ui.modal,
     formText: 'Update Booking'
 });
 

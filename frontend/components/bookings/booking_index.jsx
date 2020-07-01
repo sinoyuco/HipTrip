@@ -14,7 +14,7 @@ class BookingIndex extends React.Component{
         if(!(this.props.session===this.props.user.id)){
             this.props.history.push("/");
         }
-        const trips = this.props.bookings.reverse().map(trip => <BookingIndexItem key={trip.id} trip={trip} delete={this.props.deleteBooking} update={this.props.updateBooking} history={this.props.history}/>)
+        const trips = this.props.bookings.reverse().map(trip => <BookingIndexItem key={trip.id} trip={trip} delete={this.props.deleteBooking} update={this.props.updateBooking} history={this.props.history} openModal={this.props.openModal}/>)
         return(
             <div className="user-bookings-index">
                 <div className="user-bookings-index-left">

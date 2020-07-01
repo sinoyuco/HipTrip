@@ -21,7 +21,6 @@ class SpotSearch extends React.Component{
                 this.setState({ scrollFixed: belowPictures });
             }
         });
-        debugger;
     }
 
     render(){
