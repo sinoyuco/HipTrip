@@ -19,7 +19,7 @@ HipTrip is an online marketplace for camping experiences, built with PostGRESQL,
 * Reviews
 
 ### Authentication
-    Users can sign up or log in using the links in the navigation bar, which will prompt open modals with inputs, and a faulty submission of a log in or sign up form will render errors.
+Users can sign up or log in using the links in the navigation bar, which will prompt open modals with inputs, and a faulty submission of a log in or sign up form will render errors.
 
 ### Search
     (--Still in the making--)
@@ -48,9 +48,9 @@ HipTrip is an online marketplace for camping experiences, built with PostGRESQL,
 
 
 ### Spots
-    Search functionality leads the users to the 'Spot Index' page, where users are able to browse multiple spots. 
+Search functionality leads the users to the 'Spot Index' page, where users are able to browse multiple spots. 
 
-    The Google Maps functionality is able to filter results based on the maps 'idling' events:
+The Google Maps functionality is able to filter results based on the maps 'idling' events:
 
     ``` 
     google.maps.event.addListener(this.map, 'idle', () => {
@@ -63,7 +63,7 @@ HipTrip is an online marketplace for camping experiences, built with PostGRESQL,
         });
     ```
 
-    The 'updateBounds()' function is then able to call the action creator for spot fetching based on bounds provided through filters, filtering the search results on the index level in the back end:
+The 'updateBounds()' function is then able to call the action creator for spot fetching based on bounds provided through filters, filtering the search results on the index level in the back end:
 
     action creator for updating bounds and fetching spots:
     ```
@@ -73,7 +73,7 @@ HipTrip is an online marketplace for camping experiences, built with PostGRESQL,
     };
     ```
 
-    filtering results in the backend based on bounds (self relates to spots):
+Filtering results in the backend based on bounds (self relates to spots):
     ```
     def self.in_bounds(bounds)
         self.where("latitude < ?", bounds[:northEast][:lat])
@@ -83,11 +83,11 @@ HipTrip is an online marketplace for camping experiences, built with PostGRESQL,
     end
     ```
 
-    Clicking on an individual spot will lead the user to that spot's page, filled with information regarding the spot's location, price, description, etc... The spot pages also feature reviews from other users that visited this spot and a rating along with their review message. Logged in users are able to create bookings by selecting check-in dates, check-out dates and number of guests.
+Clicking on an individual spot will lead the user to that spot's page, filled with information regarding the spot's location, price, description, etc... The spot pages also feature reviews from other users that visited this spot and a rating along with their review message. Logged in users are able to create bookings by selecting check-in dates, check-out dates and number of guests.
 
 ### Bookings
 
-    Each 'Spot Show' page provides a booking widget utilizing React Day Picker to pick check-in and and check-out dates, and allows for you to change the number of guests attending. Logged in users are able to book places, while logged out users will be led to the 'Log In' Modal upon a book attempt. The widget is responsive to user scroll and will be fixed in certain divisions of the 'Spot Show' page and will be positioned absolute before/after certain thresholds, using event listeners in the life cycle method(s), and a 'className' variable that gets passed to the booking widget in the return statement of the render method.
+Each 'Spot Show' page provides a booking widget utilizing React Day Picker to pick check-in and and check-out dates, and allows for you to change the number of guests attending. Logged in users are able to book places, while logged out users will be led to the 'Log In' Modal upon a book attempt. The widget is responsive to user scroll and will be fixed in certain divisions of the 'Spot Show' page and will be positioned absolute before/after certain thresholds, using event listeners in the life cycle method(s), and a 'className' variable that gets passed to the booking widget in the return statement of the render method.
 
     ```
     componentDidMount(){
@@ -121,4 +121,4 @@ HipTrip is an online marketplace for camping experiences, built with PostGRESQL,
     ````
     
 ### Reviews
-    (--Still in the making--)
+(--Still in the making--)
