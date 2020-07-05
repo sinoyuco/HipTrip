@@ -22,7 +22,7 @@ class Search extends React.Component{
                     <form className="search-bar-form">
                         <div className="search-bar-main">
                             <div className="search-bar-input-icon">
-                                <i className="fa fa-search" aria-hidden="true"></i>
+                                <i className="fa fa-search" aria-hidden="true"></i> 
                             </div>
                             <input className="search-bar-input" type="text" placeholder="Austin, Texas"/>
                         </div>
