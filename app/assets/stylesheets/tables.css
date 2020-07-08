@@ -231,6 +231,7 @@
   -webkit-font-smoothing: antialiased;
   width: 250px;
   height: 80%;
+  transition: 0.5s;
 }
 
 .booking-submit button:hover{

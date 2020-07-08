@@ -107,6 +107,7 @@ li{
   border-radius: 5px;
   border: 2px solid #40d9ac;
   -webkit-font-smoothing: antialiased;
+  transition: 0.5s;
 }
 
 .hosting-button:hover{
@@ -236,6 +237,7 @@ li{
 .user-profile-content li{
   padding: 20px 5px;
   border-bottom: 1px solid gray;
+  transition: padding 0.5s;
 }
 
 .user-profile-content li:hover{
@@ -411,3 +413,20 @@ li{
   color: #40d9ac;
   padding: 10px;
 }
+
+.search-bar-day-picker-div{
+  color: black;
+  position: absolute;
+  top: 90px;
+  left: -30px;
+  background: white;
+  display: none;
+  border: 1px solid #ebebeb;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.search-bar-day-picker-div:focus{
+  outline: none;
+}
+
+/* Day Picker */

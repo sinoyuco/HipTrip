@@ -64,6 +64,11 @@
     border-radius: 5px;
 }
 
+.user-bookings-index-item:hover{
+    cursor: pointer;
+    background: #f9f9f9;
+}
+
 .user-bookings-link{
     text-decoration: none;
     margin-left: 0;
@@ -265,8 +270,8 @@
     background: black;
     border-radius: 3px;
     z-index: 2;
-    left: 112px;
-    top: 0px;
+    left: 110px;
+    top: 2px;
     padding: 8px;
 }
 

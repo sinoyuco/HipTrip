@@ -39,9 +39,6 @@ class Navbar extends React.Component{
 
         }else{
             links = <>
-                <li>Near me</li>
-                <li>About</li>
-                <li>Earn Hipcash</li>
                 <li onClick={this.handleSubmit('login')}>Log in</li>
                 <li onClick={this.handleSubmit('signup')}>Sign up</li>
                 <button className="hosting-button">Start Hosting</button>
