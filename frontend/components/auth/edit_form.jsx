@@ -86,7 +86,7 @@ class EditForm extends React.Component{
         }
 
         const day_picker = this.state.day_picker_display ? (this.state.day_picker_type === 'in' ? <DayPicker className="day-picker-widget" onDayClick={this.handleDayClickCheckIn} selectedDays={this.state.start_date} modifiersStyles={modifiersStyles} disabledDays={{ before: new Date() }} /> : <DayPicker className="day-picker-widget" onDayClick={this.handleDayClickCheckOut} selectedDays={this.state.end_date} modifiersStyles={modifiersStyles} disabledDays={{ before: new Date() }} />) : null
-        debugger;
+        
         return(
             <div className="edit-form-master">
                 <div className="edit-form-spot-show">

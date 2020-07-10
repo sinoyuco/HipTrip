@@ -6,7 +6,7 @@ import CampSiteTable from '../tables/campsite_table';
 import BookingFormContainer from '../booking_form/booking_form_container';
 import SpotShowMap from '../map/spot_show_map';
 import ReviewIndex from '../reviews/review_index';
-// import CreateReviewContainer from '../reviews/create_review_container';
+import ReviewFormContainer from '../reviews/review_form_container';
 
 class SpotShow extends React.Component{
     constructor(props){
@@ -17,6 +17,7 @@ class SpotShow extends React.Component{
     componentDidMount(){
         let spotId = parseInt(this.props.match.params.spotId);
         this.props.fetchSpot(spotId);
+        this.props.fetchAllReview(spotId);
 
         document.addEventListener('scroll', () => {
             const belowPictures = window.scrollY < 550;
@@ -27,7 +28,7 @@ class SpotShow extends React.Component{
 
         document.addEventListener('scroll', () => {
             //-491 for footer, -400 for map, +94 for fixed header
-            const belowPictures2 = window.scrollY > (document.body.scrollHeight - window.innerHeight - 491 - 400 + 94 + 250);
+            const belowPictures2 = window.scrollY > (document.body.scrollHeight - window.innerHeight - 491 - 400 + 94 + 150);
             if (belowPictures2 !== this.state.scrollFixedDown){ 
                 this.setState({ scrollFixedDown: belowPictures2 });
             }
@@ -35,7 +36,13 @@ class SpotShow extends React.Component{
         
     }
 
+    // componentDidUpdate(){
+    //     let spotId = parseInt(this.props.match.params.spotId);
+    //     this.props.fetchSpot(spotId);
+    // }
+
     render(){
+
         if(!this.props.spot){
             return null;
         }
@@ -44,13 +51,23 @@ class SpotShow extends React.Component{
         </div>);
     
         const scrollClass = this.state.scrollFixedUp ? 'spot-show-booking-div' : (this.state.scrollFixedDown ? 'spot-show-booking-div-fixed-down' : 'spot-show-booking-div-absolute');
-        const reviews_passed = this.props.spot.reviews ? Object.values(this.props.spot.reviews) : []
+        // const reviews_passed = this.props.spot.reviews ? Object.values(this.props.spot.reviews) : []
+        const reviews_passed = this.props.reviews ? Object.values(this.props.reviews) : []
+       
+        
+        let review_form = null;
 
-        // const review_form = null;
-
-        // if(this.props.user && Object.keys(this.props.user.bookings).length && Object.values(this.props.user.bookings).some(ele => ele.spot_id === this.props.spot.id)){
-        //     review_form = <CreateReviewContainer spot_id={this.props.spot.id} user_id={this.props.user.id} action={this.props.createReview}/>
-        // }
+        if(Object.values(this.props.reviews).length){
+            debugger;
+            if(this.props.user && Object.values(this.props.user.bookings).some(el => (el.spot_id === this.props.spot.id && new Date(el.start_date) < new Date())) && !Object.values(this.props.reviews).some(el => el.user_id === this.props.user.id)){
+                review_form = <ReviewFormContainer user={this.props.user} spot={this.props.spot} host={this.props.spot.host} />
+            }
+        }else{
+            debugger;
+            if (this.props.user && Object.values(this.props.user.bookings).some(el => (el.spot_id === this.props.spot.id && new Date(el.start_date) < new Date()))) {
+                review_form = <ReviewFormContainer user={this.props.user} spot={this.props.spot} host={this.props.spot.host}/>
+            }
+        }
 
         return(
             <div className="spot-show-master">
@@ -146,6 +163,8 @@ class SpotShow extends React.Component{
 
                     <div className="spot-show-reviews">
                         <ReviewIndex reviews={reviews_passed}/>
+                        {review_form}
+                        
                     </div>
                     {/* {review_form} */}
                     

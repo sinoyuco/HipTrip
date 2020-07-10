@@ -34,6 +34,7 @@
     margin: auto 5px;
 }
 
+
 .review-rating-star{
     color: #40d9ac;
 }
@@ -132,4 +133,127 @@
     font-size: 14px;
     font-weight: 500;
     margin-block-start: 2.1em;
+}
+
+.create-review-form{
+    padding: 10px;
+    border: 1px solid #ebebeb;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+    font-family: "Calibre", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+.create-review-form p{
+    margin: 20px 50px 35px 50px;
+    font-weight: 700;
+}
+
+.create-review-form-top{
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: space-evenly;
+}
+
+.create-review-form-bottom{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    /* justify-content: space-evenly; */
+}
+
+
+.fa-star{
+    font-size: 20px;
+}
+
+/* .fa-star:hover{
+    cursor: pointer;
+    color: #40d9ac;
+} */
+
+.review-form-rating-stars:hover > i:before {
+    color: #40d9ab85;
+    /* color: #40d9ac; */
+}
+
+.review-form-rating-stars > i:hover ~ i:before {
+    color: inherit;
+}
+
+.review-form-rating-stars i:hover{
+    cursor: pointer;
+}
+
+.create-review-form-title{
+    padding: 5px;
+    height: 30px;
+}
+
+.create-review-form-title::placeholder{
+    color: black;
+    font-weight: 700;
+}
+
+.create-review-form-body{
+    resize: none;
+    padding: 5px;
+    height: 60px;
+    width: 100%;
+    margin: 0 auto;
+    font-family: "Calibre", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+.create-review-form-body::placeholder{
+    color: black;
+    font-weight: 700;
+    font-family: "Calibre", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+.review-form-rating-stars{
+    width: 115px;
+    /* height: 21px; */
+    margin-top: 10px;
+}
+
+fieldset{
+    border-radius: 10px;
+    font-family: "Calibre", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+.create-review-form-bottom-diver{
+    width: 450px;
+    margin: 0 auto;
+}
+
+.create-review-form-bottom-fieldset{
+    margin: 0 90px;
+}
+
+.create-review-form-submit{
+    width: 100px;
+    height: 50px;
+    margin: 25px auto 0 auto;
+    background: #40d9ac;
+    color: white;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 2px solid #40d9ac;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Calibre", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+    transition: 0.5s;
+}
+
+.create-review-form-submit:hover {
+    background-color: inherit;
+    color: #40d9ac;
+    cursor: pointer;
+}
+
+.green-star{
+    color: #40d9ac;
 }

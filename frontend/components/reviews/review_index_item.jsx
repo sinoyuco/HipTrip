@@ -60,6 +60,7 @@ class ReviewIndexItem extends React.Component{
                 <div className="review-show-body">
                     <div className="review-show-body-1"></div>
                     <div className="review-show-body-2">
+                        <p><strong>{this.props.review.title}</strong></p>
                         <p>{this.props.review.body}</p>
                         <div onClick={this.handleClick} className="review-show-body-2-button">
                             <div className="secondthumbs-div">
