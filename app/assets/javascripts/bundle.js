@@ -204,16 +204,18 @@ __webpack_require__.r(__webpack_exports__);
 
 var UPDATE_BOUNDS = "UPDATE_BOUNDS";
 
-var changeBounds = function changeBounds(bounds) {
+var changeBounds = function changeBounds(filter_type, value) {
   return {
     type: UPDATE_BOUNDS,
-    bounds: bounds
+    filter_type: filter_type,
+    value: value
   };
 };
 
-var updateBounds = function updateBounds(bounds) {
+var updateBounds = function updateBounds(filter_type, value) {
   return function (dispatch, getState) {
-    dispatch(changeBounds(bounds));
+    dispatch(changeBounds(filter_type, value));
+    debugger;
     return Object(_spot_actions__WEBPACK_IMPORTED_MODULE_0__["fetchSpots"])(getState().ui.filter)(dispatch);
   };
 };
@@ -2212,7 +2214,7 @@ var SpotMap = /*#__PURE__*/function (_React$Component) {
           }
         };
 
-        _this.props.updateBounds(bounds);
+        _this.props.updateBounds('bounds', bounds);
       });
     }
   }, {
@@ -3122,12 +3124,14 @@ var Search = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       from: undefined,
       to: undefined,
-      type: 'All Camping'
+      type: 'All Camping',
+      search_term: ''
     }; // this.handleSubmit = this.handleSubmit.bind(this);
 
     _this.handleDayClick = _this.handleDayClick.bind(_assertThisInitialized(_this));
     _this.handleReset = _this.handleReset.bind(_assertThisInitialized(_this));
     _this.handleTypeClick = _this.handleTypeClick.bind(_assertThisInitialized(_this));
+    _this.updateSearchTerm = _this.updateSearchTerm.bind(_assertThisInitialized(_this));
     return _this;
   } // handleSubmit(e){
   //     e.preventDefault();
@@ -3135,6 +3139,17 @@ var Search = /*#__PURE__*/function (_React$Component) {
 
 
   _createClass(Search, [{
+    key: "updateSearchTerm",
+    value: function updateSearchTerm() {
+      var _this2 = this;
+
+      return function (e) {
+        return _this2.setState({
+          search_term: e.currentTarget.value
+        });
+      };
+    }
+  }, {
     key: "handleDayClick",
     value: function handleDayClick(day) {
       // e.preventDefault();
@@ -3158,12 +3173,12 @@ var Search = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleTypeClick",
     value: function handleTypeClick(str) {
-      var _this2 = this;
+      var _this3 = this;
 
       return function (e) {
         e.preventDefault();
 
-        _this2.setState({
+        _this3.setState({
           type: str
         });
 
@@ -3198,7 +3213,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
           focusable: "false",
           "data-prefix": "fas",
           "data-icon": "tree",
-          "class": "svg-inline--fa fa-tree fa-w-12",
+          className: "svg-inline--fa fa-tree fa-w-12",
           role: "img",
           xmlns: "http://www.w3.org/2000/svg",
           viewBox: "0 0 384 512"
@@ -3211,7 +3226,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
           focusable: "false",
           "data-prefix": "fas",
           "data-icon": "campground",
-          "class": "svg-inline--fa fa-campground fa-w-20",
+          className: "svg-inline--fa fa-campground fa-w-20",
           role: "img",
           xmlns: "http://www.w3.org/2000/svg",
           viewBox: "0 0 640 512"
@@ -3224,7 +3239,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
           focusable: "false",
           "data-prefix": "fas",
           "data-icon": "warehouse",
-          "class": "svg-inline--fa fa-warehouse fa-w-20",
+          className: "svg-inline--fa fa-warehouse fa-w-20",
           role: "img",
           xmlns: "http://www.w3.org/2000/svg",
           viewBox: "0 0 640 512"
@@ -3237,7 +3252,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
           focusable: "false",
           "data-prefix": "fas",
           "data-icon": "caravan",
-          "class": "svg-inline--fa fa-caravan fa-w-20",
+          className: "svg-inline--fa fa-caravan fa-w-20",
           role: "img",
           xmlns: "http://www.w3.org/2000/svg",
           viewBox: "0 0 640 512"
@@ -3250,7 +3265,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
           focusable: "false",
           "data-prefix": "fas",
           "data-icon": "umbrella-beach",
-          "class": "svg-inline--fa fa-umbrella-beach fa-w-20",
+          className: "svg-inline--fa fa-umbrella-beach fa-w-20",
           role: "img",
           xmlns: "http://www.w3.org/2000/svg",
           viewBox: "0 0 640 512"
@@ -3290,6 +3305,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
         className: "fa fa-search",
         "aria-hidden": "true"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.updateSearchTerm(),
         className: "search-bar-input",
         type: "text",
         placeholder: "Austin, Texas"
@@ -3323,7 +3339,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "category-dropdown-left"
       }, this.state.type === 'All Camping' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        "class": "fas fa-check"
+        className: "fas fa-check"
       }) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "category-dropdown-mid"
       }, "All Camping"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3333,7 +3349,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
         focusable: "false",
         "data-prefix": "fas",
         "data-icon": "tree",
-        "class": "svg-inline--fa fa-tree fa-w-12",
+        className: "svg-inline--fa fa-tree fa-w-12",
         role: "img",
         xmlns: "http://www.w3.org/2000/svg",
         viewBox: "0 0 384 512"
@@ -3345,7 +3361,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "category-dropdown-left"
       }, this.state.type === 'Camping' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        "class": "fas fa-check"
+        className: "fas fa-check"
       }) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "category-dropdown-mid"
       }, "Camping"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3355,7 +3371,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
         focusable: "false",
         "data-prefix": "fas",
         "data-icon": "campground",
-        "class": "svg-inline--fa fa-campground fa-w-20",
+        className: "svg-inline--fa fa-campground fa-w-20",
         role: "img",
         xmlns: "http://www.w3.org/2000/svg",
         viewBox: "0 0 640 512"
@@ -3367,7 +3383,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "category-dropdown-left"
       }, this.state.type === 'Glamping' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        "class": "fas fa-check"
+        className: "fas fa-check"
       }) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "category-dropdown-mid"
       }, "Glamping"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3377,7 +3393,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
         focusable: "false",
         "data-prefix": "fas",
         "data-icon": "warehouse",
-        "class": "svg-inline--fa fa-warehouse fa-w-20",
+        className: "svg-inline--fa fa-warehouse fa-w-20",
         role: "img",
         xmlns: "http://www.w3.org/2000/svg",
         viewBox: "0 0 640 512"
@@ -3389,7 +3405,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "category-dropdown-left"
       }, this.state.type === 'RVs' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        "class": "fas fa-check"
+        className: "fas fa-check"
       }) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "category-dropdown-mid"
       }, "RVs"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3399,7 +3415,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
         focusable: "false",
         "data-prefix": "fas",
         "data-icon": "caravan",
-        "class": "svg-inline--fa fa-caravan fa-w-20",
+        className: "svg-inline--fa fa-caravan fa-w-20",
         role: "img",
         xmlns: "http://www.w3.org/2000/svg",
         viewBox: "0 0 640 512"
@@ -3410,8 +3426,8 @@ var Search = /*#__PURE__*/function (_React$Component) {
         onClick: this.handleTypeClick('Beach Camping')
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "category-dropdown-left"
-      }, this.state.type === 'RVs' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        "class": "fas fa-check"
+      }, this.state.type === 'Beach Camping' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fas fa-check"
       }) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "category-dropdown-mid"
       }, "Beach Camping"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3421,7 +3437,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
         focusable: "false",
         "data-prefix": "fas",
         "data-icon": "umbrella-beach",
-        "class": "svg-inline--fa fa-umbrella-beach fa-w-20",
+        className: "svg-inline--fa fa-umbrella-beach fa-w-20",
         role: "img",
         xmlns: "http://www.w3.org/2000/svg",
         viewBox: "0 0 640 512"
@@ -3430,7 +3446,13 @@ var Search = /*#__PURE__*/function (_React$Component) {
         d: "M115.38 136.9l102.11 37.18c35.19-81.54 86.21-144.29 139-173.7-95.88-4.89-188.78 36.96-248.53 111.8-6.69 8.4-2.66 21.05 7.42 24.72zm132.25 48.16l238.48 86.83c35.76-121.38 18.7-231.66-42.63-253.98-7.4-2.7-15.13-4-23.09-4-58.02.01-128.27 69.17-172.76 171.15zM521.48 60.5c6.22 16.3 10.83 34.6 13.2 55.19 5.74 49.89-1.42 108.23-18.95 166.98l102.62 37.36c10.09 3.67 21.31-3.43 21.57-14.17 2.32-95.69-41.91-187.44-118.44-245.36zM560 447.98H321.06L386 269.5l-60.14-21.9-72.9 200.37H16c-8.84 0-16 7.16-16 16.01v32.01C0 504.83 7.16 512 16 512h544c8.84 0 16-7.17 16-16.01v-32.01c0-8.84-7.16-16-16-16z"
       })))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         className: "search-bar-submit-link",
-        to: "/discover"
+        to: {
+          pathname: "/discover",
+          search_terms: {
+            search_term: this.state.search_term,
+            type: this.state.type
+          }
+        }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "search-bar-submit"
       }, "Search")))));
@@ -3497,8 +3519,12 @@ var SpotSearch = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, SpotSearch);
 
     _this = _super.call(this, props);
+    debugger;
     _this.state = {
-      scrollFixed: false
+      scrollFixedDown: false,
+      scrollFixedUp: true,
+      search_term: props.search_terms.search_terms || '',
+      type: props.search_terms.type || 'All Camping'
     };
     return _this;
   }
@@ -3508,14 +3534,26 @@ var SpotSearch = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      // this.props.fetchSpots();
+      debugger;
+      this.props.updateBounds('search_term', this.state.search_term);
+      this.props.updateBounds('type', this.state.type);
       document.addEventListener('scroll', function () {
         // -491 for footer, +94 for fixed header
-        var belowPictures = window.scrollY > document.body.scrollHeight - window.innerHeight - 491 + 94;
+        var belowPictures = window.scrollY > document.body.scrollHeight - window.innerHeight - 400;
 
         if (belowPictures !== _this2.state.scrollFixed) {
           _this2.setState({
-            scrollFixed: belowPictures
+            scrollFixedDown: belowPictures
+          });
+        }
+      });
+      document.addEventListener('scroll', function () {
+        // -491 for footer, +94 for fixed header
+        var abovePictures = window.scrollY < 100;
+
+        if (abovePictures !== _this2.state.scrollFixed) {
+          _this2.setState({
+            scrollFixedUp: abovePictures
           });
         }
       });
@@ -3523,15 +3561,86 @@ var SpotSearch = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this3 = this;
+
       var spots = this.props.spots.map(function (spot) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_spots_spot_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
           key: spot.id,
           spot: spot
         });
       });
-      var scrollClass = this.state.scrollFixed ? 'map-container-absolute' : 'map-container';
+      var scrollClass = this.state.scrollFixedUp ? 'map-container-top' : this.state.scrollFixedDown ? 'map-container-bottom' : 'map-container';
+      var types = ['Camping', 'RVs', 'Glamping', 'Beach Camping'];
+      var icons = {
+        'Camping': /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+          "aria-hidden": "true",
+          focusable: "false",
+          "data-prefix": "fas",
+          "data-icon": "campground",
+          className: "svg-inline--fa fa-campground fa-w-20",
+          role: "img",
+          xmlns: "http://www.w3.org/2000/svg",
+          viewBox: "0 0 640 512"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+          fill: "currentColor",
+          d: "M624 448h-24.68L359.54 117.75l53.41-73.55c5.19-7.15 3.61-17.16-3.54-22.35l-25.9-18.79c-7.15-5.19-17.15-3.61-22.35 3.55L320 63.3 278.83 6.6c-5.19-7.15-15.2-8.74-22.35-3.55l-25.88 18.8c-7.15 5.19-8.74 15.2-3.54 22.35l53.41 73.55L40.68 448H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h608c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16zM320 288l116.36 160H203.64L320 288z"
+        })),
+        'Glamping': /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+          "aria-hidden": "true",
+          focusable: "false",
+          "data-prefix": "fas",
+          "data-icon": "warehouse",
+          className: "svg-inline--fa fa-warehouse fa-w-20",
+          role: "img",
+          xmlns: "http://www.w3.org/2000/svg",
+          viewBox: "0 0 640 512"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+          fill: "currentColor",
+          d: "M504 352H136.4c-4.4 0-8 3.6-8 8l-.1 48c0 4.4 3.6 8 8 8H504c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8zm0 96H136.1c-4.4 0-8 3.6-8 8l-.1 48c0 4.4 3.6 8 8 8h368c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8zm0-192H136.6c-4.4 0-8 3.6-8 8l-.1 48c0 4.4 3.6 8 8 8H504c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8zm106.5-139L338.4 3.7a48.15 48.15 0 0 0-36.9 0L29.5 117C11.7 124.5 0 141.9 0 161.3V504c0 4.4 3.6 8 8 8h80c4.4 0 8-3.6 8-8V256c0-17.6 14.6-32 32.6-32h382.8c18 0 32.6 14.4 32.6 32v248c0 4.4 3.6 8 8 8h80c4.4 0 8-3.6 8-8V161.3c0-19.4-11.7-36.8-29.5-44.3z"
+        })),
+        'RVs': /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+          "aria-hidden": "true",
+          focusable: "false",
+          "data-prefix": "fas",
+          "data-icon": "caravan",
+          className: "svg-inline--fa fa-caravan fa-w-20",
+          role: "img",
+          xmlns: "http://www.w3.org/2000/svg",
+          viewBox: "0 0 640 512"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+          fill: "currentColor",
+          d: "M416,208a16,16,0,1,0,16,16A16,16,0,0,0,416,208ZM624,320H576V160A160,160,0,0,0,416,0H64A64,64,0,0,0,0,64V320a64,64,0,0,0,64,64H96a96,96,0,0,0,192,0H624a16,16,0,0,0,16-16V336A16,16,0,0,0,624,320ZM192,432a48,48,0,1,1,48-48A48.05,48.05,0,0,1,192,432Zm64-240a32,32,0,0,1-32,32H96a32,32,0,0,1-32-32V128A32,32,0,0,1,96,96H224a32,32,0,0,1,32,32ZM448,320H320V128a32,32,0,0,1,32-32h64a32,32,0,0,1,32,32Z"
+        })),
+        'Beach Camping': /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+          "aria-hidden": "true",
+          focusable: "false",
+          "data-prefix": "fas",
+          "data-icon": "umbrella-beach",
+          className: "svg-inline--fa fa-umbrella-beach fa-w-20",
+          role: "img",
+          xmlns: "http://www.w3.org/2000/svg",
+          viewBox: "0 0 640 512"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+          fill: "currentColor",
+          d: "M115.38 136.9l102.11 37.18c35.19-81.54 86.21-144.29 139-173.7-95.88-4.89-188.78 36.96-248.53 111.8-6.69 8.4-2.66 21.05 7.42 24.72zm132.25 48.16l238.48 86.83c35.76-121.38 18.7-231.66-42.63-253.98-7.4-2.7-15.13-4-23.09-4-58.02.01-128.27 69.17-172.76 171.15zM521.48 60.5c6.22 16.3 10.83 34.6 13.2 55.19 5.74 49.89-1.42 108.23-18.95 166.98l102.62 37.36c10.09 3.67 21.31-3.43 21.57-14.17 2.32-95.69-41.91-187.44-118.44-245.36zM560 447.98H321.06L386 269.5l-60.14-21.9-72.9 200.37H16c-8.84 0-16 7.16-16 16.01v32.01C0 504.83 7.16 512 16 512h544c8.84 0 16-7.17 16-16.01v-32.01c0-8.84-7.16-16-16-16z"
+        }))
+      };
+      var spot_filter_buttons = types.map(function (ele) {
+        var classname = _this3.state.type === ele ? 'spot-filters-button active-filter' : 'spot-filters-button';
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: classname
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "spot-filters-button-icon"
+        }, icons[ele]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "spot-filter-button-text"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, ele)));
+      });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "spot-search"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "spot-filters"
+      }, spot_filter_buttons), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "spot-search-main"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "spot-index"
       }, spots), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3540,7 +3649,7 @@ var SpotSearch = /*#__PURE__*/function (_React$Component) {
         updateBounds: this.props.updateBounds,
         spots: spots,
         scroll: scrollClass
-      })));
+      }))));
     }
   }]);
 
@@ -3572,9 +3681,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var mSTP = function mSTP(state) {
+var mSTP = function mSTP(state, ownProps) {
+  debugger;
   return {
-    spots: Object.values(state.entities.spots)
+    spots: Object.values(state.entities.spots),
+    search_terms: ownProps.location.search_terms || {
+      search_term: '',
+      type: 'All Camping'
+    }
   };
 };
 
@@ -3583,8 +3697,8 @@ var mDTP = function mDTP(dispatch) {
     fetchSpots: function fetchSpots() {
       return dispatch(Object(_actions_spot_actions__WEBPACK_IMPORTED_MODULE_3__["fetchSpots"])());
     },
-    updateBounds: function updateBounds(bounds) {
-      return dispatch(Object(_actions_filter_actions__WEBPACK_IMPORTED_MODULE_4__["updateBounds"])(bounds));
+    updateBounds: function updateBounds(filter_type, bounds) {
+      return dispatch(Object(_actions_filter_actions__WEBPACK_IMPORTED_MODULE_4__["updateBounds"])(filter_type, bounds));
     }
   };
 };
@@ -4362,6 +4476,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_filter_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/filter_actions */ "./frontend/actions/filter_actions.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 var filterReducer = function filterReducer() {
@@ -4371,9 +4487,9 @@ var filterReducer = function filterReducer() {
 
   switch (action.type) {
     case _actions_filter_actions__WEBPACK_IMPORTED_MODULE_0__["UPDATE_BOUNDS"]:
-      return {
-        bounds: action.bounds
-      };
+      // return {bounds: action.bounds};
+      debugger;
+      return Object.assign({}, state, _defineProperty({}, action.filter_type, action.value));
 
     default:
       return state;

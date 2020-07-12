@@ -1,6 +1,8 @@
 .category-index-hosting-image-div{
     margin: 0 auto;
     width: 80%;
+    max-width: 1000px;
+    position: relative;
 }
 
 .category-index-hosting-image-div img{
@@ -13,8 +15,8 @@
     width: 260px;
     height: 340px;
     position: absolute;
-    top: 760px;
-    left: 200px;
+    top: 20%;
+    left: 5%;
     background: #333333;
 }
 
@@ -53,6 +55,7 @@
     width: 80%;
     margin: 0 auto;
     min-height: 600px;
+    max-width: 1000px;
 }
 
 .category-index-experiences-1{
@@ -98,6 +101,7 @@
     width: 80%;
     margin: 0 auto;
     min-height: 600px;
+    max-width: 1000px;
 }
 
 .category-index-experiences-discover-1{
@@ -172,6 +176,8 @@
     width: 100%;
     top: -15px;
     left: -41px;
+    z-index: 100;
+
 }
 
 .search-bar-category:focus-within .category-dropdown{

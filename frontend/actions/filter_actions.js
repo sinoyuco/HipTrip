@@ -2,12 +2,14 @@ import {fetchSpots} from './spot_actions';
 
 export const UPDATE_BOUNDS = "UPDATE_BOUNDS";
 
-const changeBounds = (bounds) => ({
+const changeBounds = (filter_type, value) => ({
     type: UPDATE_BOUNDS,
-    bounds
+    filter_type,
+    value
 });
 
-export const updateBounds = (bounds) => (dispatch, getState) => {
-    dispatch(changeBounds(bounds));
+export const updateBounds = (filter_type, value) => (dispatch, getState) => {
+    dispatch(changeBounds(filter_type, value));
+    debugger;
     return fetchSpots(getState().ui.filter)(dispatch);
 };
