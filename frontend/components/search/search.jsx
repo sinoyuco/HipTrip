@@ -7,7 +7,7 @@ import daypickerstyle from '../../../app/assets/stylesheets/day_picker.css'
 class Search extends React.Component{
     constructor(props){
         super(props);
-        this.state = {from: undefined, to: undefined, type: 'All Camping', search_term: ''};
+        this.state = {from: undefined, to: undefined, type: 'All Camping', type_send: ['Camping', 'Glamping', 'RVs', 'Beach Camping'], search_term: ''};
         // this.handleSubmit = this.handleSubmit.bind(this);
         this.handleDayClick = this.handleDayClick.bind(this);
         this.handleReset = this.handleReset.bind(this);
@@ -42,7 +42,8 @@ class Search extends React.Component{
     handleTypeClick(str){
         return e => {
             e.preventDefault();
-            this.setState({type: str});
+            let typearr = (str === 'All Camping' ? ['Camping', 'Glamping', 'RVs', 'Beach Camping'] : [str]);
+            this.setState({type: str, type_send: typearr});
             
             document.activeElement.blur();
             
@@ -164,7 +165,7 @@ class Search extends React.Component{
                             </ul>
 
                         </button>
-                        <Link className="search-bar-submit-link" to={{pathname: "/discover", search_terms: {search_term: this.state.search_term, type: this.state.type}}}><button className="search-bar-submit">Search</button></Link>
+                        <Link className="search-bar-submit-link" to={{pathname: "/discover", search_terms: {search_term: this.state.search_term, type: this.state.type_send}}}><button className="search-bar-submit">Search</button></Link>
                         {/* <button onClick={() => this.props.history.push()} className="search-bar-submit">Search</button> */}
                     </form>
                 </div>

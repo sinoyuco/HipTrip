@@ -47,7 +47,7 @@ class ReviewForm extends React.Component{
         return(
             <div className="create-review-form">
                 <div>
-                    <p>It looks like you have stayed at {this.props.host.fname}'s place but have not left  review yet. Reviews help HipTrip grow. Leave one below!</p>
+                    <p>It looks like you have stayed at {this.props.host.fname}'s place but have not left a review yet. Reviews help HipTrip grow. Leave one below!</p>
                     
                     <div className="create-review-form-top">
                         <fieldset>

@@ -58,12 +58,10 @@ class SpotShow extends React.Component{
         let review_form = null;
 
         if(Object.values(this.props.reviews).length){
-            debugger;
             if(this.props.user && Object.values(this.props.user.bookings).some(el => (el.spot_id === this.props.spot.id && new Date(el.start_date) < new Date())) && !Object.values(this.props.reviews).some(el => el.user_id === this.props.user.id)){
                 review_form = <ReviewFormContainer user={this.props.user} spot={this.props.spot} host={this.props.spot.host} />
             }
         }else{
-            debugger;
             if (this.props.user && Object.values(this.props.user.bookings).some(el => (el.spot_id === this.props.spot.id && new Date(el.start_date) < new Date()))) {
                 review_form = <ReviewFormContainer user={this.props.user} spot={this.props.spot} host={this.props.spot.host}/>
             }

@@ -61,10 +61,13 @@ class Navbar extends React.Component{
 
                 <div className="no-shame-plugs">
                     <div className="no-shame-plugs-github">
-                        <a href="https://github.com/sinoyuco/HipTrip/"><i className="fab fa-github fa-2x"></i></a>
+                        <a href="https://github.com/sinoyuco/HipTrip/" target="_blank"><i className="fab fa-github fa-2x"></i></a>
                     </div>
                     <div className="no-shame-plugs-linkedin">
-                        <a href="https://www.linkedin.com/in/sinan-yucesan-91289a134"><i className="fab fa-linkedin fa-2x"></i></a>
+                        <a href="https://www.linkedin.com/in/sinan-yucesan-91289a134" target="_blank"><i className="fab fa-linkedin fa-2x"></i></a>
+                    </div>
+                    <div className="no-shame-plugs-angellist">
+                        <a href="https://angel.co/u/sinan-yucesan" target="_blank"><i className="fab fa-angellist fa-2x"></i></a>
                     </div>
                 </div>
 

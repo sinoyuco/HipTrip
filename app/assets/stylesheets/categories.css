@@ -112,10 +112,19 @@
 
 .category-index-experiences-discover-1-sub{
    background: white;
-    width: 30%;
+    width: 100%;
     margin: 10px;
     height: 300px;
     border: 1px solid #ebebeb;
+}
+
+.category-index-experiences-discover-1-sub-link{
+    width: 30%;
+    text-decoration: none;
+}
+
+.category-index-experiences-discover-1-sub-link h3{
+    color: black;
 }
 
 .category-index-experiences-discover-1-sub:hover{

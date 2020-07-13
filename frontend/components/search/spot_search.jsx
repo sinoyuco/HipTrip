@@ -9,17 +9,16 @@ import SpotMap from '../map/spot_map';
 class SpotSearch extends React.Component{
     constructor(props){
         super(props);
-        debugger;
         this.state = { scrollFixedDown: false , scrollFixedUp: true,
-            search_term: props.search_terms.search_terms || '', 
-            type: props.search_terms.type || 'All Camping'
+            search_term: props.search_terms.search_term || '', 
+            type: props.search_terms.type || ['Camping', 'Glamping', 'RVs', 'Beach Camping']
         }
+        this.handleTypeClick = this.handleTypeClick.bind(this);
     }
 
     componentDidMount(){
-        debugger;
-        this.props.updateBounds('search_term', this.state.search_term);
-        this.props.updateBounds('type', this.state.type);
+        this.props.updateBounds('search_term', this.state.search_term).then(() => this.props.updateBounds('type', this.state.type));
+        
 
         document.addEventListener('scroll', () => {
             // -491 for footer, +94 for fixed header
@@ -38,8 +37,25 @@ class SpotSearch extends React.Component{
         });
     }
 
-    render(){
+    handleTypeClick(str){
+        let that = this;
+        return e => {
+            // e.preventDefault();
+            debugger;
+            let newArr = that.state.type;
+            if(!that.state.type.includes(str)){
+                newArr.push(str);
+            }else{
+                
+                let idx = newArr.indexOf(str);
+                newArr.splice(idx,1);
+            }
+            that.setState({type: newArr});
+            that.props.updateBounds('type', newArr);
+        }
+    }
 
+    render(){
         let spots = this.props.spots.map(spot => <SpotIndexItem key={spot.id} spot={spot}/>)
         const scrollClass = this.state.scrollFixedUp ? 'map-container-top' : (this.state.scrollFixedDown ? 'map-container-bottom' : 'map-container');
 
@@ -50,10 +66,11 @@ class SpotSearch extends React.Component{
             'RVs': <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="caravan" className="svg-inline--fa fa-caravan fa-w-20" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M416,208a16,16,0,1,0,16,16A16,16,0,0,0,416,208ZM624,320H576V160A160,160,0,0,0,416,0H64A64,64,0,0,0,0,64V320a64,64,0,0,0,64,64H96a96,96,0,0,0,192,0H624a16,16,0,0,0,16-16V336A16,16,0,0,0,624,320ZM192,432a48,48,0,1,1,48-48A48.05,48.05,0,0,1,192,432Zm64-240a32,32,0,0,1-32,32H96a32,32,0,0,1-32-32V128A32,32,0,0,1,96,96H224a32,32,0,0,1,32,32ZM448,320H320V128a32,32,0,0,1,32-32h64a32,32,0,0,1,32,32Z"></path></svg>,
             'Beach Camping': <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="umbrella-beach" className="svg-inline--fa fa-umbrella-beach fa-w-20" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M115.38 136.9l102.11 37.18c35.19-81.54 86.21-144.29 139-173.7-95.88-4.89-188.78 36.96-248.53 111.8-6.69 8.4-2.66 21.05 7.42 24.72zm132.25 48.16l238.48 86.83c35.76-121.38 18.7-231.66-42.63-253.98-7.4-2.7-15.13-4-23.09-4-58.02.01-128.27 69.17-172.76 171.15zM521.48 60.5c6.22 16.3 10.83 34.6 13.2 55.19 5.74 49.89-1.42 108.23-18.95 166.98l102.62 37.36c10.09 3.67 21.31-3.43 21.57-14.17 2.32-95.69-41.91-187.44-118.44-245.36zM560 447.98H321.06L386 269.5l-60.14-21.9-72.9 200.37H16c-8.84 0-16 7.16-16 16.01v32.01C0 504.83 7.16 512 16 512h544c8.84 0 16-7.17 16-16.01v-32.01c0-8.84-7.16-16-16-16z"></path></svg>
         }
-        const spot_filter_buttons = types.map(ele => {
-            const classname = (this.state.type === ele ? 'spot-filters-button active-filter' : 'spot-filters-button');
+        let that = this;
+        const spot_filter_buttons = types.map((ele,i) => {
+            const classname = (that.state.type.includes(ele) ? 'spot-filters-button active-filter' : 'spot-filters-button');
             return(
-            <div className={classname}>
+            <div key={i} onClick={that.handleTypeClick(ele)} className={classname}>
                 <div className="spot-filters-button-icon">
                     {icons[ele]}
                 </div>

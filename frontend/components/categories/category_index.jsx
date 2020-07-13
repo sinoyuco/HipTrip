@@ -1,15 +1,24 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 class CategoryIndex extends React.Component{
     constructor(props){
         super(props);
         this.handleClick = this.handleClick.bind(this);
+        this.handleHosting = this.handleHosting.bind(this);
     }
 
     handleClick(type){
         return e => {
-            this.props.history.push(`discover/${type}`);
+            this.props.history.push(`discover`);
              window.scrollTo(0, 0);}
+    }
+
+    handleHosting(e){
+        e.preventDefault();
+        if(!this.props.session){
+            this.props.openModal('signup');
+        }
     }
 
     render(){
@@ -20,7 +29,7 @@ class CategoryIndex extends React.Component{
                     <div className="category-index-hosting-message">
                         <h3>Own land? Earn money hosting on HipTrip</h3>
                         <h5>Help more people spend time outside. Share your land with campers, glampers, and RV travelers.</h5>
-                        <button>Become a Host</button>
+                        <button onClick={this.handleHosting}>Become a Host</button>
                     </div>
                 </div>
                 <div className="category-index-experiences">
@@ -50,63 +59,73 @@ class CategoryIndex extends React.Component{
                     </div>
                 </div>
 
+                
                 <div className="category-index-experiences-discover">
                     <h3>Discover camping...</h3>
                     <div className="category-index-experiences-discover-1">
 
-                        <div onClick={this.handleClick('tent_camping')} className="category-index-experiences-discover-1-sub">
+                        <Link className="category-index-experiences-discover-1-sub-link" to={{ pathname: "/discover", search_terms: { search_term: '', type: ['Camping']} }}>
+                            <div className="category-index-experiences-discover-1-sub">
 
-                            <div className="category-index-experiences-discover-1-sub-pic">
-                                <img src="https://hiptrip-aa-seed.s3.amazonaws.com/cats/tent_camping.jpg"/>
+                                <div className="category-index-experiences-discover-1-sub-pic">
+                                    <img src="https://hiptrip-aa-seed.s3.amazonaws.com/cats/tent_camping.jpg"/>
+                                </div>
+
+                                <div className="category-index-experiences-discover-1-sub-text">
+                                    <h3>Tent camping</h3>
+                                    <h5>Best tent camping near me</h5>
+                                </div>
+
                             </div>
+                        </Link>
 
-                            <div className="category-index-experiences-discover-1-sub-text">
-                                <h3>Tent camping</h3>
-                                <h5>Best tent camping near me</h5>
+                        <Link className="category-index-experiences-discover-1-sub-link" to={{ pathname: "/discover", search_terms: { search_term: '', type: ['Glamping']} }}>
+                            <div className="category-index-experiences-discover-1-sub">
+
+                                <div className="category-index-experiences-discover-1-sub-pic">
+                                    <img src="https://hiptrip-aa-seed.s3.amazonaws.com/cats/glamping_camping.jpg"/>
+                                </div>
+
+                                <div className="category-index-experiences-discover-1-sub-text">
+                                    <h3>Glamping</h3>
+                                    <h5>Best glamping spots near me</h5>
+                                </div>
+
                             </div>
+                        </Link>
 
-                        </div>
+                        <Link className="category-index-experiences-discover-1-sub-link" to={{ pathname: "/discover", search_terms: { search_term: '', type: ['RVs'] } }}>
+                            <div className="category-index-experiences-discover-1-sub">
 
-                        <div onClick={this.handleClick('glamping')} className="category-index-experiences-discover-1-sub">
+                                <div className="category-index-experiences-discover-1-sub-pic">
+                                    <img src="https://hiptrip-aa-seed.s3.amazonaws.com/cats/rvpark_camping.png"/>
+                                </div>
 
-                            <div className="category-index-experiences-discover-1-sub-pic">
-                                <img src="https://hiptrip-aa-seed.s3.amazonaws.com/cats/glamping_camping.jpg"/>
+                                <div className="category-index-experiences-discover-1-sub-text">
+                                    <h3>RV park</h3>
+                                    <h5>Best RV parks near me</h5>
+                                </div>
+
                             </div>
+                        </Link>
 
-                            <div className="category-index-experiences-discover-1-sub-text">
-                                <h3>Glamping</h3>
-                                <h5>Best glamping spots near me</h5>
+                        <Link className="category-index-experiences-discover-1-sub-link" to={{ pathname: "/discover", search_terms: { search_term: '', type: ['Beach Camping']} }}>
+                            <div className="category-index-experiences-discover-1-sub">
+
+                                <div className="category-index-experiences-discover-1-sub-pic">
+                                    <img src="https://hiptrip-aa-seed.s3.amazonaws.com/cats/beach_camping.jpg"/>
+                                </div>
+
+                                <div className="category-index-experiences-discover-1-sub-text">
+                                    <h3>Beach camping</h3>
+                                    <h5>Best beach camping near me</h5>
+                                </div>
+
                             </div>
+                        </Link>
 
-                        </div>
-
-                        <div onClick={this.handleClick('rv_parks')} className="category-index-experiences-discover-1-sub">
-
-                            <div className="category-index-experiences-discover-1-sub-pic">
-                                <img src="https://hiptrip-aa-seed.s3.amazonaws.com/cats/rvpark_camping.png"/>
-                            </div>
-
-                            <div className="category-index-experiences-discover-1-sub-text">
-                                <h3>RV park</h3>
-                                <h5>Best RV parks near me</h5>
-                            </div>
-
-                        </div>
-
-                        <div onClick={this.handleClick('beach_camping')} className="category-index-experiences-discover-1-sub">
-
-                            <div className="category-index-experiences-discover-1-sub-pic">
-                                <img src="https://hiptrip-aa-seed.s3.amazonaws.com/cats/beach_camping.jpg"/>
-                            </div>
-
-                            <div className="category-index-experiences-discover-1-sub-text">
-                                <h3>Beach camping</h3>
-                                <h5>Best beach camping near me</h5>
-                            </div>
-
-                        </div>
-
-                        <div onClick={this.handleClick('lake_camping')} className="category-index-experiences-discover-1-sub">
+                        <Link className="category-index-experiences-discover-1-sub-link" to={{ pathname: "/discover", search_terms: { search_term: '', type: ['Lake Camping'] } }}>
+                        <div className="category-index-experiences-discover-1-sub">
 
                             <div className="category-index-experiences-discover-1-sub-pic">
                                 <img src="https://hiptrip-aa-seed.s3.amazonaws.com/cats/lake_camping.jpg"/>
@@ -118,6 +137,7 @@ class CategoryIndex extends React.Component{
                             </div>
 
                         </div>
+                        </Link>
 
                     </div>
 

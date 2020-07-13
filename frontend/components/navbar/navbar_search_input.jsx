@@ -1,5 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import {updateBounds} from '../../actions/filter_actions';
 
 class NavbarSearchInput extends React.Component{
     constructor(props){
@@ -10,8 +12,8 @@ class NavbarSearchInput extends React.Component{
 
     handleSubmit(e){
         // e.preventDefault();
-        // <Redirect exact to="/"/>
-        this.props.history.push(`/discover/${this.state.search}`);
+        this.props.updateBounds('search_term', this.state.search)
+        
     }
 
     handleChange(){
@@ -31,4 +33,13 @@ class NavbarSearchInput extends React.Component{
 
 }
 
-export default NavbarSearchInput;
+const mSTP = (state) => ({
+
+});
+
+const mDTP = (dispatch) => ({
+    updateBounds: (filter_type, bounds) => dispatch(updateBounds(filter_type, bounds))
+});
+
+
+export default connect(mSTP, mDTP)(NavbarSearchInput);

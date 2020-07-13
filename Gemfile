@@ -31,6 +31,8 @@ gem 'aws-sdk-s3'
 
 gem 'figaro'
 
+gem 'active_record_union'
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

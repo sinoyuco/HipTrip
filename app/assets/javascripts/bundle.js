@@ -215,7 +215,7 @@ var changeBounds = function changeBounds(filter_type, value) {
 var updateBounds = function updateBounds(filter_type, value) {
   return function (dispatch, getState) {
     dispatch(changeBounds(filter_type, value));
-    debugger;
+    console.log("".concat(filter_type, " --- ").concat(value));
     return Object(_spot_actions__WEBPACK_IMPORTED_MODULE_0__["fetchSpots"])(getState().ui.filter)(dispatch);
   };
 };
@@ -1861,6 +1861,7 @@ var mDTP = function mDTP(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1885,6 +1886,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var CategoryIndex = /*#__PURE__*/function (_React$Component) {
   _inherits(CategoryIndex, _React$Component);
 
@@ -1897,6 +1899,7 @@ var CategoryIndex = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
+    _this.handleHosting = _this.handleHosting.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1906,10 +1909,19 @@ var CategoryIndex = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       return function (e) {
-        _this2.props.history.push("discover/".concat(type));
+        _this2.props.history.push("discover");
 
         window.scrollTo(0, 0);
       };
+    }
+  }, {
+    key: "handleHosting",
+    value: function handleHosting(e) {
+      e.preventDefault();
+
+      if (!this.props.session) {
+        this.props.openModal('signup');
+      }
     }
   }, {
     key: "render",
@@ -1922,7 +1934,9 @@ var CategoryIndex = /*#__PURE__*/function (_React$Component) {
         src: "https://hiptrip-aa-seed.s3.amazonaws.com/alpacas.jpg"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "category-index-hosting-message"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Own land? Earn money hosting on HipTrip"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Help more people spend time outside. Share your land with campers, glampers, and RV travelers."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Become a Host"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Own land? Earn money hosting on HipTrip"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Help more people spend time outside. Share your land with campers, glampers, and RV travelers."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleHosting
+      }, "Become a Host"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "category-index-experiences"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "HipTrip experinces."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "category-index-experiences-1"
@@ -1948,8 +1962,16 @@ var CategoryIndex = /*#__PURE__*/function (_React$Component) {
         className: "category-index-experiences-discover"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Discover camping..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "category-index-experiences-discover-1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        className: "category-index-experiences-discover-1-sub-link",
+        to: {
+          pathname: "/discover",
+          search_terms: {
+            search_term: '',
+            type: ['Camping']
+          }
+        }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        onClick: this.handleClick('tent_camping'),
         className: "category-index-experiences-discover-1-sub"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "category-index-experiences-discover-1-sub-pic"
@@ -1957,8 +1979,16 @@ var CategoryIndex = /*#__PURE__*/function (_React$Component) {
         src: "https://hiptrip-aa-seed.s3.amazonaws.com/cats/tent_camping.jpg"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "category-index-experiences-discover-1-sub-text"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Tent camping"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Best tent camping near me"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        onClick: this.handleClick('glamping'),
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Tent camping"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Best tent camping near me")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        className: "category-index-experiences-discover-1-sub-link",
+        to: {
+          pathname: "/discover",
+          search_terms: {
+            search_term: '',
+            type: ['Glamping']
+          }
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "category-index-experiences-discover-1-sub"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "category-index-experiences-discover-1-sub-pic"
@@ -1966,8 +1996,16 @@ var CategoryIndex = /*#__PURE__*/function (_React$Component) {
         src: "https://hiptrip-aa-seed.s3.amazonaws.com/cats/glamping_camping.jpg"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "category-index-experiences-discover-1-sub-text"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Glamping"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Best glamping spots near me"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        onClick: this.handleClick('rv_parks'),
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Glamping"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Best glamping spots near me")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        className: "category-index-experiences-discover-1-sub-link",
+        to: {
+          pathname: "/discover",
+          search_terms: {
+            search_term: '',
+            type: ['RVs']
+          }
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "category-index-experiences-discover-1-sub"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "category-index-experiences-discover-1-sub-pic"
@@ -1975,8 +2013,16 @@ var CategoryIndex = /*#__PURE__*/function (_React$Component) {
         src: "https://hiptrip-aa-seed.s3.amazonaws.com/cats/rvpark_camping.png"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "category-index-experiences-discover-1-sub-text"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "RV park"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Best RV parks near me"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        onClick: this.handleClick('beach_camping'),
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "RV park"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Best RV parks near me")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        className: "category-index-experiences-discover-1-sub-link",
+        to: {
+          pathname: "/discover",
+          search_terms: {
+            search_term: '',
+            type: ['Beach Camping']
+          }
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "category-index-experiences-discover-1-sub"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "category-index-experiences-discover-1-sub-pic"
@@ -1984,8 +2030,16 @@ var CategoryIndex = /*#__PURE__*/function (_React$Component) {
         src: "https://hiptrip-aa-seed.s3.amazonaws.com/cats/beach_camping.jpg"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "category-index-experiences-discover-1-sub-text"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Beach camping"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Best beach camping near me"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        onClick: this.handleClick('lake_camping'),
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Beach camping"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Best beach camping near me")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        className: "category-index-experiences-discover-1-sub-link",
+        to: {
+          pathname: "/discover",
+          search_terms: {
+            search_term: '',
+            type: ['Lake Camping']
+          }
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "category-index-experiences-discover-1-sub"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "category-index-experiences-discover-1-sub-pic"
@@ -1993,7 +2047,7 @@ var CategoryIndex = /*#__PURE__*/function (_React$Component) {
         src: "https://hiptrip-aa-seed.s3.amazonaws.com/cats/lake_camping.jpg"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "category-index-experiences-discover-1-sub-text"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Lake camping"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Best lake camping near me"))))));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Lake camping"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Best lake camping near me")))))));
     }
   }]);
 
@@ -2017,16 +2071,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _category_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./category_index */ "./frontend/components/categories/category_index.jsx");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _actions_filter_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/filter_actions */ "./frontend/actions/filter_actions.js");
+
+
 
 
 
 
 var mSTP = function mSTP(state) {
-  return {};
+  return {
+    session: state.session.id
+  };
 };
 
 var mDTP = function mDTP(dispatch) {
-  return {};
+  return {
+    openModal: function openModal(type) {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["openModal"])(type));
+    },
+    updateBounds: function updateBounds(filter_type, bounds) {
+      return dispatch(Object(_actions_filter_actions__WEBPACK_IMPORTED_MODULE_4__["updateBounds"])(filter_type, bounds));
+    }
+  };
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mSTP, mDTP)(_category_index__WEBPACK_IMPORTED_MODULE_2__["default"]));
@@ -2470,15 +2537,24 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "no-shame-plugs-github"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "https://github.com/sinoyuco/HipTrip/"
+        href: "https://github.com/sinoyuco/HipTrip/",
+        target: "_blank"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fab fa-github fa-2x"
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "no-shame-plugs-linkedin"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "https://www.linkedin.com/in/sinan-yucesan-91289a134"
+        href: "https://www.linkedin.com/in/sinan-yucesan-91289a134",
+        target: "_blank"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fab fa-linkedin fa-2x"
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "no-shame-plugs-angellist"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "https://angel.co/u/sinan-yucesan",
+        target: "_blank"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fab fa-angellist fa-2x"
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "auth-navbar"
       }, links));
@@ -2544,6 +2620,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_filter_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/filter_actions */ "./frontend/actions/filter_actions.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2565,6 +2643,8 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
 
 
 
@@ -2591,8 +2671,7 @@ var NavbarSearchInput = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       // e.preventDefault();
-      // <Redirect exact to="/"/>
-      this.props.history.push("/discover/".concat(this.state.search));
+      this.props.updateBounds('search_term', this.state.search);
     }
   }, {
     key: "handleChange",
@@ -2627,7 +2706,19 @@ var NavbarSearchInput = /*#__PURE__*/function (_React$Component) {
   return NavbarSearchInput;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (NavbarSearchInput);
+var mSTP = function mSTP(state) {
+  return {};
+};
+
+var mDTP = function mDTP(dispatch) {
+  return {
+    updateBounds: function updateBounds(filter_type, bounds) {
+      return dispatch(Object(_actions_filter_actions__WEBPACK_IMPORTED_MODULE_3__["updateBounds"])(filter_type, bounds));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mSTP, mDTP)(NavbarSearchInput));
 
 /***/ }),
 
@@ -2740,7 +2831,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
       // debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-review-form"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "It looks like you have stayed at ", this.props.host.fname, "'s place but have not left  review yet. Reviews help HipTrip grow. Leave one below!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "It looks like you have stayed at ", this.props.host.fname, "'s place but have not left a review yet. Reviews help HipTrip grow. Leave one below!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-review-form-top"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("fieldset", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("legend", null, "Title"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "create-review-form-title",
@@ -3048,6 +3139,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app */ "./frontend/components/app.jsx");
+/* harmony import */ var _scrolltotop__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./scrolltotop */ "./frontend/components/scrolltotop.jsx");
+
 
 
 
@@ -3057,10 +3150,79 @@ var Root = function Root(_ref) {
   var store = _ref.store;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_1__["Provider"], {
     store: store
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["HashRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_app__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["HashRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_scrolltotop__WEBPACK_IMPORTED_MODULE_4__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_app__WEBPACK_IMPORTED_MODULE_3__["default"], null))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Root);
+
+/***/ }),
+
+/***/ "./frontend/components/scrolltotop.jsx":
+/*!*********************************************!*\
+  !*** ./frontend/components/scrolltotop.jsx ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+var ScrollToTop = /*#__PURE__*/function (_React$Component) {
+  _inherits(ScrollToTop, _React$Component);
+
+  var _super = _createSuper(ScrollToTop);
+
+  function ScrollToTop() {
+    _classCallCheck(this, ScrollToTop);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(ScrollToTop, [{
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (this.props.location !== prevProps.location) {
+        window.scrollTo(0, 0);
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return this.props.children;
+    }
+  }]);
+
+  return ScrollToTop;
+}(react__WEBPACK_IMPORTED_MODULE_1___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["withRouter"])(ScrollToTop));
 
 /***/ }),
 
@@ -3125,6 +3287,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
       from: undefined,
       to: undefined,
       type: 'All Camping',
+      type_send: ['Camping', 'Glamping', 'RVs', 'Beach Camping'],
       search_term: ''
     }; // this.handleSubmit = this.handleSubmit.bind(this);
 
@@ -3177,9 +3340,11 @@ var Search = /*#__PURE__*/function (_React$Component) {
 
       return function (e) {
         e.preventDefault();
+        var typearr = str === 'All Camping' ? ['Camping', 'Glamping', 'RVs', 'Beach Camping'] : [str];
 
         _this3.setState({
-          type: str
+          type: str,
+          type_send: typearr
         });
 
         document.activeElement.blur();
@@ -3450,7 +3615,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
           pathname: "/discover",
           search_terms: {
             search_term: this.state.search_term,
-            type: this.state.type
+            type: this.state.type_send
           }
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -3519,13 +3684,13 @@ var SpotSearch = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, SpotSearch);
 
     _this = _super.call(this, props);
-    debugger;
     _this.state = {
       scrollFixedDown: false,
       scrollFixedUp: true,
-      search_term: props.search_terms.search_terms || '',
-      type: props.search_terms.type || 'All Camping'
+      search_term: props.search_terms.search_term || '',
+      type: props.search_terms.type || ['Camping', 'Glamping', 'RVs', 'Beach Camping']
     };
+    _this.handleTypeClick = _this.handleTypeClick.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -3534,9 +3699,9 @@ var SpotSearch = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      debugger;
-      this.props.updateBounds('search_term', this.state.search_term);
-      this.props.updateBounds('type', this.state.type);
+      this.props.updateBounds('search_term', this.state.search_term).then(function () {
+        return _this2.props.updateBounds('type', _this2.state.type);
+      });
       document.addEventListener('scroll', function () {
         // -491 for footer, +94 for fixed header
         var belowPictures = window.scrollY > document.body.scrollHeight - window.innerHeight - 400;
@@ -3559,10 +3724,30 @@ var SpotSearch = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "handleTypeClick",
+    value: function handleTypeClick(str) {
+      var that = this;
+      return function (e) {
+        // e.preventDefault();
+        debugger;
+        var newArr = that.state.type;
+
+        if (!that.state.type.includes(str)) {
+          newArr.push(str);
+        } else {
+          var idx = newArr.indexOf(str);
+          newArr.splice(idx, 1);
+        }
+
+        that.setState({
+          type: newArr
+        });
+        that.props.updateBounds('type', newArr);
+      };
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
-
       var spots = this.props.spots.map(function (spot) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_spots_spot_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
           key: spot.id,
@@ -3625,9 +3810,12 @@ var SpotSearch = /*#__PURE__*/function (_React$Component) {
           d: "M115.38 136.9l102.11 37.18c35.19-81.54 86.21-144.29 139-173.7-95.88-4.89-188.78 36.96-248.53 111.8-6.69 8.4-2.66 21.05 7.42 24.72zm132.25 48.16l238.48 86.83c35.76-121.38 18.7-231.66-42.63-253.98-7.4-2.7-15.13-4-23.09-4-58.02.01-128.27 69.17-172.76 171.15zM521.48 60.5c6.22 16.3 10.83 34.6 13.2 55.19 5.74 49.89-1.42 108.23-18.95 166.98l102.62 37.36c10.09 3.67 21.31-3.43 21.57-14.17 2.32-95.69-41.91-187.44-118.44-245.36zM560 447.98H321.06L386 269.5l-60.14-21.9-72.9 200.37H16c-8.84 0-16 7.16-16 16.01v32.01C0 504.83 7.16 512 16 512h544c8.84 0 16-7.17 16-16.01v-32.01c0-8.84-7.16-16-16-16z"
         }))
       };
-      var spot_filter_buttons = types.map(function (ele) {
-        var classname = _this3.state.type === ele ? 'spot-filters-button active-filter' : 'spot-filters-button';
+      var that = this;
+      var spot_filter_buttons = types.map(function (ele, i) {
+        var classname = that.state.type.includes(ele) ? 'spot-filters-button active-filter' : 'spot-filters-button';
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          key: i,
+          onClick: that.handleTypeClick(ele),
           className: classname
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "spot-filters-button-icon"
@@ -3685,9 +3873,9 @@ var mSTP = function mSTP(state, ownProps) {
   debugger;
   return {
     spots: Object.values(state.entities.spots),
-    search_terms: ownProps.location.search_terms || {
+    search_terms: ownProps.location.search_terms || state.ui.filter || {
       search_term: '',
-      type: 'All Camping'
+      type: ['Camping', 'Glamping', 'RVs', 'Beach Camping']
     }
   };
 };
@@ -3937,8 +4125,6 @@ var SpotShow = /*#__PURE__*/function (_React$Component) {
       var review_form = null;
 
       if (Object.values(this.props.reviews).length) {
-        debugger;
-
         if (this.props.user && Object.values(this.props.user.bookings).some(function (el) {
           return el.spot_id === _this3.props.spot.id && new Date(el.start_date) < new Date();
         }) && !Object.values(this.props.reviews).some(function (el) {
@@ -3951,8 +4137,6 @@ var SpotShow = /*#__PURE__*/function (_React$Component) {
           });
         }
       } else {
-        debugger;
-
         if (this.props.user && Object.values(this.props.user.bookings).some(function (el) {
           return el.spot_id === _this3.props.spot.id && new Date(el.start_date) < new Date();
         })) {
@@ -4488,7 +4672,6 @@ var filterReducer = function filterReducer() {
   switch (action.type) {
     case _actions_filter_actions__WEBPACK_IMPORTED_MODULE_0__["UPDATE_BOUNDS"]:
       // return {bounds: action.bounds};
-      debugger;
       return Object.assign({}, state, _defineProperty({}, action.filter_type, action.value));
 
     default:
@@ -5005,6 +5188,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchSpots", function() { return fetchSpots; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchSpot", function() { return fetchSpot; });
 var fetchSpots = function fetchSpots(data) {
+  debugger;
   return $.ajax({
     method: 'GET',
     url: 'api/spots/',

@@ -1,6 +1,6 @@
 class Spot < ApplicationRecord
     validates :name, :price, :city, :state, :latitude, :longitude, :host_id, presence: true
-    validates :category, inclusion: {in: ['Tent Camping','RV Park', 'Glamping', 'Beach Camping', 'Lake Camping']}
+    validates :category, inclusion: {in: ['Camping','RVs', 'Glamping', 'Beach Camping']}
 
     belongs_to(:host,
         foreign_key: :host_id,

@@ -9,6 +9,7 @@ import Footer from './footer/footer';
 import SpotShowContainer from './spots/spot_show_container';
 import BookingsIndexContainer from './bookings/bookings_index_container';
 
+
 class App extends React.Component{
     render(){
         return(
