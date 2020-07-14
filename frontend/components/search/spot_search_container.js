@@ -8,7 +8,8 @@ const mSTP = (state,ownProps) => {
     debugger;
     return {
         spots: Object.values(state.entities.spots),
-        search_terms: ownProps.location.search_terms|| state.ui.filter || { search_term: '', type: ['Camping', 'Glamping', 'RVs', 'Beach Camping']}
+        search_terms: ownProps.location.search_terms|| state.ui.filter || { search_term: '', type: ['Camping', 'Glamping', 'RVs', 'Beach Camping']},
+        term: state.ui.filter
     }
 
 };

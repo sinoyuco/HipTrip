@@ -11,7 +11,7 @@ class NavbarSearchInput extends React.Component{
     }
 
     handleSubmit(e){
-        // e.preventDefault();
+        e.preventDefault();
         this.props.updateBounds('search_term', this.state.search)
         
     }

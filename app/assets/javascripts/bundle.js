@@ -2670,7 +2670,7 @@ var NavbarSearchInput = /*#__PURE__*/function (_React$Component) {
   _createClass(NavbarSearchInput, [{
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      // e.preventDefault();
+      e.preventDefault();
       this.props.updateBounds('search_term', this.state.search);
     }
   }, {
@@ -3691,6 +3691,7 @@ var SpotSearch = /*#__PURE__*/function (_React$Component) {
       type: props.search_terms.type || ['Camping', 'Glamping', 'RVs', 'Beach Camping']
     };
     _this.handleTypeClick = _this.handleTypeClick.bind(_assertThisInitialized(_this));
+    _this.resetSearch = _this.resetSearch.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -3744,6 +3745,15 @@ var SpotSearch = /*#__PURE__*/function (_React$Component) {
         });
         that.props.updateBounds('type', newArr);
       };
+    }
+  }, {
+    key: "resetSearch",
+    value: function resetSearch(e) {
+      e.preventDefault();
+      this.props.updateBounds('search_term', "");
+      this.setState({
+        search_term: ""
+      });
     }
   }, {
     key: "render",
@@ -3811,6 +3821,41 @@ var SpotSearch = /*#__PURE__*/function (_React$Component) {
         }))
       };
       var that = this;
+      debugger;
+      var search_filter_button;
+
+      if (this.props.term.search_term) {
+        search_filter_button = this.props.term.search_term === '' ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "spot-filters-left"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "search-filter-button"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "search-filter-button-left"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          "class": "fas fa-search"
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.props.term.search_term), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          onClick: this.resetSearch,
+          className: "search-filter-button-right"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          className: "fas fa-times-circle"
+        }))));
+      } else {
+        var _search_filter_button = this.state.search_term === '' ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "spot-filters-left"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "search-filter-button"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "search-filter-button-left"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          "class": "fas fa-search"
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.state.search_term), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          onClick: this.resetSearch,
+          className: "search-filter-button-right"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          className: "fas fa-times-circle"
+        }))));
+      }
+
       var spot_filter_buttons = types.map(function (ele, i) {
         var classname = that.state.type.includes(ele) ? 'spot-filters-button active-filter' : 'spot-filters-button';
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3827,7 +3872,9 @@ var SpotSearch = /*#__PURE__*/function (_React$Component) {
         className: "spot-search"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "spot-filters"
-      }, spot_filter_buttons), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, search_filter_button, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "spot-filters-right"
+      }, spot_filter_buttons)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "spot-search-main"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "spot-index"
@@ -3876,7 +3923,8 @@ var mSTP = function mSTP(state, ownProps) {
     search_terms: ownProps.location.search_terms || state.ui.filter || {
       search_term: '',
       type: ['Camping', 'Glamping', 'RVs', 'Beach Camping']
-    }
+    },
+    term: state.ui.filter
   };
 };
 

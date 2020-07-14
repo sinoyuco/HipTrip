@@ -370,6 +370,42 @@ li{
   border: 1px solid #40d9ac;
 }
 
+
+.search-filter-button{
+  display: flex;
+  height: 60%;
+  padding: 5px;
+  margin: 10px;
+  border: 1px solid gray;
+  align-items: center;
+  justify-content: space-evenly;
+  color: black;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Calibre", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+}
+
+.search-filter-button-left{
+  margin-right: 10px;
+}
+
+.search-filter-button-right{
+  margin-left: 10px;
+}
+
+.fa-times-circle:hover{
+  color: rgb(186, 51, 51);
+  cursor: pointer;
+}
+
+.spot-filters-left{
+  border-right: 2px solid #ebebeb;
+}
+
+.spot-filters-right{
+  display: flex;
+}
+
 .spot-search-main{
   min-height: 700px;
   display: flex;
