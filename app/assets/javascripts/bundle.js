@@ -2504,6 +2504,7 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
         }, "Log in"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           onClick: this.handleSubmit('signup')
         }, "Sign up"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: this.handleSubmit('signup'),
           className: "hosting-button"
         }, "Start Hosting"));
       }
@@ -2698,7 +2699,7 @@ var NavbarSearchInput = /*#__PURE__*/function (_React$Component) {
         onChange: this.handleChange(),
         className: "navbar-search-input",
         type: "text",
-        placeholder: "Austin, Texas"
+        placeholder: "Austin"
       })));
     }
   }]);
@@ -3473,7 +3474,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
         onChange: this.updateSearchTerm(),
         className: "search-bar-input",
         type: "text",
-        placeholder: "Austin, Texas"
+        placeholder: "Austin"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick(e) {
           e.preventDefault();
