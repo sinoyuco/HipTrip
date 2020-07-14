@@ -20,6 +20,7 @@ class BookingIndexItem extends React.Component{
         if(new Date() < start_date_disabled){
             this.props.delete(this.props.trip.id);
         }
+        e.stopPropagation();
     }
 
     handleUpdateClick(e){

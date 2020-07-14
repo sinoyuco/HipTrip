@@ -162,7 +162,6 @@ class SpotShow extends React.Component{
                     <div className="spot-show-reviews">
                         <ReviewIndex reviews={reviews_passed} session={this.props.session} deleteReview={this.props.deleteReview}/>
                         {review_form}
-                        
                     </div>
                     {/* {review_form} */}
                     

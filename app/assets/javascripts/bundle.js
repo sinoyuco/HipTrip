@@ -1414,7 +1414,7 @@ var BookingForm = /*#__PURE__*/function (_React$Component) {
           num_guests: this.state.guests,
           total_price: this.state.guests * (this.state.end_date.getDate() - this.state.start_date.getDate()) * this.props.spot.price - this.state.savings
         }).then(function () {
-          _this2.props.history.push("/u sers/".concat(_this2.props.session, "/bookings"));
+          _this2.props.history.push("/users/".concat(_this2.props.session, "/bookings"));
 
           window.scrollTo(0, 0);
         });
@@ -1782,6 +1782,8 @@ var BookingIndexItem = /*#__PURE__*/function (_React$Component) {
       if (new Date() < start_date_disabled) {
         this.props["delete"](this.props.trip.id);
       }
+
+      e.stopPropagation();
     }
   }, {
     key: "handleUpdateClick",
