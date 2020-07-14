@@ -256,19 +256,22 @@ var closeModal = function closeModal() {
 /*!********************************************!*\
   !*** ./frontend/actions/review_actions.js ***!
   \********************************************/
-/*! exports provided: RECEIVE_REVIEW, RECEIVE_ALL_REVIEWS, createReview, fetchAllReview */
+/*! exports provided: RECEIVE_REVIEW, RECEIVE_ALL_REVIEWS, REMOVE_REVIEW, createReview, fetchAllReview, deleteReview */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_REVIEW", function() { return RECEIVE_REVIEW; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_REVIEWS", function() { return RECEIVE_ALL_REVIEWS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_REVIEW", function() { return REMOVE_REVIEW; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createReview", function() { return createReview; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllReview", function() { return fetchAllReview; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteReview", function() { return deleteReview; });
 /* harmony import */ var _util_review_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/review_api_util */ "./frontend/util/review_api_util.js");
 
 var RECEIVE_REVIEW = 'RECEIVE_REVIEW';
 var RECEIVE_ALL_REVIEWS = 'RECEIVE_ALL_REVIEWS';
+var REMOVE_REVIEW = 'REMOVE_REVIEW';
 
 var receiveReview = function receiveReview(review) {
   return {
@@ -284,6 +287,13 @@ var receiveAllReviews = function receiveAllReviews(reviews) {
   };
 };
 
+var removeReview = function removeReview(reviewId) {
+  return {
+    type: REMOVE_REVIEW,
+    reviewId: reviewId
+  };
+};
+
 var createReview = function createReview(review) {
   return function (dispatch) {
     return _util_review_api_util__WEBPACK_IMPORTED_MODULE_0__["createReview"](review).then(function (review) {
@@ -295,6 +305,13 @@ var fetchAllReview = function fetchAllReview(spotId) {
   return function (dispatch) {
     return _util_review_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchAllReviews"](spotId).then(function (reviews) {
       return dispatch(receiveAllReviews(reviews));
+    });
+  };
+};
+var deleteReview = function deleteReview(reviewId) {
+  return function (dispatch) {
+    return _util_review_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteReview"](reviewId).then(function () {
+      return dispatch(removeReview(reviewId));
     });
   };
 };
@@ -1526,6 +1543,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _booking_index_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./booking_index_item */ "./frontend/components/bookings/booking_index_item.jsx");
+/* harmony import */ var _reviews_review_index_item__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../reviews/review_index_item */ "./frontend/components/reviews/review_index_item.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1551,15 +1569,23 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var BookingIndex = /*#__PURE__*/function (_React$Component) {
   _inherits(BookingIndex, _React$Component);
 
   var _super = _createSuper(BookingIndex);
 
   function BookingIndex(props) {
+    var _this;
+
     _classCallCheck(this, BookingIndex);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.state = {
+      showing: 'Trips'
+    };
+    _this.handleReviewClick = _this.handleReviewClick.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(BookingIndex, [{
@@ -1568,9 +1594,20 @@ var BookingIndex = /*#__PURE__*/function (_React$Component) {
       this.props.fetchBookings(this.props.user.id);
     }
   }, {
+    key: "handleReviewClick",
+    value: function handleReviewClick(id) {
+      var _this2 = this;
+
+      return function (e) {
+        e.preventDefault();
+
+        _this2.props.history.push("/spots/".concat(id));
+      };
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this = this;
+      var _this3 = this;
 
       if (!(this.props.session === this.props.user.id)) {
         this.props.history.push("/");
@@ -1580,11 +1617,41 @@ var BookingIndex = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_booking_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: trip.id,
           trip: trip,
-          "delete": _this.props.deleteBooking,
-          update: _this.props.updateBooking,
-          history: _this.props.history,
-          openModal: _this.props.openModal
+          "delete": _this3.props.deleteBooking,
+          update: _this3.props.updateBooking,
+          history: _this3.props.history,
+          openModal: _this3.props.openModal
         });
+      });
+      var reviews = this.props.user.reviews ? Object.values(this.props.user.reviews).map(function (review) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          onClick: _this3.handleReviewClick(review.spot.id),
+          className: "bookings-review-index-item"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "For: ".concat(review.spot.name, " (").concat(review.spot.city, ", ").concat(review.spot.state, ")")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reviews_review_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          key: review.id,
+          review: review
+        }));
+      }) : null;
+      var reviews_length = reviews ? reviews.length : 0;
+      var saves = null;
+      var content = {
+        'Trips': trips,
+        'Reviews': reviews,
+        'Saves': saves
+      };
+      var tabs_index = {
+        'Trips': 0,
+        'Saves': 1,
+        'Reviews': 2
+      };
+      var tabs = Array.from(document.getElementsByClassName('user-bookings-index-right-header-sub')); // debugger;
+
+      tabs.forEach(function (ele, i) {
+        ele.classList.remove('active-tab');
+
+        if (tabs_index[_this3.state.showing] === i) {
+          ele.classList.add('active-tab');
+        }
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-bookings-index"
@@ -1608,21 +1675,36 @@ var BookingIndex = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fa fa-globe",
         "aria-hidden": "true"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Where are you from?")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Kansas City, Missouri")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-bookings-index-left-profile-4"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Bio:"), " Hello, I am the demo user, I don't go to any of these places physically but they still make me pay.")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-bookings-index-right"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-bookings-index-right-header"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onClick: function onClick() {
+          return _this3.setState({
+            showing: 'Trips'
+          });
+        },
         className: "user-bookings-index-right-header-sub"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, this.props.bookings.length || 0), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Trips")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onClick: function onClick() {
+          return _this3.setState({
+            showing: 'Saves'
+          });
+        },
         className: "user-bookings-index-right-header-sub"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, 0), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Saves")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onClick: function onClick() {
+          return _this3.setState({
+            showing: 'Reviews'
+          });
+        },
         className: "user-bookings-index-right-header-sub"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, 0), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Reviews"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, reviews_length || 0), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Reviews"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-bookings-index-items"
-      }, trips)));
+      }, content[this.state.showing])));
     }
   }]);
 
@@ -2491,7 +2573,7 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
         links = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
           className: "user-bookings-link",
           to: "/users/".concat(this.props.user.id, "/bookings")
-        }, "Trips")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Saves"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Messages"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, "Trips")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "user-profile"
         }, " Profile", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "user-profile-content"
@@ -2671,16 +2753,25 @@ var NavbarSearchInput = /*#__PURE__*/function (_React$Component) {
   _createClass(NavbarSearchInput, [{
     key: "handleSubmit",
     value: function handleSubmit(e) {
+      var _this2 = this;
+
       e.preventDefault();
-      this.props.updateBounds('search_term', this.state.search);
+
+      if (this.props.location.pathname === '/discover') {
+        this.props.updateBounds('search_term', this.state.search);
+      } else {
+        this.props.updateBounds('search_term', this.state.search).then(function () {
+          return _this2.props.history.push('/discover');
+        });
+      }
     }
   }, {
     key: "handleChange",
     value: function handleChange() {
-      var _this2 = this;
+      var _this3 = this;
 
       return function (e) {
-        return _this2.setState({
+        return _this3.setState({
           search: e.currentTarget.value
         });
       };
@@ -2699,7 +2790,7 @@ var NavbarSearchInput = /*#__PURE__*/function (_React$Component) {
         onChange: this.handleChange(),
         className: "navbar-search-input",
         type: "text",
-        placeholder: "Austin"
+        placeholder: "Type destination..."
       })));
     }
   }]);
@@ -2907,8 +2998,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // const mSTP = (state) => {
-// }
+
+
+var mSTP = function mSTP(state) {};
 
 var mDTP = function mDTP(dispatch) {
   return {
@@ -2973,13 +3065,17 @@ var ReviewIndex = /*#__PURE__*/function (_React$Component) {
   _createClass(ReviewIndex, [{
     key: "render",
     value: function render() {
+      var _this = this;
+
       var reviews = this.props.reviews.map(function (review) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_review_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: review.id,
+          deleteReview: _this.props.deleteReview,
+          session: _this.props.session,
           review: review
         });
       });
-      var number_of_reviews = this.props.reviews.length ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, this.props.reviews.length, " Written reviews") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "No reviews yet");
+      var number_of_reviews = this.props.reviews.length ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, this.props.reviews.length, " Written review(s)") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "No reviews yet");
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "reviews-index-main"
       }, number_of_reviews, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3046,6 +3142,7 @@ var ReviewIndexItem = /*#__PURE__*/function (_React$Component) {
     };
     _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
     _this.dateFormat = _this.dateFormat.bind(_assertThisInitialized(_this));
+    _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -3056,6 +3153,12 @@ var ReviewIndexItem = /*#__PURE__*/function (_React$Component) {
       this.setState({
         helpful: this.state.helpful + 1
       });
+    }
+  }, {
+    key: "handleDelete",
+    value: function handleDelete(e) {
+      e.preventDefault();
+      this.props.deleteReview(this.props.review.id);
     }
   }, {
     key: "dateFormat",
@@ -3072,6 +3175,11 @@ var ReviewIndexItem = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var delete_button = this.props.session === this.props.review.user_id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleDelete,
+        className: "review-delete-button"
+      }, "Delete Review") : null; // const delete_button = (this.props.session ? <button onClick={this.handleDelete} className="review-delete-button">Delete Review</button> : null )
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "review-show"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3115,7 +3223,7 @@ var ReviewIndexItem = /*#__PURE__*/function (_React$Component) {
         className: "secondthumbs fas fa-thumbs-up"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "review-helpful-text"
-      }, "Helpful"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, this.state.helpful)))));
+      }, "Helpful"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, this.state.helpful)), delete_button)));
     }
   }]);
 
@@ -3474,7 +3582,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
         onChange: this.updateSearchTerm(),
         className: "search-bar-input",
         type: "text",
-        placeholder: "Austin"
+        placeholder: "Type destination..."
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick(e) {
           e.preventDefault();
@@ -3731,7 +3839,6 @@ var SpotSearch = /*#__PURE__*/function (_React$Component) {
       var that = this;
       return function (e) {
         // e.preventDefault();
-        debugger;
         var newArr = that.state.type;
 
         if (!that.state.type.includes(str)) {
@@ -3822,7 +3929,9 @@ var SpotSearch = /*#__PURE__*/function (_React$Component) {
         }))
       };
       var that = this;
-      debugger;
+      var no_spots_message = spots.length === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        className: "no-spots-message"
+      }, "Looks like there were no search results. Try broadening your filters.") : null;
       var search_filter_button;
 
       if (this.props.term.search_term) {
@@ -3879,7 +3988,7 @@ var SpotSearch = /*#__PURE__*/function (_React$Component) {
         className: "spot-search-main"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "spot-index"
-      }, spots), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, no_spots_message, spots), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "search-map"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_map_spot_map__WEBPACK_IMPORTED_MODULE_3__["default"], {
         updateBounds: this.props.updateBounds,
@@ -3918,7 +4027,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  debugger;
   return {
     spots: Object.values(state.entities.spots),
     search_terms: ownProps.location.search_terms || state.ui.filter || {
@@ -4292,7 +4400,9 @@ var SpotShow = /*#__PURE__*/function (_React$Component) {
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "spot-show-reviews"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reviews_review_index__WEBPACK_IMPORTED_MODULE_7__["default"], {
-        reviews: reviews_passed
+        reviews: reviews_passed,
+        session: this.props.session,
+        deleteReview: this.props.deleteReview
       }), review_form)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "spot-show-side"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_booking_form_booking_form_container__WEBPACK_IMPORTED_MODULE_5__["default"], {
@@ -4338,7 +4448,8 @@ var mSTP = function mSTP(state, ownProps) {
   return {
     spot: state.entities.spots[ownProps.match.params.spotId],
     user: state.entities.users[state.session.id],
-    reviews: state.entities.reviews
+    reviews: state.entities.reviews,
+    session: state.session.id
   };
 };
 
@@ -4352,6 +4463,9 @@ var mDTP = function mDTP(dispatch) {
     },
     fetchAllReview: function fetchAllReview(review) {
       return dispatch(Object(_actions_review_actions__WEBPACK_IMPORTED_MODULE_4__["fetchAllReview"])(review));
+    },
+    deleteReview: function deleteReview(reviewId) {
+      return dispatch(Object(_actions_review_actions__WEBPACK_IMPORTED_MODULE_4__["deleteReview"])(reviewId));
     }
   };
 };
@@ -4795,6 +4909,11 @@ var reviewsReducer = function reviewsReducer() {
     case _actions_review_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_REVIEWS"]:
       return action.reviews;
 
+    case _actions_review_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_REVIEW"]:
+      var newState = Object.assign({}, state);
+      delete newState[action.reviewId];
+      return newState;
+
     default:
       return state;
   }
@@ -5161,13 +5280,14 @@ var MarkerManager = /*#__PURE__*/function () {
 /*!******************************************!*\
   !*** ./frontend/util/review_api_util.js ***!
   \******************************************/
-/*! exports provided: createReview, fetchAllReviews */
+/*! exports provided: createReview, fetchAllReviews, deleteReview */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createReview", function() { return createReview; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllReviews", function() { return fetchAllReviews; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteReview", function() { return deleteReview; });
 var createReview = function createReview(review) {
   return $.ajax({
     method: 'POST',
@@ -5181,6 +5301,12 @@ var fetchAllReviews = function fetchAllReviews(spotId) {
   return $.ajax({
     method: 'GET',
     url: "/api/spots/".concat(spotId, "/reviews")
+  });
+};
+var deleteReview = function deleteReview(reviewId) {
+  return $.ajax({
+    method: 'DELETE',
+    url: "/api/reviews/".concat(reviewId)
   });
 };
 
@@ -5237,7 +5363,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchSpots", function() { return fetchSpots; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchSpot", function() { return fetchSpot; });
 var fetchSpots = function fetchSpots(data) {
-  debugger;
   return $.ajax({
     method: 'GET',
     url: 'api/spots/',

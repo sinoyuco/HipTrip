@@ -26,8 +26,8 @@ class Navbar extends React.Component{
             links =
                 <>
                 <li><Link className="user-bookings-link" to={`/users/${this.props.user.id}/bookings`}>Trips</Link></li>
-                <li>Saves</li>
-                <li>Messages</li>
+                {/* <li>Saves</li>
+                <li>Messages</li> */}
                 <div className="user-profile"> Profile
                     <div className="user-profile-content">
                         <li>Manage User Profile</li>

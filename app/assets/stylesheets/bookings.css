@@ -47,6 +47,7 @@
 
 .user-bookings-index-right-header-sub:hover{
    border-bottom: 4px solid #40d9ac;
+   cursor: pointer;
 }
 
 
@@ -338,4 +339,22 @@
 
 .edit-form-master{
     display: flex;
+}
+
+.bookings-review-index-item h3{
+    font-family: "Calibre", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-weight: 500;
+    font-size: 16px;
+    margin-block-end: 0.5em;
+}
+
+.bookings-review-index-item:hover{
+    background: #ebebeb;
+    cursor: pointer;
+}
+
+.bookings-review-index-item{
+    border: 1px solid #ebebeb;
+    padding: 10px
 }

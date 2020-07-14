@@ -659,3 +659,8 @@
 .search-bar-div{
   max-width: 1000px;
 }
+
+.no-spots-message{
+  font-family: "Calibre", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}

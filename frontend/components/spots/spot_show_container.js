@@ -2,13 +2,14 @@ import {connect} from 'react-redux';
 import SpotShow from './spot_show';
 import { fetchSpot } from '../../actions/spot_actions'
 import {createBooking} from '../../actions/booking_actions';
-import {fetchAllReview} from '../../actions/review_actions';
+import {fetchAllReview, deleteReview} from '../../actions/review_actions';
 
 const mSTP = (state, ownProps) => {
     return{
     spot: state.entities.spots[ownProps.match.params.spotId],
     user: state.entities.users[state.session.id],
-    reviews: state.entities.reviews
+    reviews: state.entities.reviews,
+    session: state.session.id
     }
 };
 
@@ -16,7 +17,8 @@ const mSTP = (state, ownProps) => {
 const mDTP = (dispatch) => ({
     fetchSpot: spotId => dispatch(fetchSpot(spotId)),
     createBooking: booking => dispatch(createBooking(booking)),
-    fetchAllReview: review => dispatch(fetchAllReview(review))
+    fetchAllReview: review => dispatch(fetchAllReview(review)),
+    deleteReview: reviewId => dispatch(deleteReview(reviewId))
 });
 
 export default connect(mSTP, mDTP)(SpotShow);

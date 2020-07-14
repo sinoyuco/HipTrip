@@ -87,6 +87,7 @@
 }
 
 .review-show-body-2{
+    position: relative;
     width: 87%;
     font-family: "Calibre", Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -256,4 +257,28 @@ fieldset{
 
 .green-star{
     color: #40d9ac;
+}
+
+.review-delete-button{
+  height: 40px;
+  position: absolute;
+  bottom: 20px;
+  right: 10px;
+  background-color: #d94064;
+  color: white;
+  font-family: "Calibre", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  border: 2px solid #d94064;
+  -webkit-font-smoothing: antialiased;
+  transition: 0.5s;
+}
+
+.review-delete-button:hover{
+    cursor: pointer;
+    background-color: white;
+    color: #d94064;
+}
+
+.active-tab{
+    border-color: green;
 }

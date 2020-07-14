@@ -8,8 +8,8 @@ class ReviewIndex extends React.Component{
 
 
     render(){
-        const reviews = this.props.reviews.map(review => <ReviewIndexItem key={review.id} review={review}/>)
-        const number_of_reviews = this.props.reviews.length ? <h3>{this.props.reviews.length} Written reviews</h3> : <h3>No reviews yet</h3>
+        const reviews = this.props.reviews.map(review => <ReviewIndexItem key={review.id} deleteReview={this.props.deleteReview} session={this.props.session} review={review}/>)
+        const number_of_reviews = this.props.reviews.length ? <h3>{this.props.reviews.length} Written review(s)</h3> : <h3>No reviews yet</h3>
         return(
             <div className="reviews-index-main">
                 {number_of_reviews}

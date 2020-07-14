@@ -160,7 +160,7 @@ class SpotShow extends React.Component{
                     </div>
 
                     <div className="spot-show-reviews">
-                        <ReviewIndex reviews={reviews_passed}/>
+                        <ReviewIndex reviews={reviews_passed} session={this.props.session} deleteReview={this.props.deleteReview}/>
                         {review_form}
                         
                     </div>

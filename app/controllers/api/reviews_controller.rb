@@ -12,6 +12,11 @@ class Api::ReviewsController < ApplicationController
         end
     end
 
+    def destroy
+        @review = Review.find(params[:id])
+        @review.destroy
+    end
+
     private
     def review_params
         params.require(:review).permit(:title, :body, :rating, :user_id, :spot_id, :created_at)

@@ -12,8 +12,11 @@ class NavbarSearchInput extends React.Component{
 
     handleSubmit(e){
         e.preventDefault();
-        this.props.updateBounds('search_term', this.state.search)
-        
+        if(this.props.location.pathname === '/discover'){
+            this.props.updateBounds('search_term', this.state.search)
+        }else{
+            this.props.updateBounds('search_term', this.state.search).then(() => this.props.history.push('/discover'));
+        }
     }
 
     handleChange(){
@@ -25,7 +28,7 @@ class NavbarSearchInput extends React.Component{
             <div className="navbar-search-input-div">
                 <i className="fa fa-search" aria-hidden="true"></i>
                 <form onSubmit={this.handleSubmit}>
-                    <input onChange={this.handleChange()} className="navbar-search-input" type="text" placeholder="Austin"/>
+                    <input onChange={this.handleChange()} className="navbar-search-input" type="text" placeholder="Type destination..."/>
                 </form>
             </div>
         );

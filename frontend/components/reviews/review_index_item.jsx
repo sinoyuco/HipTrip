@@ -6,11 +6,17 @@ class ReviewIndexItem extends React.Component{
         this.state = { helpful: 0 }
         this.handleClick = this.handleClick.bind(this);
         this.dateFormat = this.dateFormat.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     handleClick(e){
         e.preventDefault();
         this.setState({helpful: this.state.helpful+1});
+    }
+
+    handleDelete(e){
+        e.preventDefault();
+        this.props.deleteReview(this.props.review.id);
     }
 
     dateFormat(date) {
@@ -27,6 +33,10 @@ class ReviewIndexItem extends React.Component{
     }
 
     render(){
+
+        const delete_button = (this.props.session===this.props.review.user_id ? <button onClick={this.handleDelete} className="review-delete-button">Delete Review</button> : null )
+        // const delete_button = (this.props.session ? <button onClick={this.handleDelete} className="review-delete-button">Delete Review</button> : null )
+
         return(
             <div className="review-show">
 
@@ -69,6 +79,7 @@ class ReviewIndexItem extends React.Component{
                             <h5 className="review-helpful-text">Helpful</h5>
                             <h5>{this.state.helpful}</h5>
                         </div>
+                        {delete_button}
                     </div>
                 </div>
             </div>
