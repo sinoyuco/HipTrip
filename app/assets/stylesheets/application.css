@@ -366,6 +366,10 @@ li{
   color: #40d9ac;
 }
 
+.active-filter svg{
+  color: #40d9ac;
+}
+
 .active-filter:hover{
   border: 1px solid #40d9ac;
 }
