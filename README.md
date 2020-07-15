@@ -41,16 +41,16 @@ HipTrip is an online marketplace for camping experiences, built with PostGRESQL,
 
 ### Authentication
 
-![Login](https://aa-hiptrip.herokuapp.com/#/app/assets/images/login.png)
+![Login](https://hiptrip-aa-seed.s3.amazonaws.com/login.png)
 
 Users can sign up or log in using the links in the navigation bar, which will prompt open modals with inputs, and a faulty submission of a log in or sign up form will render errors.
 
-![Signup Errors](https://aa-hiptrip.herokuapp.com/#/app/assets/images/signup_errors.png)
+![Signup Errors](https://hiptrip-aa-seed.s3.amazonaws.com/signup_errors.png)
 
 ### Search
 Users are able to search for spots based on location keywords (by searching for the city or state the spot is located in), or by the several stay cetagories available. Within the 'Spots' view, information regarding which filters are currently applying to the search is available, and the user can toggle these filters on or off, as well as search for a different location keyword using the search bar available at the navigation bar.
 
-![Search Results for Iowa and 'RV' stays](https://aa-hiptrip.herokuapp.com/#/app/assets/images/search.png)
+![Search Results for Iowa and 'RV' stays](https://hiptrip-aa-seed.s3.amazonaws.com/search.png)
 
 
 The Google Maps functionality is able to filter results based on the maps 'idling' events:
@@ -133,7 +133,7 @@ Each 'Spot Show' page provides a booking widget utilizing React Day Picker to pi
 
 Users are able/prompted to leave reviews for spots, but only for the ones with which they have bookings (and among those, only ones that are already past). Users can post a title, body and rating (of 5 stars), and are then also able to delete their comment.
 
-![Posting a Review](https://aa-hiptrip.herokuapp.com/#/app/assets/images/search.png)
+![Posting a Review](https://hiptrip-aa-seed.s3.amazonaws.com/review.png)
 
  ```
  if(Object.values(this.props.reviews).length){
