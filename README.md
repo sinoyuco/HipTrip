@@ -1,9 +1,7 @@
-# README
+# HipTrip
 
-![alt-text][icon][logo]
+![alt-text][https://hiptrip-aa-seed.s3.amazonaws.com/logo/green_icon.png]
 
-[icon]: https://hiptrip-aa-seed.s3.amazonaws.com/logo/green_icon.png
-[logo]: https://hiptrip-aa-seed.s3.amazonaws.com/logo/green_logo.png
 
 
 HipTrip is an online marketplace for camping experiences, built with PostGRESQL, utilizing Ruby on Rails as the server side web application framework and the React framework on the front end. Users can browse and select spots and attempt to book them at will, choosing dates and number of guests.
@@ -17,12 +15,6 @@ HipTrip is an online marketplace for camping experiences, built with PostGRESQL,
 * Spots
 * Bookings
 * Reviews
-
-### Authentication
-Users can sign up or log in using the links in the navigation bar, which will prompt open modals with inputs, and a faulty submission of a log in or sign up form will render errors.
-
-### Search
-    (--Still in the making--)
 
 ### Setup
  Clone or download the project. Opeen your terminal and navigate to the project directory, and run the following commands: 
@@ -46,9 +38,19 @@ Users can sign up or log in using the links in the navigation bar, which will pr
     </div>
     ```
 
+### Authentication
 
-### Spots
-Search functionality leads the users to the 'Spot Index' page, where users are able to browse multiple spots. 
+![Login][https://aa-hiptrip.herokuapp.com/#/app/assets/images/login.png]
+
+Users can sign up or log in using the links in the navigation bar, which will prompt open modals with inputs, and a faulty submission of a log in or sign up form will render errors.
+
+![Signup Errors][https://aa-hiptrip.herokuapp.com/#/app/assets/images/signup_errors.png]
+
+### Search
+Users are able to search for spots based on location keywords (by searching for the city or state the spot is located in), or by the several stay cetagories available. Within the 'Spots' view, information regarding which filters are currently applying to the search is available, and the user can toggle these filters on or off, as well as search for a different location keyword using the search bar available at the navigation bar.
+
+![Search Results for Iowa and 'RV' stays][https://aa-hiptrip.herokuapp.com/#/app/assets/images/search.png]
+
 
 The Google Maps functionality is able to filter results based on the maps 'idling' events:
 
@@ -83,7 +85,11 @@ Filtering results in the backend based on bounds (self relates to spots):
     end
     ```
 
+### Spots
+
 Clicking on an individual spot will lead the user to that spot's page, filled with information regarding the spot's location, price, description, etc... The spot pages also feature reviews from other users that visited this spot and a rating along with their review message. Logged in users are able to create bookings by selecting check-in dates, check-out dates and number of guests.
+
+![SpotView][https://media.giphy.com/media/Ress10ZlAewObvbmU5/giphy.gif]
 
 ### Bookings
 
@@ -118,7 +124,25 @@ Each 'Spot Show' page provides a booking widget utilizing React Day Picker to pi
             ...
         ).
     }
-    ````
-    
+    ```
+
+![Booking][https://media.giphy.com/media/dZGF7ZPkv0BV8nY7Cn/giphy.gif]
+
 ### Reviews
-(--Still in the making--)
+
+Users are able/prompted to leave reviews for spots, but only for the ones with which they have bookings (and among those, only ones that are already past). Users can post a title, body and rating (of 5 stars), and are then also able to delete their comment.
+
+![Posting a Review][https://aa-hiptrip.herokuapp.com/#/app/assets/images/search.png]
+
+ ```
+ if(Object.values(this.props.reviews).length){
+            if(this.props.user && Object.values(this.props.user.bookings).some(el => (el.spot_id === this.props.spot.id && new Date(el.start_date) < new Date())) && !Object.values(this.props.reviews).some(el => el.user_id === this.props.user.id)){
+                review_form = <ReviewFormContainer user={this.props.user} spot={this.props.spot} host={this.props.spot.host} />
+            }
+        }else{
+            if (this.props.user && Object.values(this.props.user.bookings).some(el => (el.spot_id === this.props.spot.id && new Date(el.start_date) < new Date()))) {
+                review_form = <ReviewFormContainer user={this.props.user} spot={this.props.spot} host={this.props.spot.host}/>
+            }
+        }
+```
+This code snipper will check for the existence of any reviews for a given spot, and then will check to see if the user is currently logged in and if the current logged in used has had a booking with this spot that has already started. The site does not allow for a user to post a review for a spot that they have not visited yet.
