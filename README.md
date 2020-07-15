@@ -1,12 +1,13 @@
 # HipTrip
 
-![alt-text][https://hiptrip-aa-seed.s3.amazonaws.com/logo/green_icon.png]
-
+![alt-text](https://hiptrip-aa-seed.s3.amazonaws.com/logo/green_icon.png)
 
 
 HipTrip is an online marketplace for camping experiences, built with PostGRESQL, utilizing Ruby on Rails as the server side web application framework and the React framework on the front end. Users can browse and select spots and attempt to book them at will, choosing dates and number of guests.
 
   Users can search for camping experiences using location keywords and be led to a search page with their results filtered. This search page features a Google Maps API implementation that marks down the results, and results on this page are filtered as the map is being moved around by the user. 
+
+[Live](https://aa-hiptrip.herokuapp.com/#/)
 
 ## Contents
 * Setup
@@ -40,16 +41,16 @@ HipTrip is an online marketplace for camping experiences, built with PostGRESQL,
 
 ### Authentication
 
-![Login][https://aa-hiptrip.herokuapp.com/#/app/assets/images/login.png]
+![Login](https://aa-hiptrip.herokuapp.com/#/app/assets/images/login.png)
 
 Users can sign up or log in using the links in the navigation bar, which will prompt open modals with inputs, and a faulty submission of a log in or sign up form will render errors.
 
-![Signup Errors][https://aa-hiptrip.herokuapp.com/#/app/assets/images/signup_errors.png]
+![Signup Errors](https://aa-hiptrip.herokuapp.com/#/app/assets/images/signup_errors.png)
 
 ### Search
 Users are able to search for spots based on location keywords (by searching for the city or state the spot is located in), or by the several stay cetagories available. Within the 'Spots' view, information regarding which filters are currently applying to the search is available, and the user can toggle these filters on or off, as well as search for a different location keyword using the search bar available at the navigation bar.
 
-![Search Results for Iowa and 'RV' stays][https://aa-hiptrip.herokuapp.com/#/app/assets/images/search.png]
+![Search Results for Iowa and 'RV' stays](https://aa-hiptrip.herokuapp.com/#/app/assets/images/search.png)
 
 
 The Google Maps functionality is able to filter results based on the maps 'idling' events:
@@ -89,7 +90,7 @@ Filtering results in the backend based on bounds (self relates to spots):
 
 Clicking on an individual spot will lead the user to that spot's page, filled with information regarding the spot's location, price, description, etc... The spot pages also feature reviews from other users that visited this spot and a rating along with their review message. Logged in users are able to create bookings by selecting check-in dates, check-out dates and number of guests.
 
-![SpotView][https://media.giphy.com/media/Ress10ZlAewObvbmU5/giphy.gif]
+![SpotView](https://media.giphy.com/media/Ress10ZlAewObvbmU5/giphy.gif)
 
 ### Bookings
 
@@ -126,13 +127,13 @@ Each 'Spot Show' page provides a booking widget utilizing React Day Picker to pi
     }
     ```
 
-![Booking][https://media.giphy.com/media/dZGF7ZPkv0BV8nY7Cn/giphy.gif]
+![Booking](https://media.giphy.com/media/dZGF7ZPkv0BV8nY7Cn/giphy.gif)
 
 ### Reviews
 
 Users are able/prompted to leave reviews for spots, but only for the ones with which they have bookings (and among those, only ones that are already past). Users can post a title, body and rating (of 5 stars), and are then also able to delete their comment.
 
-![Posting a Review][https://aa-hiptrip.herokuapp.com/#/app/assets/images/search.png]
+![Posting a Review](https://aa-hiptrip.herokuapp.com/#/app/assets/images/search.png)
 
  ```
  if(Object.values(this.props.reviews).length){
@@ -145,4 +146,4 @@ Users are able/prompted to leave reviews for spots, but only for the ones with w
             }
         }
 ```
-This code snipper will check for the existence of any reviews for a given spot, and then will check to see if the user is currently logged in and if the current logged in used has had a booking with this spot that has already started. The site does not allow for a user to post a review for a spot that they have not visited yet.
+This code snippet will check for the existence of any reviews for a given spot, and then will check to see if the user is currently logged in and if the current logged in used has had a booking with this spot that has already started. The site does not allow for a user to post a review for a spot that they have not visited yet. A user is also not able to post a second review to a visited location, but is able to delete their current review to write a new one.
