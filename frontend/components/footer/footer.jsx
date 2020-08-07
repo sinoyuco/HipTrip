@@ -44,12 +44,12 @@ class Footer extends React.Component{
             <div className="footer-banner">
                     <div className="footer-banner-inner">
                         <p>HipTrip is created with &lt;3 and hope for our future</p>
-                        <div className="help-button">
+                        {/* <div className="help-button">
                             <div className="help-button-question-mark">
                                 <i className="fa fa-question" aria-hidden="true"></i>
                             </div>
                             <h3>Help</h3>
-                        </div>
+                        </div> */}
                     </div>
             </div>
         </div>

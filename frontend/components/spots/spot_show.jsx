@@ -106,7 +106,7 @@ class SpotShow extends React.Component{
                                 <h3>Recommend</h3>
                             </div>
 
-                            <div className="spot-show-header-2-2">
+                            {/* <div className="spot-show-header-2-2">
 
                                     <button className="spot-show-header-2-2-upload">
                                         <i className="fa fa-camera" aria-hidden="true"></i>
@@ -121,7 +121,7 @@ class SpotShow extends React.Component{
                                 <button className="spot-show-header-2-2-share">
                                     <i className="fa fa-share-square" aria-hidden="true"></i>
                                 </button>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
 

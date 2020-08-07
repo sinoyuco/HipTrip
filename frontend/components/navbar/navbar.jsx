@@ -30,7 +30,7 @@ class Navbar extends React.Component{
                 <li>Messages</li> */}
                 <div className="user-profile"> Profile
                     <div className="user-profile-content">
-                        <li>Manage User Profile</li>
+                        {/* <li>Manage User Profile</li> */}
                         <li onClick={this.handleLogout}>Log Out</li>
                     </div>
                 </div>

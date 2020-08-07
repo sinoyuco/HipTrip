@@ -13,10 +13,11 @@ const mSTP = (state,ownProps) => {
 
 };
 
-
-const mDTP = (dispatch) => ({
+const mDTP = (dispatch) => {
+    return{
     fetchSpots: () => dispatch(fetchSpots()),
     updateBounds: (filter_type, bounds) => dispatch(updateBounds(filter_type, bounds))
-});
+    }
+};
 
 export default connect(mSTP, mDTP)(SpotSearch);

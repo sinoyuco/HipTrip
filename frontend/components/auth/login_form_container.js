@@ -10,7 +10,8 @@ const mSTP = (state) => ({
     formText: 'Sign in with your email address'
 });
 
-const mDTP = (dispatch) => ({
+const mDTP = (dispatch) =>{ 
+return{
     processForm: user => dispatch(login(user)),
     demoLogin: () => dispatch(login({ email: 'demouser@demoemail.com', password: 'demopass123' })),
     closeModal: () => dispatch(closeModal()),
@@ -22,6 +23,6 @@ const mDTP = (dispatch) => ({
             </li>
         </div>
     )
-});
+}};
 
 export default connect(mSTP, mDTP)(SessionForm);
