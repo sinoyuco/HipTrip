@@ -60,6 +60,9 @@ class Navbar extends React.Component{
                 </div>
 
                 <div className="no-shame-plugs">
+                    <div className="no-shame-plugs-personal">
+                        <a href="https://sinoyuco.github.io" target="_blank"><i class="fas fa-user-circle fa-2x"></i></a>
+                    </div>
                     <div className="no-shame-plugs-github">
                         <a href="https://github.com/sinoyuco/HipTrip/" target="_blank"><i className="fab fa-github fa-2x"></i></a>
                     </div>

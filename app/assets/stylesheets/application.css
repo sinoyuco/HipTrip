@@ -532,7 +532,12 @@ li{
 }
 
 .no-shame-plugs-github{
+  margin: auto 0;
+}
+
+.no-shame-plugs-personal{
   margin: auto 0 auto 50px;
+  size: 80px;
 }
 
 .no-shame-plugs-linkedin{
