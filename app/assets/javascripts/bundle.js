@@ -2038,7 +2038,7 @@ var CategoryIndex = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "category-index-experiences-1-sub"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://hiptrip-aa-seed.s3.amazonaws.com/cabin.jpg"
+        src: "https://hiptrip-aa-seed.s3.amazonaws.com/austin.jpg"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "category-index-experiences-1-sub-text"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
@@ -2055,7 +2055,7 @@ var CategoryIndex = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "category-index-experiences-1-sub"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://hiptrip-aa-seed.s3.amazonaws.com/goat_yoga.jpg"
+        src: "https://hiptrip-aa-seed.s3.amazonaws.com/california.jpg"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "category-index-experiences-1-sub-text"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
@@ -2072,7 +2072,7 @@ var CategoryIndex = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "category-index-experiences-1-sub"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://hiptrip-aa-seed.s3.amazonaws.com/glamping.jpg"
+        src: "https://hiptrip-aa-seed.s3.amazonaws.com/georgia.jpg"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "category-index-experiences-1-sub-text"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {

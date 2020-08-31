@@ -36,7 +36,7 @@ class CategoryIndex extends React.Component{
                     <div className="category-index-experiences-1">
                         <Link className="category-index-experiences-discover-1-sub-link" to={{ pathname: "/discover", search_terms: { search_term: 'Austin', type: [] } }}>
                             <div className="category-index-experiences-1-sub">
-                                <img src="https://hiptrip-aa-seed.s3.amazonaws.com/cabin.jpg"/>
+                                <img src="https://hiptrip-aa-seed.s3.amazonaws.com/austin.jpg"/>
                                 <div className="category-index-experiences-1-sub-text">
                                     <h3 className="top-three-h3">Austin</h3>
                                     <h5>Live music, bats and barbecue</h5>
@@ -46,7 +46,7 @@ class CategoryIndex extends React.Component{
 
                         <Link className="category-index-experiences-discover-1-sub-link" to={{ pathname: "/discover", search_terms: { search_term: 'california', type: [] } }}>
                         <div className="category-index-experiences-1-sub">
-                            <img src="https://hiptrip-aa-seed.s3.amazonaws.com/goat_yoga.jpg"/>
+                                <img src="https://hiptrip-aa-seed.s3.amazonaws.com/california.jpg"/>
                             <div className="category-index-experiences-1-sub-text">
                                 <h3 className="top-three-h3">California</h3>
                                 <h5>Enjoy the sun and the waves</h5>
@@ -56,7 +56,7 @@ class CategoryIndex extends React.Component{
 
                         <Link className="category-index-experiences-discover-1-sub-link" to={{ pathname: "/discover", search_terms: { search_term: 'Georgia', type: [] } }}>
                         <div className="category-index-experiences-1-sub">
-                            <img src="https://hiptrip-aa-seed.s3.amazonaws.com/glamping.jpg"/>
+                                <img src="https://hiptrip-aa-seed.s3.amazonaws.com/georgia.jpg"/>
                             <div className="category-index-experiences-1-sub-text">
                                 <h3 className="top-three-h3">Georgia</h3>
                                 <h5>Experience southern hospitality</h5>
