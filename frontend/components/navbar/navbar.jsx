@@ -41,7 +41,7 @@ class Navbar extends React.Component{
             links = <>
                 <li onClick={this.handleSubmit('login')}>Log in</li>
                 <li onClick={this.handleSubmit('signup')}>Sign up</li>
-                <button onClick={this.handleSubmit('signup')} className="hosting-button">Start Hosting</button>
+                {/* <button onClick={this.handleSubmit('signup')} className="hosting-button">Start Hosting</button> */}
             </>
         }
 

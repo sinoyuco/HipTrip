@@ -28,34 +28,41 @@ class CategoryIndex extends React.Component{
                     <img src="https://hiptrip-aa-seed.s3.amazonaws.com/alpacas.jpg" />
                     <div className="category-index-hosting-message">
                         <h3>Own land? Earn money hosting on HipTrip</h3>
-                        <h5>Help more people spend time outside. Share your land with campers, glampers, and RV travelers.</h5>
-                        <button onClick={this.handleHosting}>Become a Host</button>
+                        <h5 className="description-hosting">Help more people spend time outside. Share your land with campers, glampers, and RV travelers.</h5>
                     </div>
                 </div>
                 <div className="category-index-experiences">
-                    <h3>HipTrip experinces.</h3>
+                    <h3>HipTrip top destinations...</h3>
                     <div className="category-index-experiences-1">
-                        <div className="category-index-experiences-1-sub">
-                            <img src="https://hiptrip-aa-seed.s3.amazonaws.com/cabin.jpg"/>
-                            <div className="category-index-experiences-1-sub-text">
-                                <h3>Unique Tiny Cabins</h3>
-                                <h5>Small and Stylish</h5>
+                        <Link className="category-index-experiences-discover-1-sub-link" to={{ pathname: "/discover", search_terms: { search_term: 'Austin', type: [] } }}>
+                            <div className="category-index-experiences-1-sub">
+                                <img src="https://hiptrip-aa-seed.s3.amazonaws.com/cabin.jpg"/>
+                                <div className="category-index-experiences-1-sub-text">
+                                    <h3 className="top-three-h3">Austin</h3>
+                                    <h5>Live music, bats and barbecue</h5>
+                                </div>
                             </div>
-                        </div>
+                        </Link>
+
+                        <Link className="category-index-experiences-discover-1-sub-link" to={{ pathname: "/discover", search_terms: { search_term: 'california', type: [] } }}>
                         <div className="category-index-experiences-1-sub">
                             <img src="https://hiptrip-aa-seed.s3.amazonaws.com/goat_yoga.jpg"/>
                             <div className="category-index-experiences-1-sub-text">
-                                <h3>Animal Experiences</h3>
-                                <h5>Goats, alpacas, llamas & more</h5>
+                                <h3 className="top-three-h3">California</h3>
+                                <h5>Enjoy the sun and the waves</h5>
                             </div>
                         </div>
+                        </Link>
+
+                        <Link className="category-index-experiences-discover-1-sub-link" to={{ pathname: "/discover", search_terms: { search_term: 'Georgia', type: [] } }}>
                         <div className="category-index-experiences-1-sub">
                             <img src="https://hiptrip-aa-seed.s3.amazonaws.com/glamping.jpg"/>
                             <div className="category-index-experiences-1-sub-text">
-                                <h3>Stunning Sunshine State</h3>
-                                <h5>Colorful camping & glamping</h5>
+                                <h3 className="top-three-h3">Georgia</h3>
+                                <h5>Experience southern hospitality</h5>
                             </div>
                         </div>
+                        </Link>
                     </div>
                 </div>
 
@@ -72,7 +79,7 @@ class CategoryIndex extends React.Component{
                                 </div>
 
                                 <div className="category-index-experiences-discover-1-sub-text">
-                                    <h3>Tent camping</h3>
+                                    <h3 className="bottom-five-h3">Tent camping</h3>
                                     <h5>Best tent camping near me</h5>
                                 </div>
 
@@ -87,7 +94,7 @@ class CategoryIndex extends React.Component{
                                 </div>
 
                                 <div className="category-index-experiences-discover-1-sub-text">
-                                    <h3>Glamping</h3>
+                                    <h3 className="bottom-five-h3">Glamping</h3>
                                     <h5>Best glamping spots near me</h5>
                                 </div>
 
@@ -102,7 +109,7 @@ class CategoryIndex extends React.Component{
                                 </div>
 
                                 <div className="category-index-experiences-discover-1-sub-text">
-                                    <h3>RV park</h3>
+                                    <h3 className="bottom-five-h3">RV park</h3>
                                     <h5>Best RV parks near me</h5>
                                 </div>
 
@@ -117,7 +124,7 @@ class CategoryIndex extends React.Component{
                                 </div>
 
                                 <div className="category-index-experiences-discover-1-sub-text">
-                                    <h3>Beach camping</h3>
+                                    <h3 className="bottom-five-h3">Beach camping</h3>
                                     <h5>Best beach camping near me</h5>
                                 </div>
 
@@ -132,7 +139,7 @@ class CategoryIndex extends React.Component{
                             </div>
 
                             <div className="category-index-experiences-discover-1-sub-text">
-                                <h3>Lake camping</h3>
+                                    <h3 className="bottom-five-h3">Lake camping</h3>
                                 <h5>Best lake camping near me</h5>
                             </div>
 
