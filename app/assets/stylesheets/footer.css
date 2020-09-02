@@ -61,7 +61,10 @@
 
 .footer-content-body-1{
     width: 50%;
-    display: flex;
+}
+
+.footer-content-body-1 p{
+    margin-right: 70px;
 }
 
 .footer-content-body-2{

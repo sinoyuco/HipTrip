@@ -16,23 +16,8 @@ class Footer extends React.Component{
 
                     <div className="footer-content-body">
                         <div className="footer-content-body-1">
-                            <div className="footer-content-body-about">
-                                <h3>About us</h3>
-                                <li>Careers</li>
-                                <li>Journal</li>
-                                <li>Gift Cards</li>
-                                <li>Contact</li>
-                                <li>Camper FAQ</li>
-                            </div>
-
-                            <div className="footer-content-body-hosting">
-                                <h3>Hosting</h3>
-                                <li>Becoming a Host</li>
-                                <li>Is my land a fit?</li>
-                                <li>Insurance</li>
-                                <li>Standards</li>
-                                <li>Hosting FAQ</li>
-                            </div>
+                           <h3>HipTrip cares for your wallet.</h3>
+                           <p>All trips booked with HipTrip are fully refundable up until the day of the trip's start. Just check your Bookings and remove as necessary.</p>
                         </div>
                         <div className="footer-content-body-2">
                             <h3>HipTrip is everywhere you want to camp.</h3>
