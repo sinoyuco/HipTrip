@@ -131,7 +131,7 @@ class CategoryIndex extends React.Component{
                             </div>
                         </Link>
 
-                        <Link className="category-index-experiences-discover-1-sub-link" to={{ pathname: "/discover", search_terms: { search_term: '', type: ['Lake Camping'] } }}>
+                        {/* <Link className="category-index-experiences-discover-1-sub-link" to={{ pathname: "/discover", search_terms: { search_term: '', type: ['Lake Camping'] } }}>
                         <div className="category-index-experiences-discover-1-sub">
 
                             <div className="category-index-experiences-discover-1-sub-pic">
@@ -144,7 +144,7 @@ class CategoryIndex extends React.Component{
                             </div>
 
                         </div>
-                        </Link>
+                        </Link> */}
 
                     </div>
 

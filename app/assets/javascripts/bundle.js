@@ -2157,26 +2157,7 @@ var CategoryIndex = /*#__PURE__*/function (_React$Component) {
         className: "category-index-experiences-discover-1-sub-text"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "bottom-five-h3"
-      }, "Beach camping"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Best beach camping near me")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        className: "category-index-experiences-discover-1-sub-link",
-        to: {
-          pathname: "/discover",
-          search_terms: {
-            search_term: '',
-            type: ['Lake Camping']
-          }
-        }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "category-index-experiences-discover-1-sub"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "category-index-experiences-discover-1-sub-pic"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://hiptrip-aa-seed.s3.amazonaws.com/cats/lake_camping.jpg"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "category-index-experiences-discover-1-sub-text"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
-        className: "bottom-five-h3"
-      }, "Lake camping"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Best lake camping near me")))))));
+      }, "Beach camping"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Best beach camping near me")))))));
     }
   }]);
 
