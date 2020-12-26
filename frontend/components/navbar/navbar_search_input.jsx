@@ -28,7 +28,7 @@ class NavbarSearchInput extends React.Component{
             <div className="navbar-search-input-div">
                 <i className="fa fa-search" aria-hidden="true"></i>
                 <form onSubmit={this.handleSubmit}>
-                    <input onChange={this.handleChange()} className="navbar-search-input" type="text" placeholder="Type destination..."/>
+                    <input onChange={this.handleChange()} className="navbar-search-input" type="text" placeholder="Type destination... (eg. Austin)"/>
                 </form>
             </div>
         );
