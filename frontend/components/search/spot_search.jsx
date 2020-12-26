@@ -18,7 +18,6 @@ class SpotSearch extends React.Component{
     }
 
     componentDidMount(){
-        debugger;
         this.props.updateBounds('search_term', this.state.search_term).then(() => this.props.updateBounds('type', this.state.type));
         
 

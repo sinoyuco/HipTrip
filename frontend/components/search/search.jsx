@@ -93,7 +93,7 @@ class Search extends React.Component{
                             <div className="search-bar-input-icon">
                                 <i className="fa fa-search" aria-hidden="true"></i> 
                             </div>
-                            <input onChange={this.updateSearchTerm()} className="search-bar-input" type="text" placeholder="Type destination..."/>
+                            <input onChange={this.updateSearchTerm()} className="search-bar-input" type="text" placeholder="Type destination... (eg. Austin)"/>
                         </div>
 
                         <button onClick={(e)=>{e.preventDefault();}} className="search-bar-date">
