@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import LoginFormContainer from './login_form_container';
 import SignupFormContainer from './signup_form_container';
 import EditFormContainer from './edit_form_container';
+import WalkThrough from '../footer/walkthrough';
 import { render } from 'react-dom';
 
 class Modal extends React.Component{
@@ -29,6 +30,9 @@ class Modal extends React.Component{
                 break;
             case 'signup':
                 component = <SignupFormContainer/>
+                break;
+            case 'walkthrough':
+                component = <WalkThrough/>
                 break;
             default:
                 return null;

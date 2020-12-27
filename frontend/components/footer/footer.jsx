@@ -1,12 +1,23 @@
 import React from 'react';
+import {openModal} from '../../actions/modal_actions';
+import { connect } from 'react-redux';
 
 class Footer extends React.Component{
 
+    constructor(props){
+        super(props)
+        this.handleWalkthrough = this.handleWalkthrough.bind(this);
+    }
 
 
+    handleWalkthrough(e){
+        e.preventDefault();
+        this.props.openModal('walkthrough');
+    }
 
 
     render(){
+        debugger;
         return(
         <div className="main-footer">
             <div className="footer-content">
@@ -29,12 +40,12 @@ class Footer extends React.Component{
             <div className="footer-banner">
                     <div className="footer-banner-inner">
                         <p>HipTrip is created with &lt;3 and hope for our future</p>
-                        {/* <div className="help-button">
+                        <div className="help-button" onClick={this.handleWalkthrough}>
                             <div className="help-button-question-mark">
-                                <i className="fa fa-question" aria-hidden="true"></i>
+                                <i class="far fa-question-circle"></i>
+                                <h3>Help</h3>
                             </div>
-                            <h3>Help</h3>
-                        </div> */}
+                        </div>
                     </div>
             </div>
         </div>
@@ -42,4 +53,10 @@ class Footer extends React.Component{
     }
 }
 
-export default Footer;
+
+const mDTP = dispatch => ({
+    openModal: (type) => dispatch(openModal(type))
+});
+
+export default connect(null, mDTP)(Footer);
+
