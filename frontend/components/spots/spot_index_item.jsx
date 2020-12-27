@@ -29,13 +29,15 @@ class SpotIndexItem extends React.Component{
                     <img className="index-spot-image" src={this.props.spot.image_url} />
                 </div>
                 <div className="spot-item-content">
-                    <div className="spot-item-content-title">
-                        <h3>{this.props.spot.name}</h3>
-                        <div className="spot-index-tick">
-                            <span>&#10003;</span>
-                            <div className="spot-index-tick-arrow"></div>
-                            <div className="spot-index-tick-message">
-                                <p>The listing's accuracy has been verified by a <strong>HipTrip Associate.</strong>. You can plan your visit without doubts.</p>
+                    <div className="spot-item-content-titlecontainer">
+                        <div className="spot-item-content-title">
+                            <h3>{this.props.spot.name}</h3>
+                            <div className="spot-index-tick">
+                                <span>&#10003;</span>
+                                <div className="spot-index-tick-arrow"></div>
+                                <div className="spot-index-tick-message">
+                                    <p>The listing's accuracy has been verified by a <strong>HipTrip Associate.</strong>. You can plan your visit without doubts.</p>
+                                </div>
                             </div>
                         </div>
                         <div className="spot-icon">

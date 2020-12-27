@@ -38,6 +38,10 @@
   font-family: "Calibre", Helvetica, Arial, sans-serif;
 }
 
+.spot-item-content-titlecontainer{
+  display: flex;
+  justify-content: space-between;
+}
 
 .spot-item-content-title{
   display: flex;
