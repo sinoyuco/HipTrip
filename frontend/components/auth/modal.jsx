@@ -33,6 +33,7 @@ class Modal extends React.Component{
                 break;
             case 'walkthrough':
                 component = <WalkThrough/>
+                modal_classname = "modal-child-walkthrough";
                 break;
             default:
                 return null;

@@ -116,18 +116,50 @@ Booking.create!(user_id: user1.id, spot_id: a10.id, start_date: date3, end_date:
 Booking.create!(user_id: user3.id, spot_id: a1.id, start_date: date1, end_date: date2, num_guests: 2, total_price: 200)
 Booking.create!(user_id: user3.id, spot_id: a2.id, start_date: date3, end_date: date4, num_guests: 1, total_price: 150)
 
-date5 = DateTime.new(2019, 3, 5);
-date6 = DateTime.new(2019, 3, 9);
-date7 = DateTime.new(2020, 2, 2);
-date8 = DateTime.new(2019, 2, 9);
+date1s = DateTime.new(2019, 3, 5);
+date1e = DateTime.new(2019, 3, 9);
 
-Booking.create!(user_id: demo.id, spot_id: a7.id, start_date: date5, end_date: date6, num_guests: 2, total_price: 200)
-Booking.create!(user_id: demo.id, spot_id: a2.id, start_date: date7, end_date: date8, num_guests: 1, total_price: 150)
+date2s = DateTime.new(2020, 2, 2);
+date2e = DateTime.new(2029, 2, 9);
+
+date3s = DateTime.new(2019, 5, 1);
+date3e = DateTime.new(2019, 5, 2);
+
+date4s = DateTime.new(2019, 1, 10);
+date4e = DateTime.new(2019, 1, 14);
+
+date5s = DateTime.new(2020, 4, 10);
+date5e = DateTime.new(2020, 4, 12);
+
+date6s = DateTime.new(2020, 5, 2);
+date6e = DateTime.new(2020, 5, 3);
+
+date7s = DateTime.new(2020, 2, 20);
+date7e = DateTime.new(2020, 2, 23);
+
+date8s = DateTime.new(2020, 7, 2);
+date8e = DateTime.new(2020, 7, 5);
+
+date9s = DateTime.new(2020, 9, 9);
+date9e = DateTime.new(2020, 9, 11);
+
+date10s = DateTime.new(2020, 10, 10);
+date10e = DateTime.new(2020, 10, 12);
+
+Booking.create!(user_id: demo.id, spot_id: a1.id, start_date: date1s, end_date: date1e, num_guests: 2, total_price: 200)
+Booking.create!(user_id: demo.id, spot_id: a2.id, start_date: date2s, end_date: date2e, num_guests: 1, total_price: 80)
+Booking.create!(user_id: demo.id, spot_id: a3.id, start_date: date3s, end_date: date3e, num_guests: 1, total_price: 80)
+Booking.create!(user_id: demo.id, spot_id: a4.id, start_date: date4s, end_date: date4e, num_guests: 1, total_price: 20)
+Booking.create!(user_id: demo.id, spot_id: a5.id, start_date: date5s, end_date: date5e, num_guests: 1, total_price: 60)
+Booking.create!(user_id: demo.id, spot_id: a6.id, start_date: date6s, end_date: date6e, num_guests: 1, total_price: 180)
+Booking.create!(user_id: demo.id, spot_id: a7.id, start_date: date7s, end_date: date7e, num_guests: 1, total_price: 100)
+Booking.create!(user_id: demo.id, spot_id: a8.id, start_date: date8s, end_date: date8e, num_guests: 1, total_price: 150)
+Booking.create!(user_id: demo.id, spot_id: a9.id, start_date: date9s, end_date: date9e, num_guests: 1, total_price: 200)
+Booking.create!(user_id: demo.id, spot_id: a10.id, start_date: date10s, end_date: date10e, num_guests: 1, total_price: 500)
 
 Review.create!(title: 'Exquisite Place', body: 'The host went out of his way to help us during our stay, and the campground was charming.', rating: 5, spot_id: a1.id, user_id: user3.id)
 Review.create!(title: 'Worst Vacation Ever', body: 'Your place is even worse than your ball game, and I didn\'t even know that was possible.', rating: 2, spot_id: a1.id, user_id: user2.id)
 
-Review.create!(title: 'Worst Vacation Ever', body: 'Too much sand for my liking, it was OK overall.', rating: 3, spot_id: a3.id, user_id: demo.id)
 
 Review.create!(title: 'Exquisite Place', body: 'There was bugs everywhere in this campground. Worst experience I ever had. I am still on the phone with the owner to get my money back.', rating: 1, spot_id: a4.id, user_id: user1.id)
 
