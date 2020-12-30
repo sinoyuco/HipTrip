@@ -19,6 +19,7 @@ class WalkThrough extends React.Component{
         let defaultGreeting = <div className="walkthrough-body-default">
             <h3>Welcome to HipTrip!!</h3>
             <h4>Click to the navigational headers above to learn more about our functionality.</h4>
+            <img className="green-logo-walkthrough" src="https://hiptrip-aa-seed.s3.amazonaws.com/logo/green_icon.png" />
         </div>;
 
         let content = {

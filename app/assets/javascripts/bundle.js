@@ -2394,7 +2394,10 @@ var WalkThrough = /*#__PURE__*/function (_React$Component) {
 
       var defaultGreeting = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "walkthrough-body-default"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Welcome to HipTrip!!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Click to the navigational headers above to learn more about our functionality."));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Welcome to HipTrip!!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Click to the navigational headers above to learn more about our functionality."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "green-logo-walkthrough",
+        src: "https://hiptrip-aa-seed.s3.amazonaws.com/logo/green_icon.png"
+      }));
       var content = {
         'Landing': /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_walkthrough_content_landing_walkthrough__WEBPACK_IMPORTED_MODULE_1__["default"], null),
         'Search': /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_walkthrough_content_search_walkthrough__WEBPACK_IMPORTED_MODULE_3__["default"], null),
