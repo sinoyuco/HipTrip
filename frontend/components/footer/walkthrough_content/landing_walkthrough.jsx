@@ -1,11 +1,12 @@
 import React from 'react';
+import {Spring} from 'react-spring/renderprops';
 
-class LandingWalkThrough extends React.Component {
 
-    render() {
-        
-        return(
-            <div className="walkthrough-body-main">
+const LandingWalkThrough = () => {
+    return(
+        <Spring from={{opacity: 0, marginTop: -50}} to={{opacity: 1, marginTop: 0}} config={{ duration: 500}}>
+            {props => (
+            <div style={props} className="walkthrough-body-main">
                 <h4>The journey begins!</h4>
 
                 <p>We have created an account for you to ease the journey! Hit the 'Log In' option on the top right, and select 'Demo Login'.</p>
@@ -14,8 +15,11 @@ class LandingWalkThrough extends React.Component {
 
                 <p>Below the search bar, there are featured locations and types of camping being shown. Hit these featured places to learn more!</p>
             </div>
-        );
-    }
+            )}
+        </Spring>
+    );
+            
+    
 }
 
 export default LandingWalkThrough;

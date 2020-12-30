@@ -3,6 +3,7 @@ import LandingWalkThrough from './walkthrough_content/landing_walkthrough';
 import SpotWalkThrough from './walkthrough_content/spot_walkthrough';
 import SearchWalkThrough from './walkthrough_content/search_walkthrough';
 import BookingsWalkThrough from './walkthrough_content/bookings_walkthrough';
+import { useTransition, animated } from 'react-spring';
 
 
 class WalkThrough extends React.Component{
