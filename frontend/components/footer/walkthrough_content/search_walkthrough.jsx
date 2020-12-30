@@ -4,7 +4,7 @@ import { Spring } from 'react-spring/renderprops';
 
 const SearchWalkThrough = () => {
     return (
-        <Spring from={{ opacity: 0, marginTop: -50 }} to={{ opacity: 1, marginTop: 0 }} config={{duration: 500}}>
+        <Spring from={{ opacity: 0, marginTop: -50 }} to={{ opacity: 1, marginTop: 0 }} config={{duration: 400}}>
             {props => (
                 <div style={props} className="walkthrough-body-main">
                     <h4>Here are your search results!</h4>

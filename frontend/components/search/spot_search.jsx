@@ -4,6 +4,7 @@ import SpotIndexItem from '../spots/spot_index_item';
 import SpotMap from '../map/spot_map';
 //import SearchMap from './search_map.js'
 // import SpotIndexContainer from '../spots/spot_index'
+import {Spring} from 'react-spring/renderprops';
 
 
 class SpotSearch extends React.Component{
@@ -111,21 +112,35 @@ class SpotSearch extends React.Component{
 
 
         return(
-            <div className="spot-search">
-                <div className="spot-filters">
-                    {search_filter_button}
-                    <div className="spot-filters-right">{spot_filter_buttons}</div>
-                </div>
-                <div className="spot-search-main">
-                    <div className="spot-index">
-                        {no_spots_message}
-                        {spots}
+            
+                <div className="spot-search">
+                    <Spring from={{opacity: 0}} to={{opacity: 1}} config={{delay: 1000, duration: 500}}>
+                        {props => (
+                        <div style={props} className="spot-filters">
+                            {search_filter_button}
+                            <div className="spot-filters-right">{spot_filter_buttons}</div>
+                        </div>
+                        )}
+                    </Spring>
+                    <div className="spot-search-main">
+                        <Spring from={{ opacity: 0, marginLeft: -100 }} to={{ opacity: 1, marginLeft: 0 }} config={{delay: 2000, duration: 500}}>
+                            {props => (
+                            <div style={props} className="spot-index">
+                                {no_spots_message}
+                                {spots}
+                            </div>
+                            )}
+                        </Spring>
+                        <Spring from={{ opacity: 0, marginRight: -100 }} to={{ opacity: 1, marginRight: 0 }} config={{ delay: 2000, duration: 500 }}>
+                            {props => (
+                            <div style={props} className="search-map">
+                                <SpotMap updateBounds={this.props.updateBounds} spots={spots} scroll={scrollClass}/>
+                            </div>
+                            )}
+                        </Spring>
                     </div>
-                    <div className="search-map">
-                        <SpotMap updateBounds={this.props.updateBounds} spots={spots} scroll={scrollClass}/>
-                    </div>
                 </div>
-            </div>
+            
         );
     }
 

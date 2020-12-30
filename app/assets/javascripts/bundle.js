@@ -2483,7 +2483,7 @@ var BookingsWalkThrough = function BookingsWalkThrough() {
       marginTop: 0
     },
     config: {
-      duration: 500
+      duration: 400
     }
   }, function (props) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2524,7 +2524,7 @@ var LandingWalkThrough = function LandingWalkThrough() {
       marginTop: 0
     },
     config: {
-      duration: 500
+      duration: 400
     }
   }, function (props) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2565,7 +2565,7 @@ var SearchWalkThrough = function SearchWalkThrough() {
       marginTop: 0
     },
     config: {
-      duration: 500
+      duration: 400
     }
   }, function (props) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2606,7 +2606,7 @@ var SpotWalkThrough = function SpotWalkThrough() {
       marginTop: 0
     },
     config: {
-      duration: 500
+      duration: 400
     }
   }, function (props) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -4106,6 +4106,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _spots_spot_index_item__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../spots/spot_index_item */ "./frontend/components/spots/spot_index_item.jsx");
 /* harmony import */ var _map_spot_map__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../map/spot_map */ "./frontend/components/map/spot_map.jsx");
+/* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-spring/renderprops */ "./node_modules/react-spring/renderprops.js");
+/* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_4__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -4133,6 +4135,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
  //import SearchMap from './search_map.js'
 // import SpotIndexContainer from '../spots/spot_index'
+
+
 
 var SpotSearch = /*#__PURE__*/function (_React$Component) {
   _inherits(SpotSearch, _React$Component);
@@ -4218,6 +4222,8 @@ var SpotSearch = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this3 = this;
+
       var spots = this.props.spots.map(function (spot) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_spots_spot_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
           key: spot.id,
@@ -4332,21 +4338,67 @@ var SpotSearch = /*#__PURE__*/function (_React$Component) {
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "spot-search"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "spot-filters"
-      }, search_filter_button, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "spot-filters-right"
-      }, spot_filter_buttons)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_4__["Spring"], {
+        from: {
+          opacity: 0
+        },
+        to: {
+          opacity: 1
+        },
+        config: {
+          delay: 1000,
+          duration: 500
+        }
+      }, function (props) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: props,
+          className: "spot-filters"
+        }, search_filter_button, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "spot-filters-right"
+        }, spot_filter_buttons));
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "spot-search-main"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "spot-index"
-      }, no_spots_message, spots), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "search-map"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_map_spot_map__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        updateBounds: this.props.updateBounds,
-        spots: spots,
-        scroll: scrollClass
-      }))));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_4__["Spring"], {
+        from: {
+          opacity: 0,
+          marginLeft: -100
+        },
+        to: {
+          opacity: 1,
+          marginLeft: 0
+        },
+        config: {
+          delay: 2000,
+          duration: 500
+        }
+      }, function (props) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: props,
+          className: "spot-index"
+        }, no_spots_message, spots);
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_4__["Spring"], {
+        from: {
+          opacity: 0,
+          marginRight: -100
+        },
+        to: {
+          opacity: 1,
+          marginRight: 0
+        },
+        config: {
+          delay: 2000,
+          duration: 500
+        }
+      }, function (props) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: props,
+          className: "search-map"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_map_spot_map__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          updateBounds: _this3.props.updateBounds,
+          spots: spots,
+          scroll: scrollClass
+        }));
+      })));
     }
   }]);
 
