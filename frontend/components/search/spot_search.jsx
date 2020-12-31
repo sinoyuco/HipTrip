@@ -112,7 +112,6 @@ class SpotSearch extends React.Component{
 
 
         return(
-            
                 <div className="spot-search">
                     <Spring from={{opacity: 0}} to={{opacity: 1}} config={{delay: 1000, duration: 500}}>
                         {props => (
