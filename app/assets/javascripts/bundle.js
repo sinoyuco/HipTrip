@@ -4920,6 +4920,32 @@ var mDTP = function mDTP(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/tables/amenities_map.js":
+/*!*****************************************************!*\
+  !*** ./frontend/components/tables/amenities_map.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  "Potable Water": "https://hiptrip-aa-seed.s3.amazonaws.com/amenities/sink-pngrepo-com.png",
+  "Kitchen": "https://hiptrip-aa-seed.s3.amazonaws.com/amenities/cutlery-pngrepo-com.png",
+  "Wifi": "https://hiptrip-aa-seed.s3.amazonaws.com/amenities/wifi-pngrepo-com.png",
+  "Showers": "https://hiptrip-aa-seed.s3.amazonaws.com/amenities/shower-pngrepo-com.png",
+  "Bins": "https://hiptrip-aa-seed.s3.amazonaws.com/amenities/trash-pngrepo-com.png",
+  "Picnic Table": "https://hiptrip-aa-seed.s3.amazonaws.com/amenities/picnic-desk-pngrepo-com.png",
+  "Campfires": "https://hiptrip-aa-seed.s3.amazonaws.com/amenities/campfire-pngrepo-com.png",
+  "Toilet": "https://hiptrip-aa-seed.s3.amazonaws.com/amenities/restroom-bathroom-pngrepo-com.png",
+  "Pets": "https://hiptrip-aa-seed.s3.amazonaws.com/amenities/dog-pngrepo-com.png",
+  "Tents": "https://hiptrip-aa-seed.s3.amazonaws.com/amenities/tent-pngrepo-com.png",
+  "Parking": "https://hiptrip-aa-seed.s3.amazonaws.com/amenities/parking-pngrepo-com.png",
+  "ADA Access": "https://hiptrip-aa-seed.s3.amazonaws.com/amenities/wheelchair-pngrepo-com.png"
+});
+
+/***/ }),
+
 /***/ "./frontend/components/tables/amenities_table.jsx":
 /*!********************************************************!*\
   !*** ./frontend/components/tables/amenities_table.jsx ***!
@@ -4931,6 +4957,7 @@ var mDTP = function mDTP(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _amenities_map__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./amenities_map */ "./frontend/components/tables/amenities_map.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -4955,6 +4982,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var AmenitiesTable = /*#__PURE__*/function (_React$Component) {
   _inherits(AmenitiesTable, _React$Component);
 
@@ -4969,10 +4997,15 @@ var AmenitiesTable = /*#__PURE__*/function (_React$Component) {
   _createClass(AmenitiesTable, [{
     key: "render",
     value: function render() {
+      // debugger;
       var amenities = this.props.elements.map(function (el, idx) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          className: "amenities-item",
           key: idx
-        }, el, " available");
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          className: "amenities-pics",
+          src: _amenities_map__WEBPACK_IMPORTED_MODULE_1__["default"][el]
+        }), el, " available");
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "amenities"
@@ -4998,6 +5031,7 @@ var AmenitiesTable = /*#__PURE__*/function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _amenities_map__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./amenities_map */ "./frontend/components/tables/amenities_map.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -5022,6 +5056,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var CampSiteTable = /*#__PURE__*/function (_React$Component) {
   _inherits(CampSiteTable, _React$Component);
 
@@ -5039,8 +5074,13 @@ var CampSiteTable = /*#__PURE__*/function (_React$Component) {
       var campsites = this.props.elements.map(function (el, idx) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: idx
-        }, el, " available");
-      });
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          className: "amenities-pics",
+          src: _amenities_map__WEBPACK_IMPORTED_MODULE_1__["default"][el]
+        }), el, " available");
+      }); //     const shower = <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+      //  viewBox="0 0 330 330" style="enable-background:new 0 0 330 330;" xml:space="preserve"></svg>;
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "campsite"
       }, campsites);
@@ -5065,6 +5105,7 @@ var CampSiteTable = /*#__PURE__*/function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _amenities_map__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./amenities_map */ "./frontend/components/tables/amenities_map.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -5089,6 +5130,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var EssentialsTable = /*#__PURE__*/function (_React$Component) {
   _inherits(EssentialsTable, _React$Component);
 
@@ -5106,7 +5148,10 @@ var EssentialsTable = /*#__PURE__*/function (_React$Component) {
       var essentials = this.props.elements.map(function (el, idx) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: idx
-        }, el);
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          className: "amenities-pics",
+          src: _amenities_map__WEBPACK_IMPORTED_MODULE_1__["default"][el]
+        }), el);
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "essentials"
