@@ -143,17 +143,17 @@ class SpotShow extends React.Component{
                     
                     <div className = "spot-show-tables">
                         <div className="spot-show-tables-campsite">
-                            <h2>Campsite</h2>
+                                <h2 className="spot-show-tables-title">Campsite</h2>
                             <CampSiteTable elements={this.props.spot.campsites.map(el => el.campsite_property_type)}/>
                         </div>
 
                         <div className="spot-show-tables-essentials">
-                            <h2>Essentials</h2>
+                                <h2 className="spot-show-tables-title">Essentials</h2>
                             <EssentialsTable elements={this.props.spot.essentials.map(el => el.essential_type)} />
                         </div>
 
                         <div className="spot-show-tables-amenities">
-                            <h2>Amenities</h2>
+                                <h2 className="spot-show-tables-title">Amenities</h2>
                             <AmenitiesTable elements={this.props.spot.amenities.map(el => el.amenity_type)} />
                         </div>
 

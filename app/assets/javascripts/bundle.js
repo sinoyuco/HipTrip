@@ -4827,19 +4827,25 @@ var SpotShow = /*#__PURE__*/function (_React$Component) {
         className: "spot-show-tables"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "spot-show-tables-campsite"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Campsite"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_tables_campsite_table__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+        className: "spot-show-tables-title"
+      }, "Campsite"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_tables_campsite_table__WEBPACK_IMPORTED_MODULE_4__["default"], {
         elements: this.props.spot.campsites.map(function (el) {
           return el.campsite_property_type;
         })
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "spot-show-tables-essentials"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Essentials"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_tables_essentials_table__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+        className: "spot-show-tables-title"
+      }, "Essentials"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_tables_essentials_table__WEBPACK_IMPORTED_MODULE_2__["default"], {
         elements: this.props.spot.essentials.map(function (el) {
           return el.essential_type;
         })
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "spot-show-tables-amenities"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Amenities"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_tables_amenities_table__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+        className: "spot-show-tables-title"
+      }, "Amenities"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_tables_amenities_table__WEBPACK_IMPORTED_MODULE_3__["default"], {
         elements: this.props.spot.amenities.map(function (el) {
           return el.amenity_type;
         })
@@ -5000,12 +5006,14 @@ var AmenitiesTable = /*#__PURE__*/function (_React$Component) {
       // debugger;
       var amenities = this.props.elements.map(function (el, idx) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          className: "amenities-item",
+          className: "amenities-list",
           key: idx
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           className: "amenities-pics",
           src: _amenities_map__WEBPACK_IMPORTED_MODULE_1__["default"][el]
-        }), el, " available");
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+          className: "amenities-text"
+        }, el));
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "amenities"
@@ -5073,14 +5081,15 @@ var CampSiteTable = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var campsites = this.props.elements.map(function (el, idx) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          className: "amenities-list",
           key: idx
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           className: "amenities-pics",
           src: _amenities_map__WEBPACK_IMPORTED_MODULE_1__["default"][el]
-        }), el, " available");
-      }); //     const shower = <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-      //  viewBox="0 0 330 330" style="enable-background:new 0 0 330 330;" xml:space="preserve"></svg>;
-
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+          className: "amenities-text"
+        }, el));
+      });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "campsite"
       }, campsites);
@@ -5147,11 +5156,14 @@ var EssentialsTable = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var essentials = this.props.elements.map(function (el, idx) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          className: "amenities-list",
           key: idx
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           className: "amenities-pics",
           src: _amenities_map__WEBPACK_IMPORTED_MODULE_1__["default"][el]
-        }), el);
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+          className: "amenities-text"
+        }, el));
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "essentials"

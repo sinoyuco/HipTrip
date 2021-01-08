@@ -6,7 +6,7 @@
    font-family: "Calibre", Helvetica, Arial, sans-serif;
 }
 
-.spot-show-tables h2{
+.spot-show-tables-title{
     margin-left: 10px;
     padding: 0 10px;
     margin-bottom: 0;
@@ -271,4 +271,17 @@
 
 .amenities-item{
     /* text-align: center; */
+}
+
+.amenities-text{
+    font-weight: 400;
+    font-size: 18px;
+    font-family: "Calibre", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    margin-top: 0;
+    margin-left: 5px;
+}
+
+.amenities-list{
+    display: flex;
 }

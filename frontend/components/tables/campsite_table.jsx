@@ -7,13 +7,14 @@ class CampSiteTable extends React.Component {
     }
 
     render() {
-        const campsites = this.props.elements.map((el, idx) => <li key={idx}><img className="amenities-pics" src={maps[el]} />{el} available</li>)
-    //     const shower = <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	//  viewBox="0 0 330 330" style="enable-background:new 0 0 330 330;" xml:space="preserve"></svg>;
+        const campsites = this.props.elements.map((el, idx) => <li className="amenities-list" key={idx}>
+            <img className="amenities-pics" src={maps[el]} />
+            <h2 className="amenities-text">{el}</h2>
+            </li>)
+    
         return (
             <div className="campsite">
                 {campsites}
-                {/* <img src={shower}/> */}
             </div>
         );
     }

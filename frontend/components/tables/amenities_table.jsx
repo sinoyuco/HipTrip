@@ -8,7 +8,10 @@ class AmenitiesTable extends React.Component{
 
     render(){
         // debugger;
-        const amenities = this.props.elements.map((el,idx) => <li className="amenities-item" key={idx}><img className="amenities-pics" src={maps[el]}/>{el} available</li>)
+        const amenities = this.props.elements.map((el,idx) => <li className="amenities-list" key={idx}>
+            <img className="amenities-pics" src={maps[el]}/>
+            <h2 className="amenities-text">{el}</h2>
+            </li>)
         return(
             <div className="amenities">
                 {amenities}

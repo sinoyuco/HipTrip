@@ -7,7 +7,10 @@ class EssentialsTable extends React.Component {
     }
 
     render() {
-        const essentials = this.props.elements.map((el, idx) => <li key={idx}><img className="amenities-pics" src={maps[el]} />{el}</li>)
+        const essentials = this.props.elements.map((el, idx) => <li className="amenities-list" key={idx}>
+            <img className="amenities-pics" src={maps[el]} /> 
+            <h2 className="amenities-text">{el}</h2>
+            </li>)
         return (
             <div className="essentials">
                 {essentials}
