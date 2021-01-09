@@ -4699,6 +4699,11 @@ var SpotShow = /*#__PURE__*/function (_React$Component) {
       var spotId = parseInt(this.props.match.params.spotId);
       this.props.fetchSpot(spotId);
       this.props.fetchAllReview(spotId);
+
+      if (!this.props.user) {
+        this.props.forceLogin();
+      }
+
       document.addEventListener('scroll', function () {
         var belowPictures = window.scrollY < 550;
 
@@ -4898,6 +4903,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_spot_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/spot_actions */ "./frontend/actions/spot_actions.js");
 /* harmony import */ var _actions_booking_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/booking_actions */ "./frontend/actions/booking_actions.js");
 /* harmony import */ var _actions_review_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/review_actions */ "./frontend/actions/review_actions.js");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
+
 
 
 
@@ -4926,6 +4933,12 @@ var mDTP = function mDTP(dispatch) {
     },
     deleteReview: function deleteReview(reviewId) {
       return dispatch(Object(_actions_review_actions__WEBPACK_IMPORTED_MODULE_4__["deleteReview"])(reviewId));
+    },
+    forceLogin: function forceLogin() {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_5__["login"])({
+        email: 'demouser@demoemail.com',
+        password: 'demopass123'
+      }));
     }
   };
 };

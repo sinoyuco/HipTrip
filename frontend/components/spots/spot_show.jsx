@@ -19,6 +19,10 @@ class SpotShow extends React.Component{
         this.props.fetchSpot(spotId);
         this.props.fetchAllReview(spotId);
 
+        if(!this.props.user){
+            this.props.forceLogin();
+        }
+
         document.addEventListener('scroll', () => {
             const belowPictures = window.scrollY < 550;
             if (belowPictures !== this.state.scrollFixedUp) {
@@ -75,7 +79,7 @@ class SpotShow extends React.Component{
         });
         spotRating = Math.floor((spotRating / Object.values(this.props.spot.reviews).length)*20)
 
-        
+
         return(
             <div className="spot-show-master">
             <div className="spot-show-images">
