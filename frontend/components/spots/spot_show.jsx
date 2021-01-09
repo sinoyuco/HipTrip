@@ -66,7 +66,16 @@ class SpotShow extends React.Component{
                 review_form = <ReviewFormContainer user={this.props.user} spot={this.props.spot} host={this.props.spot.host}/>
             }
         }
+        debugger;
 
+        // Calculate rating for spot
+        let spotRating = 0;
+        Object.values(this.props.spot.reviews).forEach(el => {
+            spotRating += el.rating
+        });
+        spotRating = Math.floor((spotRating / Object.values(this.props.spot.reviews).length)*20)
+
+        
         return(
             <div className="spot-show-master">
             <div className="spot-show-images">
@@ -102,7 +111,7 @@ class SpotShow extends React.Component{
                                     <div className="abovethumbs-div">
                                          <i className="abovethumbs fa fa-thumbs-up" aria-hidden="true"></i>
                                     </div>
-                                    <h3 className="spot-show-header-hundred-percent">100%</h3>
+                                    <h3 className="spot-show-header-hundred-percent">{spotRating}%</h3>
                                 <h3>Recommend</h3>
                             </div>
 

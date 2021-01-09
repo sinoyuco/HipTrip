@@ -58,7 +58,7 @@ class ReviewIndexItem extends React.Component{
                         <div className="review-show-header-2-star">
                             <i className="review-rating-star fas fa-star"></i>
                         </div>
-                        <h5 className="review-show-header-2-text"><strong>{this.props.review.rating}</strong></h5>
+                        <h5 className="review-show-header-2-text"><strong>{this.props.review.rating}</strong> / 5</h5>
                     </div>
 
                     <div className="review-show-header-3">

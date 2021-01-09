@@ -17,7 +17,6 @@ class Footer extends React.Component{
 
 
     render(){
-        debugger;
         return(
         <div className="main-footer">
             <div className="footer-content">

@@ -12,7 +12,6 @@ import BookingsIndexContainer from './bookings/bookings_index_container';
 
 class App extends React.Component{
     render(){
-        debugger;
         return(
             <div className="landing">
                 <Modal/>
