@@ -59,9 +59,9 @@ class Modal extends React.Component{
                        </div> 
                     </div>
     }
-
+    let modalClose = modal_classname === 'modal-child-loading' ? null : this.props.closeModal;
     return(
-        <div className="modal-background" onClick={this.props.closeModal}>
+        <div className="modal-background" onClick={modalClose}>
             <div className={modal_classname} onClick={e => e.stopPropagation()}>
                 {component}
             </div>

@@ -28,7 +28,7 @@ class SpotShow extends React.Component{
             setTimeout(() => {
                 that.props.closeModal();
                 that.props.forceLogin();
-            },3000);
+            },3500);
         }
 
         document.addEventListener('scroll', () => {
