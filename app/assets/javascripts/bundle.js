@@ -4801,6 +4801,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _map_spot_show_map__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../map/spot_show_map */ "./frontend/components/map/spot_show_map.jsx");
 /* harmony import */ var _reviews_review_index__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../reviews/review_index */ "./frontend/components/reviews/review_index.jsx");
 /* harmony import */ var _reviews_review_form_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../reviews/review_form_container */ "./frontend/components/reviews/review_form_container.js");
+/* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-spring/renderprops */ "./node_modules/react-spring/renderprops.js");
+/* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_9__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -4822,6 +4824,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -4905,12 +4908,27 @@ var SpotShow = /*#__PURE__*/function (_React$Component) {
       }
 
       var spot_photos = this.props.spot.photoUrls.map(function (photo_url, idx) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "spot-show-images-sub",
-          key: idx
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          src: photo_url
-        }));
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_9__["Spring"], {
+          from: {
+            opacity: 0,
+            marginTop: -50
+          },
+          to: {
+            opacity: 1,
+            marginTop: 0
+          },
+          config: {
+            duration: 1000
+          }
+        }, function (props) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "spot-show-images-sub",
+            style: props,
+            key: idx
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+            src: photo_url
+          }));
+        });
       });
       var scrollClass = this.state.scrollFixedUp ? 'spot-show-booking-div' : this.state.scrollFixedDown ? 'spot-show-booking-div-fixed-down' : 'spot-show-booking-div-absolute'; // const reviews_passed = this.props.spot.reviews ? Object.values(this.props.spot.reviews) : []
 

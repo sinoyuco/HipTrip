@@ -7,6 +7,7 @@ import BookingFormContainer from '../booking_form/booking_form_container';
 import SpotShowMap from '../map/spot_show_map';
 import ReviewIndex from '../reviews/review_index';
 import ReviewFormContainer from '../reviews/review_form_container';
+import { Spring } from 'react-spring/renderprops';
 
 class SpotShow extends React.Component{
     constructor(props){
@@ -58,9 +59,13 @@ class SpotShow extends React.Component{
         if(!this.props.spot){
             return null;
         }
-        const spot_photos = this.props.spot.photoUrls.map((photo_url,idx) => <div className="spot-show-images-sub" key={idx}>
+        const spot_photos = this.props.spot.photoUrls.map((photo_url, idx) => <Spring from={{ opacity: 0, marginTop: -50 }} to={{ opacity: 1, marginTop: 0 }} config={{ duration: 1000 }}>
+            {props => (
+            <div className="spot-show-images-sub" style={props} key={idx}>
             <img src={photo_url}></img>
-        </div>);
+            </div>
+            )}
+        </Spring>);
     
         const scrollClass = this.state.scrollFixedUp ? 'spot-show-booking-div' : (this.state.scrollFixedDown ? 'spot-show-booking-div-fixed-down' : 'spot-show-booking-div-absolute');
         // const reviews_passed = this.props.spot.reviews ? Object.values(this.props.spot.reviews) : []
