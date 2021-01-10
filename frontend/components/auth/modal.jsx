@@ -5,6 +5,7 @@ import LoginFormContainer from './login_form_container';
 import SignupFormContainer from './signup_form_container';
 import EditFormContainer from './edit_form_container';
 import WalkThrough from '../footer/walkthrough';
+import LoadingModal from './loading_modal';
 import { render } from 'react-dom';
 
 class Modal extends React.Component{
@@ -34,6 +35,10 @@ class Modal extends React.Component{
             case 'walkthrough':
                 component = <WalkThrough/>
                 modal_classname = "modal-child-walkthrough";
+                break;
+            case 'loading':
+                component = <LoadingModal />
+                modal_classname = "modal-child-loading";
                 break;
             default:
                 return null;

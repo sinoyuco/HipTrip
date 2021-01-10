@@ -4,6 +4,7 @@ import { fetchSpot } from '../../actions/spot_actions'
 import {createBooking} from '../../actions/booking_actions';
 import {fetchAllReview, deleteReview} from '../../actions/review_actions';
 import {login} from '../../actions/session_actions';
+import {openModal, closeModal} from '../../actions/modal_actions';
 
 const mSTP = (state, ownProps) => {
     return{
@@ -20,7 +21,9 @@ const mDTP = (dispatch) => ({
     createBooking: booking => dispatch(createBooking(booking)),
     fetchAllReview: review => dispatch(fetchAllReview(review)),
     deleteReview: reviewId => dispatch(deleteReview(reviewId)),
-    forceLogin: () => dispatch(login({ email: 'demouser@demoemail.com', password: 'demopass123' }))
+    forceLogin: () => dispatch(login({ email: 'demouser@demoemail.com', password: 'demopass123' })),
+    openModal: () => dispatch(openModal('loading')),
+    closeModal: () => dispatch(closeModal())
 });
 
 export default connect(mSTP, mDTP)(SpotShow);

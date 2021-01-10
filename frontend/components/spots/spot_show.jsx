@@ -20,7 +20,15 @@ class SpotShow extends React.Component{
         this.props.fetchAllReview(spotId);
 
         if(!this.props.user){
-            this.props.forceLogin();
+            let that = this;
+            setTimeout(() => {
+                that.props.openModal();
+            }, 500);
+
+            setTimeout(() => {
+                that.props.closeModal();
+                that.props.forceLogin();
+            },3000);
         }
 
         document.addEventListener('scroll', () => {
