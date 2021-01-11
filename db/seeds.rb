@@ -196,5 +196,4 @@ Review.create!(title: 'Not Bombastic At All', body: 'None of what was advertised
 Review.create!(title: 'Best Glamping Spot in Georgia', body: 'Everything was satisfactory. Diana (the owner) asked me to leave a review so here I am. Good job Diana.', rating: 4, spot_id: a10.id, user_id: dwashington.id)
 
 
-
 end
