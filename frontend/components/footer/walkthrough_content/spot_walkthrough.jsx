@@ -9,13 +9,14 @@ const SpotWalkThrough = () => {
                 <div style={props} className="walkthrough-body-main">
                     <h4>Oh, there's pictures!</h4>
 
-                    <p>Amenities, essentials, tips from the host and reviews. We got all the info for you to make the decision here.</p>
+                    <p>Amenities, essentials, reviews: all the info!</p>
 
                     <p>If you like the place, use the booking widget to select dates and guests, and book your trip! Make sure you're logged in for this.</p>
 
                     <p>If you've been to this place before, leave a review below.</p>
 
                     <p>Not quite what you like? Go back to the 'Search' page and pick a different spot.</p>
+                    <img className="walkthrough-gif" src="https://media.giphy.com/media/OU0hzMkCzK8IR9KKGW/giphy.gif" />
                 </div>
             )}
         </Spring>

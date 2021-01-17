@@ -14,6 +14,8 @@ const SearchWalkThrough = () => {
                     <p>If you'd rather find your preferred location manually, we got you covered. Just scroll through the map, and your spots will be updated.</p>
 
                     <p>Select a spot to learn more about them, leave reviews or book!</p>
+
+                    <img className="walkthrough-gif" src="https://media.giphy.com/media/kr5jv97kJr4jbgibLR/giphy.gif" />
                 </div>
             )}
         </Spring>

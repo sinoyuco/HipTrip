@@ -14,6 +14,8 @@ const LandingWalkThrough = () => {
                 <p>From the landing, you can search for specific locations, select dates, or types of camping to see filtered results. If you don't have a place in mind, just hit the 'Search' button straight away!</p>
 
                 <p>Below the search bar, there are featured locations and types of camping being shown. Hit these featured places to learn more!</p>
+                
+                <img className="walkthrough-gif" src="https://media.giphy.com/media/mAcVWwuTCmilS86tEQ/giphy.gif"/>
             </div>
             )}
         </Spring>

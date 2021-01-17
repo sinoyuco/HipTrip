@@ -2645,7 +2645,13 @@ var BookingsWalkThrough = function BookingsWalkThrough() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       style: props,
       className: "walkthrough-body-main"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Possible to get a refund?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Here are your trips. If a trip has not started yet, you can edit your booking, or cancel it altogether! If it has, unfortunately you're stuck with us."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "You can also see your trips if you click on the 'Reviews' tab."));
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Possible to get a refund?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Here are your trips. If a trip has not started yet, you can edit your booking, or cancel it altogether! If it has, unfortunately you're stuck with us."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "You can also see your trips if you click on the 'Reviews' tab."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      style: {
+        marginTop: '40px'
+      },
+      className: "walkthrough-gif",
+      src: "https://media.giphy.com/media/ow2ZdflwJhTYOAT6PA/giphy.gif"
+    }));
   });
 };
 
@@ -2686,7 +2692,10 @@ var LandingWalkThrough = function LandingWalkThrough() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       style: props,
       className: "walkthrough-body-main"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "The journey begins!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "We have created an account for you to ease the journey! Hit the 'Log In' option on the top right, and select 'Demo Login'."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "From the landing, you can search for specific locations, select dates, or types of camping to see filtered results. If you don't have a place in mind, just hit the 'Search' button straight away!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Below the search bar, there are featured locations and types of camping being shown. Hit these featured places to learn more!"));
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "The journey begins!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "We have created an account for you to ease the journey! Hit the 'Log In' option on the top right, and select 'Demo Login'."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "From the landing, you can search for specific locations, select dates, or types of camping to see filtered results. If you don't have a place in mind, just hit the 'Search' button straight away!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Below the search bar, there are featured locations and types of camping being shown. Hit these featured places to learn more!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      className: "walkthrough-gif",
+      src: "https://media.giphy.com/media/mAcVWwuTCmilS86tEQ/giphy.gif"
+    }));
   });
 };
 
@@ -2727,7 +2736,10 @@ var SearchWalkThrough = function SearchWalkThrough() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       style: props,
       className: "walkthrough-body-main"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Here are your search results!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "On this level, change your filters using the buttons of camping types, or the search bar on the header."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "If you'd rather find your preferred location manually, we got you covered. Just scroll through the map, and your spots will be updated."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Select a spot to learn more about them, leave reviews or book!"));
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Here are your search results!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "On this level, change your filters using the buttons of camping types, or the search bar on the header."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "If you'd rather find your preferred location manually, we got you covered. Just scroll through the map, and your spots will be updated."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Select a spot to learn more about them, leave reviews or book!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      className: "walkthrough-gif",
+      src: "https://media.giphy.com/media/kr5jv97kJr4jbgibLR/giphy.gif"
+    }));
   });
 };
 
@@ -2768,7 +2780,10 @@ var SpotWalkThrough = function SpotWalkThrough() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       style: props,
       className: "walkthrough-body-main"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Oh, there's pictures!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Amenities, essentials, tips from the host and reviews. We got all the info for you to make the decision here."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "If you like the place, use the booking widget to select dates and guests, and book your trip! Make sure you're logged in for this."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "If you've been to this place before, leave a review below."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Not quite what you like? Go back to the 'Search' page and pick a different spot."));
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Oh, there's pictures!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Amenities, essentials, reviews: all the info!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "If you like the place, use the booking widget to select dates and guests, and book your trip! Make sure you're logged in for this."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "If you've been to this place before, leave a review below."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Not quite what you like? Go back to the 'Search' page and pick a different spot."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      className: "walkthrough-gif",
+      src: "https://media.giphy.com/media/OU0hzMkCzK8IR9KKGW/giphy.gif"
+    }));
   });
 };
 

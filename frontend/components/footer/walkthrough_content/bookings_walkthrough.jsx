@@ -12,6 +12,7 @@ const BookingsWalkThrough = () => {
                     <p>Here are your trips. If a trip has not started yet, you can edit your booking, or cancel it altogether! If it has, unfortunately you're stuck with us.</p>
 
                     <p>You can also see your trips if you click on the 'Reviews' tab.</p>
+                    <img style={{ marginTop: '40px' }} className="walkthrough-gif" src="https://media.giphy.com/media/ow2ZdflwJhTYOAT6PA/giphy.gif"/>
                 </div>
             )}
         </Spring>
